@@ -1,0 +1,14 @@
+[user]
+	name = Felix Marinho
+	email = felixmark3@gmail.com
+[core]
+	editor = code --wait
+	autocrlf = input
+[diff]
+	tool = vscode
+[difftool "vscode"]
+	cmd = "code --wait --diff $LOCAL $REMOTE"
+
+[init]
+	default = branch
+	defaultBranch = main
