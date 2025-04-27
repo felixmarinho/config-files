@@ -110,21 +110,15 @@ endfunction
 " VIMSCRIPT -------------------------------------------------------------- {{{
 
 
-" This will enable code folding.
-" Use the marker method of folding.
-" Enable the marker method of folding.
 augroup filetype_vim
     autocmd!
     autocmd FileType vim setlocal foldmethod=marker
 augroup END
 
-" If the current file type is HTML, set indentation to 2 spaces.
 autocmd Filetype html setlocal tabstop=2 shiftwidth=2 expandtab
 autocmd FileType python setlocal tabstop=4 shiftwidth=4 expandtab
 autocmd FileType javascript setlocal tabstop=2 shiftwidth=2 expandtab
 
-" If Vim version is equal to or greater than 7.3 enable undofile.
-" This allows you to undo changes to a file even after saving it.
 if version >= 703
         set undodir=~/.vim/backup
             set undofile
@@ -132,8 +126,6 @@ if version >= 703
                     silent! call mkdir(expand('~/.vim/backup'), 'p')
 endif
 
-" You can split a window into sections by typing `:split` or `:vsplit`.
-" Display cursorline and cursorcolumn ONLY in active window.
 
 augroup cursor_off
         autocmd!
@@ -142,25 +134,14 @@ augroup cursor_off
 augroup END
 
 
-    " Set a custom font you have installed on your computer.
     " Syntax: <font_name>\ <weight>\ <size>
 if has("gui_running")
     set guifont=MesloLGS\ NF:h12
 endif
-    " Display more of the file by default.
-    " Hide the toolbar.
     set guioptions-=T
-
-    " Hide the the left-side scroll bar.
     set guioptions-=L
-
-    " Hide the the left-side scroll bar.
     set guioptions-=r
-
-    " Hide the the menu bar.
     set guioptions-=m
-
-    " Hide the the bottom scroll bar.
     set guioptions-=b
 
     if has("termguicolors")
@@ -211,7 +192,6 @@ endif
     " }}}
 
 let g:lightline = { 'colorscheme': 'wombat' }
-"let g:lightline = { 'colorscheme': 'material_vim' }
 
 let g:airline_powerline_fonts = 1 " Use MesloLGS NF glyphs
 let g:airline_theme = 'material'

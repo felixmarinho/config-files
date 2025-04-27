@@ -129,6 +129,7 @@ alias gss="git status -s"
 alias ga="git add"
 alias gc="git commit -m"
 alias gp="git push"
+alias glo="git --no-pager log --oneline --reverse"
 #Aliases Tmux
 alias tma="tmux attach -t"
 alias tml="tmux ls"
