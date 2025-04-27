@@ -108,8 +108,6 @@ source $ZSH/oh-my-zsh.sh
 # For a full list of active aliases, run `alias`.
 #
 # Example aliases
-# alias zshconfig="mate ~/.zshrc"
-# alias ohmyzsh="mate ~/.oh-my-zsh"
 alias ls='ls --color=auto'
 alias grep='grep --color=auto'
 alias fgrep='fgrep --color=auto'
@@ -117,12 +115,12 @@ alias egrep='egrep --color=auto'
 alias ll='ls -alF'
 alias la='ls -A'
 alias l='ls -CF'
+alias c="clear"
 # Custom Aliases
 alias szrc="source ~/.zshrc"
 alias zrc="vim ~/.zshrc"
 alias desk="cd ~/Desktop"
 alias dev="cd ~/Developer"
-alias c="clear"
 alias cff="~/.config-files"
 #Aliases Git
 alias gs="git status"
@@ -130,6 +128,7 @@ alias gss="git status -s"
 alias ga="git add"
 alias gc="git commit -m"
 alias gp="git push"
+alias gpl="git pull"
 alias glo="git --no-pager log --oneline --reverse"
 #Aliases Tmux
 alias tma="tmux attach -t"

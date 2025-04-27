@@ -67,18 +67,22 @@ nnoremap <F3> :NERDTreeToggle<cr>
 " Have nerdtree ignore certain files and directories.
 let NERDTreeIgnore=['\.git$', '\.jpg$', '\.mp4$', '\.ogg$', '\.iso$', '\.pdf$', '\.pyc$', '\.odt$', '\.png$', '\.gif$', '\.db$']
 
-" Press the space bar to type the : character in command mode.
 nnoremap <space> :
-
-" Type jj to exit insert mode quickly.
 inoremap jj <Esc>
 
-nnoremap <c-j> :m .+1<CR>==
-nnoremap <c-k> :m .-2<CR>==
-inoremap <c-j> <Esc>:m .+1<CR>==gi
-inoremap <c-k> <Esc>:m .-2<CR>==gi
-vnoremap <c-j> :m '>+1<CR>gv=gv
-vnoremap <c-k> :m '<-2<CR>gv=gv
+nnoremap <c-k> :m .+1<CR>==
+nnoremap <c-j> :m .-2<CR>==
+inoremap <c-k> <Esc>:m .+1<CR>==gi
+inoremap <c-j> <Esc>:m .-2<CR>==gi
+vnoremap <c-j> :m '<-2<CR>gv=gv
+vnoremap <c-k> :m '>+1<CR>gv=gv
+
+nnoremap k j|noremap <C-w>k <C-w>j|noremap <C-w><C-k> <C-w>j
+nnoremap j k|noremap <C-w>j <C-w>k|noremap <C-w><C-j> <C-w>k
+vnoremap k j|vnoremap <C-w>k <C-w>j|vnoremap <C-w><C-k> <C-w>j
+vnoremap j k|vnoremap <C-w>j <C-w>k|vnoremap <C-w><C-j> <C-w>k
+
+
 
 nnoremap <leader>w :w<CR>          " Save
 nnoremap <leader>q :q<CR>          " Quit
