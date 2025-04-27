@@ -123,6 +123,7 @@ alias zrc="vim ~/.zshrc"
 alias desk="cd ~/Desktop"
 alias dev="cd ~/Developer"
 alias c="clear"
+alias cff="~/.config-files"
 #Aliases Git
 alias gs="git status"
 alias gss="git status -s"
