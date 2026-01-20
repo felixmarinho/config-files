@@ -11,7 +11,7 @@ fi
 
 # Path to your Oh My Zsh installation.
 export ZSH="$HOME/.oh-my-zsh"
-
+setopt ignoreeof
 # Set name of the theme to load --- if set to "random", it will
 # load a random theme each time Oh My Zsh is loaded, in which case,
 # to know which specific one was loaded, run: echo $RANDOM_THEME
@@ -116,6 +116,7 @@ alias ll='ls -alF'
 alias la='ls -A'
 alias l='ls -CF'
 alias c="clear"
+alias cod="code ." 
 # Custom Aliases
 alias szrc="source ~/.zshrc"
 alias zrc="vim ~/.zshrc"
@@ -150,3 +151,5 @@ if [ -d "$FNM_PATH" ]; then
 fi
 
 eval "$(fnm env --use-on-cd --version-file-strategy=recursive --shell zsh)"
+
+
