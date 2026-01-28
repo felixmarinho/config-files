@@ -77,4 +77,12 @@
     "command": "filesExplorer.paste",
     "when": "explorerViewletVisible && filesExplorerFocus && !explorerResourceReadonly && !inputFocus",
   },
+  {
+    "key": "cmd+w",
+    "command": "workbench.action.closeActiveEditor",
+  },
+  {
+    "key": "ctrl+shift+w",
+    "command": "workbench.action.closeActiveEditor",
+  },
 ]

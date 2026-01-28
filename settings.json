@@ -1,7 +1,7 @@
 {
   "workbench.editor.empty.hint": "hidden",
   "workbench.editor.labelFormat": "medium",
-  "workbench.sideBar.location": "right",
+  "workbench.sideBar.location": "left",
   "workbench.startupEditor": "none",
   "workbench.colorTheme": "Vira Carbon High Contrast",
   "workbench.activityBar.location": "top",
@@ -34,9 +34,7 @@
     "editorLineNumber.foreground": "#606060",
     "editor.selectionHighlightBackground": "#0000",
     "editor.selectionHighlightBorder": "#0000",
-    "editor.wordHighlightStrongBackground": "#000",
     "editor.wordHighlightStrongBorder": "#000",
-    "editor.wordHighlightBackground": "#202020",
     "editor.wordHighlightBorder": "#90d1ff97",
     "editorBracketMatch.border": "#707070",
     "editorBracketMatch.background": "#000",
@@ -346,5 +344,4 @@
   "window.menuBarVisibility": "classic",
   "workbench.editor.pinnedTabsOnSeparateRow": true,
   "workbench.productIconTheme": "viraUIIcons",
-  "workbench.statusBar.visible": false,
 }
