@@ -344,4 +344,6 @@
   "window.menuBarVisibility": "classic",
   "workbench.editor.pinnedTabsOnSeparateRow": true,
   "workbench.productIconTheme": "viraUIIcons",
+  "terminal.integrated.enableMultiLinePasteWarning": "never",
+  "workbench.statusBar.visible": false,
 }

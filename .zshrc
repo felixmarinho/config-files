@@ -112,11 +112,13 @@ alias ls='ls --color=auto'
 alias grep='grep --color=auto'
 alias fgrep='fgrep --color=auto'
 alias egrep='egrep --color=auto'
-alias ll='ls -alF'
+alias ll='ls -lF'
+alias lla='ls -alF'
 alias la='ls -A'
 alias l='ls -CF'
 alias c="clear"
 alias cod="code ." 
+alias his="history"
 # Custom Aliases
 alias szrc="source ~/.zshrc"
 alias zrc="vim ~/.zshrc"
@@ -134,6 +136,7 @@ alias glo="git --no-pager log --oneline --reverse"
 #Aliases Tmux
 alias tma="tmux attach -t"
 alias tml="tmux ls"
+alias ta="tmux attach"
 #Aliases Docker
 alias dps="docker ps"
 
