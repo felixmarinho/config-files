@@ -5,8 +5,8 @@ syntax on
 let mapleader = " "
 set nocompatible
 set number
-set cursorline
-set cursorcolumn
+"set cursorline
+"set cursorcolumn
 set shiftwidth=4
 set tabstop=2
 set expandtab
@@ -29,7 +29,8 @@ set synmaxcol=200
 set wildmode=list:longest
 set wildignore=*.docx,*.jpg,*.png,*.gif,*.pdf,*.pyc,*.exe,*.flv,*.img,*.xlsx
 set termguicolors
-
+set clipboard^=unnamed
+set rtp+=/opt/homebrew/opt/fzf
 
 
 " PLUzoGINS ---------------------------------------------------------------- {{{
@@ -40,18 +41,23 @@ Plug 'dense-analysis/ale'
 
 Plug 'preservim/nerdtree'
 
-Plug 'kaicataldo/material.vim'
+Plug 'kaicataldo/material.vim', { 'branch': 'main' }
 
 Plug 'itchyny/lightline.vim'
 
 Plug 'vim-airline/vim-airline'
 
 Plug 'ryanoasis/vim-devicons'
+
 Plug 'vim-airline/vim-airline-themes'
+
 Plug 'tpope/vim-sleuth'
+
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
+
 Plug 'junegunn/fzf.vim'
 
+Plug 'liuchengxu/space-vim-dark'
 
 call plug#end()
 " }}}
@@ -62,11 +68,10 @@ call plug#end()
 " Mappings code goes here.
 " NERDTree specific mappings.
 " Map the F3 key to toggle NERDTree open and close.
-nnoremap <F3> :NERDTreeToggle<cr>
+nnoremap <leader>c :NERDTreeToggle<cr>
 
 " Have nerdtree ignore certain files and directories.
 let NERDTreeIgnore=['\.git$', '\.jpg$', '\.mp4$', '\.ogg$', '\.iso$', '\.pdf$', '\.pyc$', '\.odt$', '\.png$', '\.gif$', '\.db$']
-
 nnoremap <space> :
 inoremap nn <Esc>
 
@@ -87,7 +92,7 @@ inoremap nn <Esc>
 nnoremap <leader>w :w<CR>          " Save
 nnoremap <leader>q :q<CR>          " Quit
 nnoremap <leader>/ :nohlsearch<CR> " Clear search highlights
-nnoremap <leader>r :source ~/.vimrc<CR>
+"nnoremap <leader>r :source ~/.vimrc<CR>
 nnoremap <leader>o :call InsertLineBreakBelow()<CR>
 nnoremap <leader>O :call InsertLineBreakAbove()<CR>
 
@@ -170,8 +175,6 @@ endif
 
 " }}}
 
-
-
 " Status bar code goes here.
 
 " }}}
@@ -195,17 +198,46 @@ endif
 
     " }}}
 
-let g:lightline = { 'colorscheme': 'wombat' }
+" Color Scheme
+colorscheme material
+let g:material_theme_style = 'darker-cummunity'
 
+" Comments Colors
+let g:material_terminal_italics = 1
+hi Comment cterm=italic gui=italic
+hi Comment guifg=#202020 
+hi Comment guibg=#a1a1a1
+
+" Folder Color
+"hi Folded guifg=
+hi Folded guibg=#202020
+
+" Background Color
+highlight Normal guibg=#202020 guifg=#cdd6f4
+
+" Optional: make non-text areas (tilde lines, empty area) match too
+highlight NonText guibg=#202020
+highlight EndOfBuffer guibg=#202020
+
+" Line Number Color
+highlight LineNr guifg=#595959
+
+" Status Line Config
+let g:lightline = { 'colorscheme': 'wombat' }
 let g:airline_powerline_fonts = 1 " Use MesloLGS NF glyphs
 let g:airline_theme = 'material'
-set laststatus=2 " Always show statusline
-
-let g:material_terminal_italics = 1
-let g:material_theme_style = 'darker-community'
-colorscheme material
-
 let g:webdevicons_enable = 1
 let g:webdevicons_enable_airline_statusline = 1
 
+" Folder Path Config
+let g:airline#extensions#tabline#enabled = 1
+let g:airline#extensions#tabline#left_alt_sep = '|'
+let g:airline#extensions#tabline#formatter = 'default'
+
+" Nerdtree Config
+let g:webdevicons_conceal_nerdtree_brackets=1
+let g:DevIconsEnableFoldersOpenClose=1
 let NERDTreeShowHidden=1
+
+" Make sure everything loaded corectly
+packloadall

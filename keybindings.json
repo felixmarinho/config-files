@@ -85,4 +85,8 @@
     "key": "ctrl+shift+w",
     "command": "workbench.action.closeActiveEditor",
   },
+  {
+    "key": "ctrl+shift+cmd+b",
+    "command": "breadcrumbs.toggle",
+  },
 ]

@@ -1,9 +1,9 @@
 # Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
 # Initialization code that may require console input (password prompts, [y/n]
 # confirmations, etc.) must go above this block; everything else may go below.
-if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
-  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
-fi
+#if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
+#  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
+#fi
 
 
 # If you come from bash you might have to change your $PATH.
@@ -16,7 +16,8 @@ setopt ignoreeof
 # load a random theme each time Oh My Zsh is loaded, in which case,
 # to know which specific one was loaded, run: echo $RANDOM_THEME
 # See https://github.com/ohmyzsh/ohmyzsh/wiki/Themes
-ZSH_THEME="powerlevel10k/powerlevel10k"
+#ZSH_THEME="powerlevel10k/powerlevel10k"
+ZSH_THEME=""
 
 # Set list of themes to pick from when loading at random
 # Setting this variable when ZSH_THEME=random will cause zsh to load
@@ -43,7 +44,7 @@ ZSH_THEME="powerlevel10k/powerlevel10k"
 # DISABLE_MAGIC_FUNCTIONS="true"
 
 # Uncomment the following line to disable colors in ls.
-# DISABLE_LS_COLORS="true"
+#DISABLE_LS_COLORS="true"
 
 # Uncomment the following line to disable auto-setting terminal title.
 # DISABLE_AUTO_TITLE="true"
@@ -78,9 +79,22 @@ ZSH_THEME="powerlevel10k/powerlevel10k"
 # Custom plugins may be added to $ZSH_CUSTOM/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git zsh-autosuggestions zsh-syntax-highlighting fast-syntax-highlighting)
-       # zsh-autocomplete
+plugins=(
+  git 
+  zsh-autosuggestions
+# zsh-autocomplete
+  zsh-syntax-highlighting
+# fast-syntax-highlighting)
+  )
 source $ZSH/oh-my-zsh.sh
+
+# Set up fzf key bindings and fuzzy completion
+source <(fzf --zsh)
+
+export FZF_CTRL_T_OPTS="
+--style full
+--preview 'bat -n --color=always {}'
+--bind 'ctrl-/:change-preview-window(down|hidden|)'"
 
 # User configuration
 
@@ -107,11 +121,25 @@ source $ZSH/oh-my-zsh.sh
 # - $ZSH_CUSTOM/macos.zsh
 # For a full list of active aliases, run `alias`.
 #
-# Example aliases
-alias ls='ls --color=auto'
+# Custom Aliases
+alias szrc="source ~/.zshrc"
+alias zrc="vim ~/.zshrc"
+alias desk="cd ~/Desktop"
+alias dev="cd ~/Developer"
+alias cff="~/.config-files"
+
+if [[ "$OSTYPE" == darwin* ]]; then
+  alias ls='ls -G'
+  alias grep='grep -G'
+  alias fgrep='fgrep -G'
+  alias egrep='egrep -F'
+else
+  alias ls='ls --color=auto'
 alias grep='grep --color=auto'
 alias fgrep='fgrep --color=auto'
 alias egrep='egrep --color=auto'
+fi
+
 alias ll='ls -lF'
 alias lla='ls -alF'
 alias la='ls -A'
@@ -119,12 +147,11 @@ alias l='ls -CF'
 alias c="clear"
 alias cod="code ." 
 alias his="history"
-# Custom Aliases
-alias szrc="source ~/.zshrc"
-alias zrc="vim ~/.zshrc"
-alias desk="cd ~/Desktop"
-alias dev="cd ~/Developer"
-alias cff="~/.config-files"
+alias cc="cd -"
+alias c1="cd ~1"
+alias c2="cd ~2"
+alias ..='cd ..'
+alias ...='cd ../..'
 #Aliases Git
 alias gs="git status"
 alias gss="git status -s"
@@ -135,14 +162,10 @@ alias gpl="git pull"
 alias glo="git --no-pager log --oneline --reverse"
 #Aliases Tmux
 alias tma="tmux attach -t"
-alias tml="tmux ls"
-alias ta="tmux attach"
+alias tls="tmux ls"
+alias ta="tmux attach -t"
 #Aliases Docker
 alias dps="docker ps"
-
-
-# To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
-[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 
 
 
@@ -155,4 +178,13 @@ fi
 
 eval "$(fnm env --use-on-cd --version-file-strategy=recursive --shell zsh)"
 
+eval "$(starship init zsh)"
+export STARSHIP_CONFIG=~/.config-files/starship.toml
+eval "$(zoxide init zsh)"
 
+
+# Added by LM Studio CLI (lms)
+export PATH="$PATH:/Users/fc/.lmstudio/bin"
+# End of LM Studio CLI section
+
+export LSCOLORS="Gxfxcxdxbxexexaxaxaxaxaxa"
