@@ -1,42 +1,126 @@
 {
+  // ============================================================
+  // Workbench
+  // ============================================================
+
   "workbench.editor.empty.hint": "hidden",
   "workbench.editor.labelFormat": "medium",
+  "workbench.editor.pinnedTabsOnSeparateRow": true,
   "workbench.sideBar.location": "left",
-  "workbench.startupEditor": "none",
   "workbench.activityBar.location": "top",
+  "workbench.startupEditor": "none",
   "workbench.tree.indent": 11,
-  "editor.bracketPairColorization.enabled": true,
-  "security.workspace.trust.untrustedFiles": "open",
-  //"editor.fontFamily": "'Fira Code', 'Droid Sans Mono', 'monospace', monospace",
-  "editor.fontFamily": "'JetBrains Mono', 'monospace', monospace",
-  // "terminal.integrated.fontFamily": "MesloLGS NF, 'monospace', monospace",
-  // "terminal.integrated.fontFamily": "JetBrains Mono",
-  "terminal.integrated.fontFamily": "JetBrainsMono Nerd Font",
-  // "terminal.integrated.fontFamily": "'JetBrains Mono Light', 'JetBrainsMono Nerd Font'",
-  "terminal.integrated.fontSize": 14,
-  "terminal.integrated.fontLigatures.enabled": true,
-  "editor.tabSize": 2,
+
   "window.density.editorTabHeight": "compact",
-  "editor.letterSpacing": 0,
+  "window.nativeTabs": true,
+  "window.menuBarVisibility": "classic",
+
+  // Theme / Icons
+  "workbench.colorTheme": "carbon-candy-kawasaki-lightroom",
+  "workbench.productIconTheme": "carbon-candy-product-icons",
+  "workbench.iconTheme": "carbon-candy-file-icons",
+
+  "breadcrumbs.enabled": false,
+
+  // ============================================================
+  // Workbench Color Customizations — Optional
+  // Uncomment to enable
+  // ============================================================
+
+  // "workbench.colorCustomizations": {
+  //   "editorLineNumber.foreground": "#606060",
+  //   "editor.selectionHighlightBackground": "#0000",
+  //   "editor.selectionHighlightBorder": "#0000",
+  //   "editor.wordHighlightStrongBorder": "#000",
+  //   "editor.wordHighlightBorder": "#90d1ff97",
+  //   "editorBracketMatch.border": "#707070",
+  //   "editorBracketMatch.background": "#000"
+  // },
+
+  // "editor.tokenColorCustomizations": {
+  //   "textMateRules": [
+  //     {
+  //       "scope": [
+  //         "comment.block",
+  //         "punctuation.definition.comment.end",
+  //         "punctuation.definition.comment.begin",
+  //         "comment.block.documentation",
+  //         "comment.block.javadoc.java",
+  //         "punctuation.definition.comment.begin.documentation",
+  //         "punctuation.definition.comment.end.documentation",
+  //         "comment.line",
+  //         "punctuation.definition.comment",
+  //         "punctuation.definition.comment.html",
+  //         "punctuation.definition.comment.js",
+  //         "punctuation.definition.comment.python",
+  //         "punctuation.definition.comment.sql",
+  //         "punctuation.definition.comment.php",
+  //         "comment.line.number-sign.php",
+  //         "punctuation.definition.comment.php",
+  //         "comments"
+  //       ],
+  //       "settings": {
+  //         "foreground": "#505050",
+  //         "fontStyle": "italic"
+  //       }
+  //     },
+  //     {
+  //       "scope": [
+  //         "punctuation.definition.tag.begin.html",
+  //         "punctuation.definition.tag.end.html"
+  //       ],
+  //       "settings": {
+  //         "foreground": "#cfcfcf",
+  //         "fontStyle": ""
+  //       }
+  //     }
+  //   ]
+  // },
+
+  // ============================================================
+  // Editor
+  // ============================================================
+
+  "editor.fontFamily": "'JetBrains Mono Nerd Font', 'monospace', monospace",
   "editor.fontSize": 14,
   "editor.lineHeight": 1.5,
+  "editor.letterSpacing": 0,
+
+  "editor.tabSize": 2,
+  "editor.wordWrap": "off",
+  "editor.lineNumbers": "relative",
+
   "editor.fontLigatures": true,
+  "editor.bracketPairColorization.enabled": true,
+  "editor.guides.bracketPairs": true,
+
   "editor.minimap.enabled": false,
   "editor.linkedEditing": true,
   "editor.smoothScrolling": true,
-  "editor.guides.bracketPairs": true,
-  "editor.wordWrap": "off",
-  "files.autoSave": "off",
-  "editor.defaultFormatter": "esbenp.prettier-vscode",
-  "editor.lineNumbers": "relative",
+
   "editor.cursorSurroundingLines": 8,
-  "editor.formatOnSave": true,
   "editor.hover.delay": 1000,
-  "editorLineNumber.width": 20,
+
   "editor.lineDecorationsWidth": 10,
   "editor.glyphMargin": false,
   "editor.folding": false,
-  "window.nativeTabs": true,
+
+  "editor.formatOnSave": true,
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
+
+  "files.autoSave": "off",
+
+  // ============================================================
+  // Terminal
+  // ============================================================
+
+  "terminal.integrated.fontFamily": "JetBrainsMono Nerd Font",
+  "terminal.integrated.fontSize": 14,
+  "terminal.integrated.fontLigatures.enabled": true,
+
+  "terminal.integrated.initialHint": false,
+  "terminal.integrated.enableMultiLinePasteWarning": "never",
+
   "workbench.colorCustomizations": {
     "terminal.background": "#2c2f34",
     "terminal.foreground": "#2d2f34",
@@ -62,84 +146,51 @@
     "terminal.ansiBrightCyan": "#8cf8f7",
     "terminal.ansiBrightWhite": "#eef1f8",
   },
-  //Workbench collor customizations
-  // "workbench.colorCustomizations": {
-  //   "editorLineNumber.foreground": "#606060",
-  //   "editor.selectionHighlightBackground": "#0000",
-  //   "editor.selectionHighlightBorder": "#0000",
-  //   "editor.wordHighlightStrongBorder": "#000",
-  //   "editor.wordHighlightBorder": "#90d1ff97",
-  //   "editorBracketMatch.border": "#707070",
-  //   "editorBracketMatch.background": "#000",
-  // },
-  // "editor.tokenColorCustomizations": {
-  //   "textMateRules": [
-  //     {
-  //       "scope": [
-  //         "comment.block",
-  //         "punctuation.definition.comment.end",
-  //         "punctuation.definition.comment.begin",
-  //         "comment.block.documentation",
-  //         "comment.block.javadoc.java",
-  //         "punctuation.definition.comment.begin.documentation",
-  //         "punctuation.definition.comment.end.documentation",
-  //         "comment.line",
-  //         "punctuation.definition.comment",
-  //         "punctuation.definition.comment.html",
-  //         "punctuation.definition.comment.js",
-  //         "punctuation.definition.comment.python",
-  //         "punctuation.definition.comment.sql",
-  //         "punctuation.definition.comment.php",
-  //         "comment.line.number-sign.php",
-  //         "punctuation.definition.comment.php",
-  //         "comments",
-  //       ],
-  //       "settings": {
-  //         "foreground": "#505050",
-  //         "fontStyle": "italic",
-  //       },
-  //     },
-  //     {
-  //       "scope": [
-  //         "punctuation.definition.tag.begin.html",
-  //         "punctuation.definition.tag.end.html",
-  //       ],
-  //       "settings": {
-  //         "foreground": "#cfcfcf",
-  //         "fontStyle": "",
-  //       },
-  //     },
-  //   ],
-  // },
+
+  // ============================================================
+  // Security
+  // ============================================================
+
+  "security.workspace.trust.untrustedFiles": "open",
+
+  // ============================================================
+  // VSCodeVim
+  // ============================================================
+
   "vim.leader": "<space>",
+
   "vim.easymotion": true,
   "vim.incsearch": true,
+  "vim.hlsearch": true,
   "vim.useSystemClipboard": true,
   "vim.useCtrlKeys": true,
-  "vim.hlsearch": true,
+
   "vim.foldfix": true,
   "vim.surround": true,
   "vim.sneak": true,
   "vim.sneakUseIgnorecaseAndSmartcase": true,
+
   "vim.camelCaseMotion.enable": false,
   "vim.statusBarColorControl": false,
+
   "vim.highlightedyank.enable": true,
   "vim.highlightedyank.duration": 200,
-  "vim.autoSwitchInputMethod.enable": true,
-  "vim.autoSwitchInputMethod.defaultIM": "com.apple.keylayout.US",
-  "vim.autoSwitchInputMethod.obtainIMCmd": "/usr/local/bin/im-select",
-  "vim.autoSwitchInputMethod.switchIMCmd": "/usr/local/bin/im-select {im}",
-  "extensions.experimental.affinity": {
-    "vscodevim.vim": 1,
-  },
+
+  // ============================================================
+  // VSCodeVim — Key Handling
+  // ============================================================
+
   "vim.handleKeys": {
     "<C-a>": false,
     "<C-f>": false,
     "<C-z>": false,
     "<C-w>": false,
-    // "<C-k>": false,
     "<C-p>": false,
   },
+
+  // ============================================================
+  // VSCodeVim — Insert Mode
+  // ============================================================
 
   "vim.insertModeKeyBindings": [
     {
@@ -148,10 +199,14 @@
     },
   ],
 
+  // ============================================================
+  // VSCodeVim — Normal Mode
+  // ============================================================
+
   "vim.normalModeKeyBindingsNonRecursive": [
     {
-      "key": "shift+;",
-      "command": "vim.showQuickpickCmdLine",
+      "before": ["shift", ";"],
+      "commands": ["vim.showQuickpickCmdLine"],
       "when": "editorTextFocus && vim.mode != 'Insert'",
     },
     {
@@ -184,13 +239,14 @@
       "silent": true,
     },
   ],
+
   "vim.normalModeKeyBindings": [
     {
       "before": ["<C-n>"],
       "commands": [":nohl"],
     },
     {
-      "before": ["leader", "w"],
+      "before": ["<leader>", "w"],
       "commands": ["workbench.action.files.save"],
     },
     {
@@ -225,39 +281,50 @@
       "before": ["<leader>", "e"],
       "commands": ["workbench.view.explorer"],
     },
+
+    // Focus editor groups
     {
-      "before": ["<C-h>"], // Focus split window at left
+      "before": ["<C-h>"],
       "commands": ["workbench.action.focusLeftGroup"],
     },
     {
-      "before": ["<C-j>"], // Focus split window at right
+      "before": ["<C-j>"],
       "commands": ["workbench.action.focusBelowGroup"],
     },
     {
-      "before": ["<C-k>"], // Focus split window at above
+      "before": ["<C-k>"],
       "commands": ["workbench.action.focusAboveGroup"],
     },
     {
-      "before": ["<C-l>"], // Focus split window at below
+      "before": ["<C-l>"],
       "commands": ["workbench.action.focusRightGroup"],
     },
+
+    // Split editor
     {
-      "before": ["|"], // Split tab vertically
+      "before": ["|"],
       "after": ["<C-w>", "v"],
     },
     {
-      "before": ["_"], // Split tab horizontally
+      "before": ["_"],
       "after": ["<C-w>", "s"],
     },
+
+    // Git
     {
-      "before": ["<leader>", "g", "p"], // Peek Git diff for the changed line
+      "before": ["<leader>", "g", "p"],
       "commands": ["editor.action.dirtydiff.next"],
     },
     {
-      "before": ["<leader>", "g", "r"], // Revert hunk
+      "before": ["<leader>", "g", "r"],
       "commands": ["git.revertSelectedRanges"],
     },
   ],
+
+  // ============================================================
+  // VSCodeVim — Operator Pending
+  // ============================================================
+
   "vim.operatorPendingModeKeyBindings": [
     {
       "before": ["L"],
@@ -268,12 +335,18 @@
       "after": ["^"],
     },
   ],
+
+  // ============================================================
+  // VSCodeVim — Visual Mode
+  // ============================================================
+
   "vim.visualModeKeyBindingsNonRecursive": [
     {
       "before": ["p"],
       "after": ["w", "g", "v", "y"],
     },
   ],
+
   "vim.visualModeKeyBindings": [
     {
       "before": ["n", "n"],
@@ -287,40 +360,55 @@
       "before": ["K"],
       "commands": ["editor.action.moveLinesDownAction"],
     },
+
+    // Comment selected lines
     {
-      // Comment selected lines and exit visual mode with leader+c
       "before": ["<leader>", "c"],
       "commands": ["editor.action.commentLine", "extension.vim_escape"],
     },
+
+    // Select all occurrences
     {
-      // Select all occurrences of current selection with leader+a
       "before": ["<leader>", "a"],
       "commands": ["editor.action.selectHighlights"],
     },
+
+    // Sort selected lines
     {
-      // Sort selected lines
       "before": ["<leader>", "s", "s"],
       "commands": ["editor.action.sortlinesascending"],
     },
+
+    // Uppercase
     {
-      // Transform to uppercase
       "before": ["<leader>", "u"],
       "commands": ["editor.action.transformtouppercase"],
     },
+
+    // Lowercase
     {
-      // Transform to lowercase
       "before": ["<leader>", "l"],
       "commands": ["editor.action.transformToLowercase"],
     },
   ],
+
+  // ============================================================
+  // VSCodeVim — macOS Input Method
+  // ============================================================
+
+  "vim.autoSwitchInputMethod.enable": true,
+  "vim.autoSwitchInputMethod.defaultIM": "com.apple.keylayout.US",
+  "vim.autoSwitchInputMethod.obtainIMCmd": "/usr/local/bin/im-select",
+  "vim.autoSwitchInputMethod.switchIMCmd": "/usr/local/bin/im-select {im}",
+
+  // ============================================================
+  // Extensions
+  // ============================================================
+
+  "extensions.experimental.affinity": {
+    "vscodevim.vim": 1,
+  },
+
   "liveServer.settings.donotVerifyTags": true,
   "liveServer.settings.donotShowInfoMsg": true,
-  "window.menuBarVisibility": "classic",
-  "workbench.editor.pinnedTabsOnSeparateRow": true,
-  "terminal.integrated.enableMultiLinePasteWarning": "never",
-  "workbench.productIconTheme": "carbon-candy-product-icons",
-  "workbench.iconTheme": "carbon-candy-file-icons",
-  "terminal.integrated.initialHint": false,
-  "workbench.colorTheme": "carbon-candy-kawasaki-lightroom",
-  "breadcrumbs.enabled": false,
 }

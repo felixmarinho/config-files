@@ -1,18 +1,20 @@
-filetype on
-filetype plugin on
-filetype indent on
-syntax on
-let mapleader = " "
+" ============================================================================
+" VIM CONFIGURATION
+" ============================================================================
+
+" ============================================================================
+" GENERAL
+" ============================================================================
+
 set nocompatible
+set encoding=utf-8
 set number
-"set cursorline
-"set cursorcolumn
+set relativenumber
 set shiftwidth=4
 set tabstop=2
 set expandtab
-set nobackup
-set scrolloff=10
 set nowrap
+set scrolloff=10
 set incsearch
 set ignorecase
 set smartcase
@@ -21,223 +23,245 @@ set noshowmode
 set showmatch
 set hlsearch
 set history=100
-set relativenumber
 set wildmenu
-set lazyredraw
-set encoding=utf-8
-set synmaxcol=200 
 set wildmode=list:longest
-set wildignore=*.docx,*.jpg,*.png,*.gif,*.pdf,*.pyc,*.exe,*.flv,*.img,*.xlsx
+set lazyredraw
+set synmaxcol=200
 set termguicolors
 set clipboard^=unnamed
+
+let mapleader = " "
+
+" ============================================================================
+" FILETYPES & SYNTAX
+" ============================================================================
+
+filetype on
+filetype plugin on
+filetype indent on
+syntax on
+
+" ============================================================================
+" FILE SEARCH / WILDCARDS
+" ============================================================================
+
+set wildignore=*.docx,*.jpg,*.png,*.gif,*.pdf,*.pyc,*.exe,*.flv,*.img,*.xlsx
+
+" ============================================================================
+" FZF
+" ============================================================================
+
 set rtp+=/opt/homebrew/opt/fzf
 
-
-" PLUzoGINS ---------------------------------------------------------------- {{{
+" ============================================================================
+" PLUGINS
+" ============================================================================
 
 call plug#begin('~/.vim/plugged')
 
 Plug 'dense-analysis/ale'
-
 Plug 'preservim/nerdtree'
-
 Plug 'kaicataldo/material.vim', { 'branch': 'main' }
-
 Plug 'itchyny/lightline.vim'
-
 Plug 'vim-airline/vim-airline'
-
-Plug 'ryanoasis/vim-devicons'
-
 Plug 'vim-airline/vim-airline-themes'
-
+Plug 'ryanoasis/vim-devicons'
 Plug 'tpope/vim-sleuth'
-
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
-
 Plug 'junegunn/fzf.vim'
-
 Plug 'liuchengxu/space-vim-dark'
 
 call plug#end()
-" }}}
 
+" ============================================================================
+" NERDTREE
+" ============================================================================
 
-" MAPPINGS --------------------------------------------------------------- {{{
+let NERDTreeIgnore = [
+'.git$',
+'.jpg$',
+'.mp4$',
+'.ogg$',
+'.iso$',
+'.pdf$',
+'.pyc$',
+'.odt$',
+'.png$',
+'.gif$',
+'.db$'
+]
 
-" Mappings code goes here.
-" NERDTree specific mappings.
-" Map the F3 key to toggle NERDTree open and close.
-nnoremap <leader>c :NERDTreeToggle<cr>
+let NERDTreeShowHidden = 1
 
-" Have nerdtree ignore certain files and directories.
-let NERDTreeIgnore=['\.git$', '\.jpg$', '\.mp4$', '\.ogg$', '\.iso$', '\.pdf$', '\.pyc$', '\.odt$', '\.png$', '\.gif$', '\.db$']
-nnoremap <space> :
+nnoremap <leader>c :NERDTreeToggle<CR>
+
+" ============================================================================
+" KEY MAPPINGS
+" ============================================================================
+
+" Insert mode
 inoremap nn <Esc>
 
-"nnoremap <c-k> :m .+1<CR>==
-"nnoremap <c-j> :m .-2<CR>==
-"inoremap <c-k> <Esc>:m .+1<CR>==gi
-"inoremap <c-j> <Esc>:m .-2<CR>==gi
-"vnoremap <c-j> :m '<-2<CR>gv=gv
-"vnoremap <c-k> :m '>+1<CR>gv=gv
+" Command-line mode
+nnoremap <Space> :
 
-"nnoremap k j|noremap <C-w>k <C-w>j|noremap <C-w><C-k> <C-w>j
-"nnoremap j k|noremap <C-w>j <C-w>k|noremap <C-w><C-j> <C-w>k
-"vnoremap k j|vnoremap <C-w>k <C-w>j|vnoremap <C-w><C-k> <C-w>j
-"vnoremap j k|vnoremap <C-w>j <C-w>k|vnoremap <C-w><C-j> <C-w>k
+" Save / Quit
+nnoremap <leader>w :w<CR>
+nnoremap <leader>q :q<CR>
 
+" Search
+nnoremap <leader>/ :nohlsearch<CR>
 
-
-nnoremap <leader>w :w<CR>          " Save
-nnoremap <leader>q :q<CR>          " Quit
-nnoremap <leader>/ :nohlsearch<CR> " Clear search highlights
-"nnoremap <leader>r :source ~/.vimrc<CR>
+" Insert line breaks while preserving cursor position
 nnoremap <leader>o :call InsertLineBreakBelow()<CR>
 nnoremap <leader>O :call InsertLineBreakAbove()<CR>
 
-"-' }}}
-
-" Functions {{{
-
+" ============================================================================
+" FUNCTIONS
+" ============================================================================
 
 function! InsertLineBreakBelow()
-        let l:save_cursor = getcurpos()
-            execute "normal! o\<Esc>"
-                call setpos('.', [0, l:save_cursor[1], l:save_cursor[2], 0])
+let l:save_cursor = getcurpos()
+execute "normal! o<Esc>"
+call setpos('.', [0, l:save_cursor, l:save_cursor, 0])
 endfunction
 
 function! InsertLineBreakAbove()
-        let l:save_cursor = getcurpos()
-            execute "normal! O\<Esc>"
-                call setpos('.', [0, l:save_cursor[1] + 1, l:save_cursor[2], 0])
+let l:save_cursor = getcurpos()
+execute "normal! O<Esc>"
+call setpos('.', [0, l:save_cursor + 1, l:save_cursor, 0])
 endfunction
 
+" ============================================================================
+" FILETYPE-SPECIFIC SETTINGS
+" ============================================================================
 
-"}}}
-
-" VIMSCRIPT -------------------------------------------------------------- {{{
-
-
-augroup filetype_vim
-    autocmd!
-    autocmd FileType vim setlocal foldmethod=marker
-augroup END
-
-autocmd Filetype html setlocal tabstop=2 shiftwidth=2 expandtab
+augroup filetype_settings
+autocmd!
+autocmd FileType vim setlocal foldmethod=marker
+autocmd FileType html setlocal tabstop=2 shiftwidth=2 expandtab
 autocmd FileType python setlocal tabstop=4 shiftwidth=4 expandtab
 autocmd FileType javascript setlocal tabstop=2 shiftwidth=2 expandtab
-
-if version >= 703
-        set undodir=~/.vim/backup
-            set undofile
-                set undoreload=10000
-                    silent! call mkdir(expand('~/.vim/backup'), 'p')
-endif
-
-
-augroup cursor_off
-        autocmd!
-         autocmd WinLeave * set nocursorline nocursorcolumn
-        autocmd WinEnter * if &filetype != 'help' | set cursorline cursorcolumn | endif
+autocmd FileType markdown setlocal spell spelllang=en_us
 augroup END
 
+" ============================================================================
+" CURSOR
+" ============================================================================
 
-    " Syntax: <font_name>\ <weight>\ <size>
-if has("gui_running")
-    set guifont=MesloLGS\ NF:h12
+augroup cursor_behavior
+autocmd!
+autocmd WinLeave * set nocursorline nocursorcolumn
+autocmd WinEnter * if &filetype !=# 'help' | set cursorline cursorcolumn | endif
+augroup END
+
+" ============================================================================
+" UNDO HISTORY
+" ============================================================================
+
+if exists('+undofile')
+set undodir=~/.vim/backup
+set undofile
+set undoreload=10000
+silent! call mkdir(expand('~/.vim/backup'), 'p')
 endif
-    set guioptions-=T
-    set guioptions-=L
-    set guioptions-=r
-    set guioptions-=m
-    set guioptions-=b
 
-    if has("termguicolors")
-            set termguicolors
-    endif
+" ============================================================================
+" GUI
+" ============================================================================
 
-    autocmd FileType python setlocal tabstop=4 shiftwidth=4 expandtab
-    autocmd FileType javascript setlocal tabstop=2 shiftwidth=2 expandtab
-    autocmd FileType markdown setlocal spell spelllang=en_us
+if has("gui_running")
+set guifont=MesloLGS\ NF:h12
+endif
 
-    " Map the F4 key to toggle the menu, toolbar, and scroll bar.
-    " <Bar> is the pipe character.
-    " <CR> is the enter key.
-" Map the F4 key to toggle the menu, toolbar, and scroll bar.
-    " <Bar> is the pipe character.
-    " <CR> is the enter key.
-    nnoremap <F4> :if &guioptions=~#'mTr'<Bar>
-        \set guioptions-=mTr<Bar>
-        \else<Bar>
-        \set guioptions+=mTr<Bar>
-        \endif<CR>
+set guioptions-=T
+set guioptions-=L
+set guioptions-=r
+set guioptions-=m
+set guioptions-=b
 
-" }}}
+if has("termguicolors")
+set termguicolors
+endif
 
-" Status bar code goes here.
+" Toggle menu, toolbar and scrollbars
+nnoremap <F4> :if &guioptions =~# 'mTr'<Bar>
+\set guioptions-=mTr<Bar>
+\else<Bar>
+\set guioptions+=mTr<Bar>
+\endif<CR>
 
-" }}}
+" ============================================================================
+" STATUS LINE
+" ============================================================================
 
-" STATUS LINE ------------------------------------------------------------ {{{
+set statusline=
+set statusline+=\ %F\ %M\ %Y\ %R
+set statusline+=%=
+set statusline+=\ ascii:\ %b\ hex:\ 0x%B\ row:\ %l\ col:\ %c\ percent:\ %p%%
+set laststatus=2
 
-" Clear status line when vimrc is reloaded.
-    set statusline=
+" ============================================================================
+" THEME
+" ============================================================================
 
-    " Status line left side.
-    set statusline+=\ %F\ %M\ %Y\ %R
-
-    " Use a divider to separate the left side from the right side.
-    set statusline+=%=
-
-    " Status line right side.
-    set statusline+=\ ascii:\ %b\ hex:\ 0x%B\ row:\ %l\ col:\ %c\ percent:\ %p%%
-
-    " Show the status on the second to last line.
-    set laststatus=2
-
-    " }}}
-
-" Color Scheme
 colorscheme material
-let g:material_theme_style = 'darker-cummunity'
 
-" Comments Colors
+let g:material_theme_style = 'darker-cummunity'
 let g:material_terminal_italics = 1
+
+" ============================================================================
+" COLORS
+" ============================================================================
+
+" Comments
 hi Comment cterm=italic gui=italic
-hi Comment guifg=#202020 
+hi Comment guifg=#202020
 hi Comment guibg=#a1a1a1
 
-" Folder Color
-"hi Folded guifg=
+" Folded text
 hi Folded guibg=#202020
 
-" Background Color
-highlight Normal guibg=#202020 guifg=#cdd6f4
+" Main background
+hi Normal guibg=#202020 guifg=#cdd6f4
 
-" Optional: make non-text areas (tilde lines, empty area) match too
-highlight NonText guibg=#202020
-highlight EndOfBuffer guibg=#202020
+" Empty areas
+hi NonText guibg=#202020
+hi EndOfBuffer guibg=#202020
 
-" Line Number Color
-highlight LineNr guifg=#595959
+" Line numbers
+hi LineNr guifg=#595959
 
-" Status Line Config
-let g:lightline = { 'colorscheme': 'wombat' }
-let g:airline_powerline_fonts = 1 " Use MesloLGS NF glyphs
+" ============================================================================
+" LIGHTLINE
+" ============================================================================
+
+let g:lightline = {
+\ 'colorscheme': 'wombat'
+\ }
+
+" ============================================================================
+" AIRLINE
+" ============================================================================
+
+let g:airline_powerline_fonts = 1
 let g:airline_theme = 'material'
-let g:webdevicons_enable = 1
-let g:webdevicons_enable_airline_statusline = 1
 
-" Folder Path Config
 let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#tabline#left_alt_sep = '|'
 let g:airline#extensions#tabline#formatter = 'default'
 
-" Nerdtree Config
-let g:webdevicons_conceal_nerdtree_brackets=1
-let g:DevIconsEnableFoldersOpenClose=1
-let NERDTreeShowHidden=1
+" ============================================================================
+" DEVICONS
+" ============================================================================
 
-" Make sure everything loaded corectly
+let g:webdevicons_enable = 1
+let g:webdevicons_enable_airline_statusline = 1
+let g:webdevicons_conceal_nerdtree_brackets = 1
+let g:DevIconsEnableFoldersOpenClose = 1
+
+" ============================================================================
+" LOAD PACKAGES
+" ============================================================================
+
 packloadall
