@@ -1,0 +1,79 @@
+#---------------------------------------------------------
+# Window General Settings
+#---------------------------------------------------------
+ 
+  macos-titlebar-style = hidden
+  macos-non-native-fullscreen = true
+  
+  window-save-state = always
+  confirm-close-surface = false
+
+  window-padding-x = 10
+  window-padding-balance = true
+
+#---------------------------------------------------------
+# Quick Terminal
+#---------------------------------------------------------
+ 
+  keybind = global:opt+grave_accent=toggle_quick_terminal
+  quick-terminal-screen = main
+  quick-terminal-position = top
+
+#---------------------------------------------------------
+# Themes
+#---------------------------------------------------------
+
+# theme = Raycast Dark
+# theme = GitHub Dark
+# theme = GitHub Dark Default
+# theme = Dracula
+# theme = Apple System Colors
+# theme = Bright Lights
+# theme = Monokai Remastered
+ theme = Nvim Dark
+# theme = Xcode Dark
+# theme = Xcode Dark hc
+# theme = nordfox
+# theme = Later This Evening
+
+ 
+# Overrides
+
+# background = #212830
+# background = #202020
+  background = #2c2f34 
+# foreground = #a5a8a6
+# foreground = #cdcde2
+  foreground = #adadc0
+
+
+#---------------------------------------------------------
+# Fonts
+#---------------------------------------------------------
+ 
+  font-family = JetBrains Mono Light
+  font-family-bold = JetBrains Mono Bold
+  font-family-italic = JetBrains Mono Italic
+  font-family-bold-italic = JetBrains Mono Bold Italic
+
+  font-size = 14
+  window-inherit-font-size = true
+# font-thicken = true
+# adjust-cell-width = 5%
+
+#---------------------------------------------------------
+# Cursor Style
+#---------------------------------------------------------
+
+# cursor-style = underline
+  cursor-style-blink = true
+
+#---------------------------------------------------------
+# Clipboard
+#---------------------------------------------------------
+ 
+  copy-on-select = clipboard
+
+
+
+
