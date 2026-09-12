@@ -44,8 +44,7 @@ if [[ "$OSTYPE" == darwin* ]]; then
 elif [[ "$OSTYPE" == linux* ]]; then
 
     # Linux
-    export LS_COLORS='di=01;34:ln=01;36:so=01;35:pi=33:ex=01;32'
-
+    export LS_COLORS='di=01;34:ln=01;36:mh=00:pi=33:so=01;35:do=01;35:bd=33:cd=33:or=31:mi=00:su=37:sg=30:ca=00:tw=34:ow=34:st=37:ex=01;32'
     alias ls='ls --color=auto'
     alias grep='grep --color=auto'
     alias fgrep='fgrep --color=auto'
