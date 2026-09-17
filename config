@@ -33,25 +33,12 @@
 #---------------------------------------------------------
 
 # theme = Raycast Dark
-# theme = GitHub Dark
-# theme = GitHub Dark Default
-# theme = Dracula
-# theme = Apple System Colors
-# theme = Bright Lights
-# theme = Monokai Remastered
   theme = Nvim Dark
-# theme = Xcode Dark
-# theme = Xcode Dark hc
-# theme = nordfox
 # theme = Later This Evening
 
 # Overrides
 
-# background = #212830
-# background = #202020
-  background = #2c2f33 
-# foreground = #a5a8a6
-# foreground = #cdcde2
+  background = #282c34 
   foreground = #adadc0
 
 #---------------------------------------------------------
@@ -63,9 +50,9 @@
   font-family-italic = JetBrains Mono Italic
   font-family-bold-italic = JetBrains Mono Bold Italic
 
-  font-size = 14
+  font-size = 15
   window-inherit-font-size = true
-# font-thicken = true
+  font-thicken = true
 # adjust-cell-width = 5%
 
 #---------------------------------------------------------

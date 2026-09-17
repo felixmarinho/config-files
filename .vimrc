@@ -29,6 +29,8 @@ set lazyredraw
 set synmaxcol=200
 set termguicolors
 set clipboard^=unnamed
+set encoding=utf-8
+scriptencoding utf-8
 
 let mapleader = " "
 
@@ -63,13 +65,15 @@ Plug 'dense-analysis/ale'
 Plug 'preservim/nerdtree'
 Plug 'kaicataldo/material.vim', { 'branch': 'main' }
 Plug 'itchyny/lightline.vim'
-Plug 'vim-airline/vim-airline'
+"Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
+Plug 'autoload/onedark.vim'
 Plug 'ryanoasis/vim-devicons'
 Plug 'tpope/vim-sleuth'
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
 Plug 'liuchengxu/space-vim-dark'
+Plug 'joshdick/onedark.vim'
 
 call plug#end()
 
@@ -171,7 +175,7 @@ endif
 " ============================================================================
 
 if has("gui_running")
-set guifont=JetBrains\ NF:h12
+set guifont=JetBrains\Mono\Nerd\Font:h14
 endif
 
 set guioptions-=T
@@ -215,22 +219,22 @@ let g:material_terminal_italics = 1
 " ============================================================================
 
 " Comments
-hi Comment cterm=italic gui=italic
-hi Comment guifg=#616161
-hi Comment guibg=#2c2f33
+"hi Comment cterm=italic gui=italic
+"hi Comment guifg=#616161
+"hi Comment guibg=#2c2f33
 
 " Folded text
-hi Folded guibg=#2c2f33
+"hi Folded guibg=#2c2f33
 
 " Main background
-hi Normal guibg=#2c2f33 guifg=#cdd6f4
+"hi Normal guibg=#2c2f33 guifg=#cdd6f4
 
 " Empty areas
-hi NonText guibg=#2c2f33
-hi EndOfBuffer guibg=#2c2f33
+"hi NonText guibg=#2c2f33
+"hi EndOfBuffer guibg=#2c2f33
 
 " Line numbers
-hi LineNr guifg=#595959
+"hi LineNr guifg=#595959
 
 " ============================================================================
 " LIGHTLINE
