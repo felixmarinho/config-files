@@ -70,7 +70,6 @@ Plug 'tpope/vim-sleuth'
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
 Plug 'liuchengxu/space-vim-dark'
-Plug 'joshdick/onedark'
 
 call plug#end()
 
