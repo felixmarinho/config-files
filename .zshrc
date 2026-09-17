@@ -105,7 +105,7 @@ alias zrc="vim ~/.zshrc"
 
 # Navigation
 alias desk="cd ~/Desktop"
-alias dev="cd ~/Developer"
+alias dev="cd ~/DEV"
 alias cff="~/.config-files"
 
 alias cc="cd -"

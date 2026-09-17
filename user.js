@@ -86,7 +86,7 @@ user_pref("pdfjs.enableScripting", false);
 user_pref("webgl.disabled", false);
 
 // Preserve normal color management.
-user_pref("gfx.color_management.mode", 1);
+user_pref("gfx.color_management.mode", 2);
 user_pref("gfx.color_management.rendering_intent", -1);
 user_pref("gfx.color_management.enablev4", true);
 

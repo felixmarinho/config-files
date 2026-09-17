@@ -70,6 +70,7 @@ Plug 'tpope/vim-sleuth'
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
 Plug 'liuchengxu/space-vim-dark'
+Plug 'joshdick/onedark'
 
 call plug#end()
 
@@ -78,18 +79,18 @@ call plug#end()
 " ============================================================================
 
 let NERDTreeIgnore = [
-'.git$',
-'.jpg$',
-'.mp4$',
-'.ogg$',
-'.iso$',
-'.pdf$',
-'.pyc$',
-'.odt$',
-'.png$',
-'.gif$',
-'.db$'
-]
+      \ '\.git$',
+      \ '\.jpg$',
+      \ '\.mp4$',
+      \ '\.ogg$',
+      \ '\.iso$',
+      \ '\.pdf$',
+      \ '\.pyc$',
+      \ '\.odt$',
+      \ '\.png$',
+      \ '\.gif$',
+      \ '\.db$'
+      \ ]
 
 let NERDTreeShowHidden = 1
 
@@ -100,7 +101,7 @@ nnoremap <leader>c :NERDTreeToggle<CR>
 " ============================================================================
 
 " Insert mode
-inoremap nn <Esc>
+inoremap <c-c> <Esc>
 
 " Command-line mode
 nnoremap <Space> :
@@ -171,7 +172,7 @@ endif
 " ============================================================================
 
 if has("gui_running")
-set guifont=MesloLGS\ NF:h12
+set guifont=JetBrains\ NF:h12
 endif
 
 set guioptions-=T
@@ -205,7 +206,7 @@ set laststatus=2
 " THEME
 " ============================================================================
 
-colorscheme material
+colorscheme onedark
 
 let g:material_theme_style = 'darker-cummunity'
 let g:material_terminal_italics = 1
@@ -216,18 +217,18 @@ let g:material_terminal_italics = 1
 
 " Comments
 hi Comment cterm=italic gui=italic
-hi Comment guifg=#202020
-hi Comment guibg=#a1a1a1
+hi Comment guifg=#616161
+hi Comment guibg=#2c2f33
 
 " Folded text
-hi Folded guibg=#202020
+hi Folded guibg=#2c2f33
 
 " Main background
-hi Normal guibg=#202020 guifg=#cdd6f4
+hi Normal guibg=#2c2f33 guifg=#cdd6f4
 
 " Empty areas
-hi NonText guibg=#202020
-hi EndOfBuffer guibg=#202020
+hi NonText guibg=#2c2f33
+hi EndOfBuffer guibg=#2c2f33
 
 " Line numbers
 hi LineNr guifg=#595959
@@ -237,7 +238,7 @@ hi LineNr guifg=#595959
 " ============================================================================
 
 let g:lightline = {
-\ 'colorscheme': 'wombat'
+\ 'colorscheme': 'onedark'
 \ }
 
 " ============================================================================
