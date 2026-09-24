@@ -1,6 +1,4 @@
-# ============================================================
 # Oh My Zsh
-# ============================================================
 
 export ZSH="$HOME/.oh-my-zsh"
 
@@ -17,19 +15,15 @@ plugins=(
 source "$ZSH/oh-my-zsh.sh"
 
 
-# ============================================================
 # Environment
-# ============================================================
 
-export EDITOR="vim"
+export EDITOR="nvim"
 
 # Shared config directory
 export CONFIG_DIR="$HOME/.config-files"
 
 
-# ============================================================
 # OS-specific configuration
-# ============================================================
 
 if [[ "$OSTYPE" == darwin* ]]; then
 
@@ -53,22 +47,18 @@ elif [[ "$OSTYPE" == linux* ]]; then
 fi
 
 
-# ============================================================
 # PATH
-# ============================================================
 
 # User binaries
 export PATH="$HOME/.local/bin:$PATH"
 
-# LM Studio CLI
+#LM Studio CLI
 if [[ -d "$HOME/.lmstudio/bin" ]]; then
     export PATH="$HOME/.lmstudio/bin:$PATH"
 fi
 
 
-# ============================================================
 # Development Tools
-# ============================================================
 
 # fnm
 if command -v fnm >/dev/null 2>&1; then
@@ -81,9 +71,7 @@ if command -v zoxide >/dev/null 2>&1; then
 fi
 
 
-# ============================================================
 # fzf
-# ============================================================
 
 if command -v fzf >/dev/null 2>&1; then
     source <(fzf --zsh)
@@ -95,13 +83,11 @@ if command -v fzf >/dev/null 2>&1; then
 fi
 
 
-# ============================================================
 # Custom Aliases
-# ============================================================
 
 # Zsh
 alias szrc="source ~/.zshrc"
-alias zrc="vim ~/.zshrc"
+alias zrc="nvim ~/.zshrc"
 
 # Navigation
 alias desk="cd ~/Desktop"
@@ -133,19 +119,21 @@ alias gpl="git pull"
 alias glo="git --no-pager log --oneline --reverse"
 
 # Tmux
-alias tma="tmux attach -t"
+alias tma="tmux atach"
+alias tmd="tmux detach"
 alias tls="tmux ls"
-alias ta="tmux attach -t"
 
 # Docker
 alias dps="docker ps"
+alias din="docker inspect"
+
+#Nvim
+alias vi="nvim"
 
 
-# ============================================================
 # Starship
-# ============================================================
 
-export STARSHIP_CONFIG="$CONFIG_DIR/starship.toml"
+export STARSHIP_CONFIG="$CONFIG_DIR/starship/starship.toml"
 
 if command -v starship >/dev/null 2>&1; then
     eval "$(starship init zsh)"

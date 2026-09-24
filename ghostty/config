@@ -59,11 +59,56 @@
 # Cursor Style
 #---------------------------------------------------------
 
-# cursor-style = underline
-  cursor-style-blink = true
+  cursor-style = block
+  cursor-style-blink = false
+  shell-integration-features = cursor
+  cursor-color = #e26c88
 
 #---------------------------------------------------------
-# Clipboard
+# Clipboard and Selection
 #---------------------------------------------------------
  
   copy-on-select = clipboard
+  selection-clear-on-copy = true
+  mouse-hide-while-typing =true
+
+#---------------------------------------------------------
+# Shortcuts
+#---------------------------------------------------------
+
+  keybind = alt+j=scroll_page_lines:-5
+  keybind = alt+k=scroll_page_lines:5
+  keybind = alt+h=jump_to_prompt:-1
+  keybind = alt+l=jump_to_prompt:1
+  keybind = alt+shift+l=scroll_to_bottom
+  
+# Unbind Split panels
+
+  keybind = super+shift+d=unbind
+  keybind = super+alt+up=unbind
+  keybind = super+alt+down=unbind
+  keybind = super+alt+left=unbind
+  keybind = super+alt+right=unbind
+  keybind = super+ctrl+up=unbind
+  keybind = super+ctrl+down=unbind
+  keybind = super+ctrl+left=unbind
+  keybind = super+ctrl+right=unbind
+  keybind = super+shift+enter=unbind
+  keybind = super+ctrl+equal=unbind
+  keybind = super+t=unbind
+  keybind = super+shift+[=unbind
+  keybind = super+shift+]=unbind
+
+# Disable tab navigation
+
+  keybind = super+1=unbind
+  keybind = super+2=unbind
+  keybind = super+3=unbind
+  keybind = super+4=unbind
+  keybind = super+5=unbind
+  keybind = super+6=unbind
+  keybind = super+7=unbind
+  keybind = super+8=unbind
+  keybind = super+9=unbind 
+
+

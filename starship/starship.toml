@@ -12,7 +12,6 @@ $os\
 $username\
 $hostname\
 $directory\
-$fill\
 $vcsh\
 $fossil_branch\
 $fossil_metrics\
@@ -79,7 +78,7 @@ disabled = false
 
 [directory]
 style = 'bold blue'
-format = "[$path ]($style)"
+format = "[$path   ]($style)"
 truncation_length = 3
 truncate_to_repo = true
 #truncation_symbol = "…/"
@@ -93,13 +92,13 @@ truncate_to_repo = true
 
 [git_branch]
 symbol = ""
-style = "bold fg:#ff79c6"
+#style = "bold fg:#ff79c6"
 format = ' [$symbol $branch]($style)'
 #truncation_length = 4
 #truncation_symbol = ' ' 
 
 [git_status]
-style = "bold fg:#ff4444"
+#style = "bold fg:#ff4444"
 format = '[ $all_status$ahead_behind ]($style)'
 
 # Disable heavy git details

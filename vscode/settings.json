@@ -17,8 +17,6 @@
   "workbench.productIconTheme": "carbon-candy-product-icons",
   "workbench.iconTheme": "carbon-candy-file-icons",
 
-  "breadcrumbs.enabled": false,
-
   // ============================================================
   // Workbench Color Customizations — Optional
   // Uncomment to enable
@@ -457,4 +455,6 @@
   "liveServer.settings.donotShowInfoMsg": true,
   "workbench.editor.showTabs": "none",
   "workbench.colorTheme": "carbon-candy-kawasaki-lightroom",
+  "workbench.editor.editorActionsLocation": "titleBar",
+  "breadcrumbs.enabled": false,
 }
