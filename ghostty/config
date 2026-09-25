@@ -76,8 +76,8 @@
 # Shortcuts
 #---------------------------------------------------------
 
-  keybind = alt+j=scroll_page_lines:-5
-  keybind = alt+k=scroll_page_lines:5
+  keybind = alt+k=scroll_page_lines:-5
+  keybind = alt+j=scroll_page_lines:5
   keybind = alt+h=jump_to_prompt:-1
   keybind = alt+l=jump_to_prompt:1
   keybind = alt+shift+l=scroll_to_bottom

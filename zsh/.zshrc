@@ -119,7 +119,7 @@ alias gpl="git pull"
 alias glo="git --no-pager log --oneline --reverse"
 
 # Tmux
-alias tma="tmux atach"
+alias tma="tmux attach"
 alias tmd="tmux detach"
 alias tls="tmux ls"
 
