@@ -60,11 +60,6 @@ fi
 
 # Development Tools
 
-# fnm
-if command -v fnm >/dev/null 2>&1; then
-    eval "$(fnm env --use-on-cd --version-file-strategy=recursive --shell zsh)"
-fi
-
 # zoxide
 if command -v zoxide >/dev/null 2>&1; then
     eval "$(zoxide init zsh)"
@@ -121,7 +116,9 @@ alias glo="git --no-pager log --oneline --reverse"
 # Tmux
 alias tma="tmux attach"
 alias tmd="tmux detach"
-alias tls="tmux ls"
+alias tmls="tmux ls"
+alias tmns="tmux new -s"
+alias tmks="tmux kill-session"
 
 # Docker
 alias dps="docker ps"
