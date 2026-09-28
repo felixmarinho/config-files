@@ -22,15 +22,15 @@ export EDITOR="nvim"
 # Shared config directory
 export CONFIG_DIR="$HOME/.config-files"
 
-
 # OS-specific configuration
 
 if [[ "$OSTYPE" == darwin* ]]; then
 
     # macOS
     export LSCOLORS="Gxfxcxdxbxexexaxaxaxaxaxa"
+    export EZA_COLORS='di=34:ln=36:pi=33:so=35:bd=36:cd=36:ex=32'
 
-    alias ls='ls -G'
+    alias ls='eza --color=auto'
     alias grep='grep -G'
     alias fgrep='fgrep -G'
     alias egrep='egrep -F'
@@ -38,14 +38,14 @@ if [[ "$OSTYPE" == darwin* ]]; then
 elif [[ "$OSTYPE" == linux* ]]; then
 
     # Linux
-    export LS_COLORS='di=01;34:ln=01;36:mh=00:pi=33:so=01;35:do=01;35:bd=33:cd=33:or=31:mi=00:su=37:sg=30:ca=00:tw=34:ow=34:st=37:ex=01;32'
-    alias ls='ls --color=auto'
+    export EZA_COLORS='di=34:ln=36:pi=33:so=35:bd=36:cd=36:ex=32'
+
+    alias ls='eza --color=auto'
     alias grep='grep --color=auto'
     alias fgrep='fgrep --color=auto'
     alias egrep='egrep --color=auto'
 
 fi
-
 
 # PATH
 
@@ -96,13 +96,14 @@ alias ..='cd ..'
 alias ...='cd ../..'
 
 # General
-alias ll='ls -lF'
-alias lla='ls -alF'
-alias la='ls -A'
-alias l='ls -CF'
+alias ll='eza -l'
+alias lla='eza -la'
+alias la='eza -a'
+alias l='eza'
 alias c="clear"
 alias cod="code ."
 alias his="history"
+alias echop="echo $PATH | tr ':' '\n' | nl"
 
 # Git
 alias gs="git status"

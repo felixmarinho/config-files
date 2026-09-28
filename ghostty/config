@@ -38,7 +38,8 @@
 
 # Overrides
 
-  background = #282c34 
+# background = #282c34
+  background = #1e1e27
   foreground = #adadc0
 
 #---------------------------------------------------------
@@ -50,7 +51,7 @@
   font-family-italic = JetBrains Mono Italic
   font-family-bold-italic = JetBrains Mono Bold Italic
 
-  font-size = 15
+  font-size = 16
   window-inherit-font-size = true
   font-thicken = true
 # adjust-cell-width = 5%
@@ -84,6 +85,7 @@
   
 # Unbind Split panels
 
+  keybind = super+d=unbind
   keybind = super+shift+d=unbind
   keybind = super+alt+up=unbind
   keybind = super+alt+down=unbind
