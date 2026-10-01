@@ -51,4 +51,54 @@ end, { desc = "Copy full file path" })
 
 vim.keymap.set("n", "<leader>td", function()
 	vim.diagnostic.enable(not vim.diagnostic.is_enabled())
+
 end, { desc = "Toggle diagnostics" })
+
+
+-- Tree-sitter incremental selection
+
+vim.keymap.set("n", "<Enter>", function()
+	vim.treesitter.select("parent")
+end, {
+		desc = "Treesitter: start selection",
+	})
+
+vim.keymap.set("x", "<Enter>", function()
+	vim.treesitter.select("parent")
+end, {
+		desc = "Treesitter: expand selection",
+	})
+
+vim.keymap.set("x", "<Backspace>", function()
+	vim.treesitter.select("child")
+end, {
+		desc = "Treesitter: shrink selection",
+	})
+
+-- Treesitter Textobjects Keymaps
+
+local select = require("nvim-treesitter-textobjects.select")
+
+vim.keymap.set({ "x", "o" }, "af", function()
+    select.select_textobject("@function.outer", "textobjects")
+end, {
+    desc = "Treesitter: around function",
+})
+
+vim.keymap.set({ "x", "o" }, "if", function()
+    select.select_textobject("@function.inner", "textobjects")
+end, {
+    desc = "Treesitter: inside function",
+})
+
+vim.keymap.set({ "x", "o" }, "ac", function()
+    select.select_textobject("@class.outer", "textobjects")
+end, {
+    desc = "Treesitter: around class",
+})
+
+vim.keymap.set({ "x", "o" }, "ic", function()
+    select.select_textobject("@class.inner", "textobjects")
+end, {
+    desc = "Treesitter: inside class",
+})

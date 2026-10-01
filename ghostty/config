@@ -34,8 +34,8 @@
 
 # theme = Raycast Dark
 # theme = Nvim Dark
-  theme = Kanagawabones
-# theme = Kanagawa Wave
+# theme = Kanagawabones
+ theme = Kanagawa Wave
 
 # Overrides
 
