@@ -33,14 +33,17 @@
 #---------------------------------------------------------
 
 # theme = Raycast Dark
-  theme = Nvim Dark
-# theme = Later This Evening
+# theme = Nvim Dark
+  theme = Kanagawabones
+# theme = Kanagawa Wave
 
 # Overrides
 
 # background = #282c34
-  background = #1e1e27
-  foreground = #adadc0
+#  background = #232424
+# background = #1e1e27
+#  foreground = #cdcdc0
+# foreground = #adadc0
 
 #---------------------------------------------------------
 # Fonts
@@ -77,11 +80,12 @@
 # Shortcuts
 #---------------------------------------------------------
 
-  keybind = alt+k=scroll_page_lines:-5
-  keybind = alt+j=scroll_page_lines:5
-  keybind = alt+h=jump_to_prompt:-1
-  keybind = alt+l=jump_to_prompt:1
-  keybind = alt+shift+l=scroll_to_bottom
+  macos-option-as-alt = true
+# keybind = alt+k=scroll_page_lines:-5
+# keybind = alt+j=scroll_page_lines:5
+# keybind = alt+h=jump_to_prompt:-1
+# keybind = alt+l=jump_to_prompt:1
+# keybind = alt+shift+l=scroll_to_bottom
   
 # Unbind Split panels
 

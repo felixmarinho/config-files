@@ -126,7 +126,9 @@ alias dps="docker ps"
 alias din="docker inspect"
 
 #Nvim
+alias v="nvim"
 alias vi="nvim"
+alias vim="nvim"
 
 
 # Starship

@@ -13,7 +13,6 @@
   "window.nativeTabs": true,
   "window.menuBarVisibility": "classic",
   "workbench.productIconTheme": "carbon-candy-product-icons",
-  "workbench.iconTheme": "carbon-candy-file-icons",
 
   // Workbench Color Customizations — Optional
   // Uncomment to enable
@@ -110,23 +109,55 @@
 
   "workbench.colorCustomizations": {
     // Main areas
-    "editor.background": "#1e1e27",
-    "sideBar.background": "#1e1e27",
-    "panel.background": "#1e1e27",
+    "editor.background": "#1d1e27",
+    "sideBar.background": "#1d1e27",
+    "panel.background": "#1d1e27",
 
-    // Top and bottom bars
-    "titleBar.activeBackground": "#1e1e27",
-    "titleBar.inactiveBackground": "#1e1e27",
-    "statusBar.background": "#1e1e27",
-    "statusBar.noFolderBackground": "#1e1e27",
-    "statusBar.debuggingBackground": "#1e1e27",
+    // Top / window title bar
+    "titleBar.activeBackground": "#1d1e27",
+    "titleBar.inactiveBackground": "#1d1e27",
+    "titleBar.activeForeground": "#adadc0",
+    "titleBar.inactiveForeground": "#adadc0",
 
-    // // Tabs and editor groups
-    "editorGroupHeader.tabsBackground": "#1e1e27",
-    "editorGroupHeader.noTabsBackground": "#1e1e27",
-    "editorGroup.emptyBackground": "#1e1e27",
-    "editorGroup.dropBackground": "#1e1e27",
-    // "editor.wordHighlightBackground": "#26292f",
+    // Tabs / editor groups
+    "editorGroupHeader.tabsBackground": "#1d1e27",
+    "editorGroupHeader.noTabsBackground": "#1d1e27",
+    "editorGroup.emptyBackground": "#1d1e27",
+    "editorGroup.dropBackground": "#1d1e27",
+
+    // Status bar
+    "statusBar.background": "#1d1e27",
+    "statusBar.noFolderBackground": "#1d1e27",
+    "statusBar.debuggingBackground": "#1d1e27",
+    "statusBar.foreground": "#adadc0",
+
+    // Activity bar
+    "activityBar.background": "#1d1e27",
+    "activityBar.activeBackground": "#1d1e27",
+    "activityBar.inactiveBackground": "#1d1e27",
+    "activityBar.foreground": "#adadc0",
+    "activityBar.activeBorder": "#1d1e27",
+
+    "activityBarTop.background": "#1d1e27",
+    "activityBarTop.activeBackground": "#1d1e27",
+    "activityBarTop.activeBorder": "#1d1e27",
+    "activityBarTop.foreground": "#adadc0",
+    "activityBarTop.inactiveForeground": "#adadc0",
+
+    // Sidebar
+    "sideBarSectionHeader.background": "#1d1e27",
+    "sideBarSectionHeader.foreground": "#adadc0",
+    "sideBarSectionHeader.border": "#1d1e27",
+
+    // Menus / Command Palette / dropdowns
+    "menu.background": "#1d1e27",
+    "dropdown.background": "#1d1e27",
+    "quickInput.background": "#1d1e27",
+    "quickInput.foreground": "#adadc0",
+    "pickerGroup.background": "#1d1e27",
+    "pickerGroup.foreground": "#adadc0",
+
+    // Editor highlighting
     "editor.renderLineHighlight": false,
     "editor.occurrencesHighlight": false,
     "editor.lineHighlightBackground": "#00000000",
@@ -136,32 +167,16 @@
     "editor.wordHighlightStrongBackground": "#00000000",
     "editor.wordHighlightStrongBorder": "#00000000",
 
-    // //Activity bar
-    "activityBarTop.background": "#1e1e27",
-    "activityBarTop.activeBackground": "#1e1e27",
-    "activityBarTop.activeBorder": "#1e1e27",
-    "activityBarTop.foreground": "#adadc0",
-    "activityBarTop.inactiveForeground": "#adadc0",
-    "activityBar.background": "#1e1e27",
-    "activityBar.activeBackground": "#1e1e27",
-    "activityBar.inactiveBackground": "#1e1e27",
-    "activityBar.foreground": "#ffffff",
-    "activityBar.activeBorder": "#1e1e27",
-    "sideBarSectionHeader.background": "#1e1e27",
-    "sideBarSectionHeader.foreground": "#adadc0",
-    "sideBarSectionHeader.border": "#1e1e27",
+    // Terminal
+    "terminal.background": "#1d1e27",
+    "terminal.foreground": "#adadc0",
 
-    // // Menus and dropdowns
-    "menu.background": "#1e1e27",
-    "dropdown.background": "#1e1e27",
-    "quickInput.background": "#1e1e27",
-    "pickerGroup.foreground": "#1e1e27",
-    "terminal.background": "#1e1e27",
-    "terminal.foreground": "#2d2f34",
+    // Terminal cursor / selection
     "terminalCursor.foreground": "#9b9ea4",
     "terminal.selectionBackground": "#4f5258",
     "terminal.selectionForeground": "#e0e2ea",
 
+    // ANSI colors
     "terminal.ansiBlack": "#07080d",
     "terminal.ansiRed": "#ffc0b9",
     "terminal.ansiGreen": "#b3f6c0",
@@ -178,9 +193,8 @@
     "terminal.ansiBrightBlue": "#a6dbff",
     "terminal.ansiBrightMagenta": "#ffcaff",
     "terminal.ansiBrightCyan": "#8cf8f7",
-    "terminal.ansiBrightWhite": "#eef1f8"
+    "terminal.ansiBrightWhite": "#eef1f8",
   },
-
   // Security
 
   "security.workspace.trust.untrustedFiles": "open",
@@ -213,7 +227,7 @@
     "<C-f>": false,
     "<C-z>": false,
     "<C-w>": false,
-    "<C-p>": false
+    "<C-p>": false,
   },
 
   // VSCodeVim — Insert Mode
@@ -221,8 +235,8 @@
   "vim.insertModeKeyBindings": [
     {
       "before": ["<C-c>"],
-      "after": ["<Esc>"]
-    }
+      "after": ["<Esc>"],
+    },
   ],
 
   // VSCodeVim — Normal Mode
@@ -231,118 +245,118 @@
     {
       "before": ["shift", ";"],
       "commands": ["vim.showQuickpickCmdLine"],
-      "when": "editorTextFocus && vim.mode != 'Insert'"
+      "when": "editorTextFocus && vim.mode != 'Insert'",
     },
     {
       "before": ["<leader>", "n"],
-      "commands": ["workbench.action.toggleSidebarVisibility"]
+      "commands": ["workbench.action.toggleSidebarVisibility"],
     },
     {
       "before": ["<leader>", "r", "r"],
-      "commands": ["editor.action.rename"]
+      "commands": ["editor.action.rename"],
     },
     {
       "before": ["<leader>", "r", "f"],
-      "commands": ["fileutils.renameFile"]
+      "commands": ["fileutils.renameFile"],
     },
     {
       "before": ["<leader>", "p", "s"],
-      "commands": ["fuzzySearch.activeTextEditor"]
+      "commands": ["fuzzySearch.activeTextEditor"],
     },
     {
       "before": ["J"],
-      "after": ["o", "<Esc>", "k", "$"]
+      "after": ["o", "<Esc>", "k", "$"],
     },
     {
       "before": ["K"],
-      "after": ["O", "<Esc>", "j", "$"]
+      "after": ["O", "<Esc>", "j", "$"],
     },
     {
       "before": ["L"],
       "commands": ["lineBreakInsert"],
-      "silent": true
-    }
+      "silent": true,
+    },
   ],
 
   "vim.normalModeKeyBindings": [
     {
       "before": ["<C-n>"],
-      "commands": [":nohl"]
+      "commands": [":nohl"],
     },
     {
       "before": ["<leader>", "w"],
-      "commands": ["workbench.action.files.save"]
+      "commands": ["workbench.action.files.save"],
     },
     {
       "before": ["£"],
-      "after": ["#"]
+      "after": ["#"],
     },
     {
       "before": ["<leader>", "f"],
-      "commands": ["revealInExplorer"]
+      "commands": ["revealInExplorer"],
     },
     {
       "before": ["<leader>", "f", "y"],
-      "commands": ["copyFilePath"]
+      "commands": ["copyFilePath"],
     },
     {
       "before": ["<leader>", "f", "n"],
-      "commands": ["explorer.newFile"]
+      "commands": ["explorer.newFile"],
     },
     {
       "before": ["<leader>", "c"],
-      "commands": ["editor.action.commentLine"]
+      "commands": ["editor.action.commentLine"],
     },
     {
       "before": ["<leader>", "+"],
-      "commands": ["workbench.action.increaseViewSize"]
+      "commands": ["workbench.action.increaseViewSize"],
     },
     {
       "before": ["<leader>", "-"],
-      "commands": ["workbench.action.decreaseViewSize"]
+      "commands": ["workbench.action.decreaseViewSize"],
     },
     {
       "before": ["<leader>", "e"],
-      "commands": ["workbench.view.explorer"]
+      "commands": ["workbench.view.explorer"],
     },
 
     // Focus editor groups
     {
       "before": ["<C-h>"],
-      "commands": ["workbench.action.focusLeftGroup"]
+      "commands": ["workbench.action.focusLeftGroup"],
     },
     {
       "before": ["<C-j>"],
-      "commands": ["workbench.action.focusBelowGroup"]
+      "commands": ["workbench.action.focusBelowGroup"],
     },
     {
       "before": ["<C-k>"],
-      "commands": ["workbench.action.focusAboveGroup"]
+      "commands": ["workbench.action.focusAboveGroup"],
     },
     {
       "before": ["<C-l>"],
-      "commands": ["workbench.action.focusRightGroup"]
+      "commands": ["workbench.action.focusRightGroup"],
     },
 
     // Split editor
     {
       "before": ["|"],
-      "after": ["<C-w>", "v"]
+      "after": ["<C-w>", "v"],
     },
     {
       "before": ["_"],
-      "after": ["<C-w>", "s"]
+      "after": ["<C-w>", "s"],
     },
 
     // Git
     {
       "before": ["<leader>", "g", "p"],
-      "commands": ["editor.action.dirtydiff.next"]
+      "commands": ["editor.action.dirtydiff.next"],
     },
     {
       "before": ["<leader>", "g", "r"],
-      "commands": ["git.revertSelectedRanges"]
-    }
+      "commands": ["git.revertSelectedRanges"],
+    },
   ],
 
   // VSCodeVim — Operator Pending
@@ -350,12 +364,12 @@
   "vim.operatorPendingModeKeyBindings": [
     {
       "before": ["L"],
-      "after": ["$"]
+      "after": ["$"],
     },
     {
       "before": ["H"],
-      "after": ["^"]
-    }
+      "after": ["^"],
+    },
   ],
 
   // VSCodeVim — Visual Mode
@@ -363,53 +377,53 @@
   "vim.visualModeKeyBindingsNonRecursive": [
     {
       "before": ["p"],
-      "after": ["w", "g", "v", "y"]
-    }
+      "after": ["w", "g", "v", "y"],
+    },
   ],
 
   "vim.visualModeKeyBindings": [
     {
       "before": ["n", "n"],
-      "after": ["<Esc>"]
+      "after": ["<Esc>"],
     },
     {
       "before": ["J"],
-      "commands": ["editor.action.moveLinesUpAction"]
+      "commands": ["editor.action.moveLinesUpAction"],
     },
     {
       "before": ["K"],
-      "commands": ["editor.action.moveLinesDownAction"]
+      "commands": ["editor.action.moveLinesDownAction"],
     },
 
     // Comment selected lines
     {
       "before": ["<leader>", "c"],
-      "commands": ["editor.action.commentLine", "extension.vim_escape"]
+      "commands": ["editor.action.commentLine", "extension.vim_escape"],
     },
 
     // Select all occurrences
     {
       "before": ["<leader>", "a"],
-      "commands": ["editor.action.selectHighlights"]
+      "commands": ["editor.action.selectHighlights"],
     },
 
     // Sort selected lines
     {
       "before": ["<leader>", "s", "s"],
-      "commands": ["editor.action.sortlinesascending"]
+      "commands": ["editor.action.sortlinesascending"],
     },
 
     // Uppercase
     {
       "before": ["<leader>", "u"],
-      "commands": ["editor.action.transformtouppercase"]
+      "commands": ["editor.action.transformtouppercase"],
     },
 
     // Lowercase
     {
       "before": ["<leader>", "l"],
-      "commands": ["editor.action.transformToLowercase"]
-    }
+      "commands": ["editor.action.transformToLowercase"],
+    },
   ],
 
   // VSCodeVim — macOS Input Method
@@ -422,13 +436,13 @@
   // Extensions
 
   "extensions.experimental.affinity": {
-    "vscodevim.vim": 1
+    "vscodevim.vim": 1,
   },
 
   "liveServer.settings.donotVerifyTags": true,
   "liveServer.settings.donotShowInfoMsg": true,
   "workbench.editor.showTabs": "none",
-  "workbench.colorTheme": "carbon-candy-kawasaki-lightroom",
+  "workbench.colorTheme": "Kanagawa Wave",
   "workbench.editor.editorActionsLocation": "titleBar",
-  "breadcrumbs.enabled": false
+  "breadcrumbs.enabled": false,
 }
