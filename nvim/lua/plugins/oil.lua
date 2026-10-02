@@ -196,6 +196,7 @@ return {
     keymaps_help = {
       border = nil,
     },
+
   },
 
   dependencies = {
