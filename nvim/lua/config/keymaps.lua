@@ -2,10 +2,10 @@ vim.keymap.set("n", "-", "<cmd>Oil --float<CR>", {desc="Open Parent Directory in
 
 -- better movement in wrapped text
 vim.keymap.set("n", "j", function()
-	return vim.v.count == 0 and "gj" or "j"
+    return vim.v.count == 0 and "gj" or "j"
 end, { expr = true, silent = true, desc = "Down (wrap-aware)" })
 vim.keymap.set("n", "k", function()
-	return vim.v.count == 0 and "gk" or "k"
+    return vim.v.count == 0 and "gk" or "k"
 end, { expr = true, silent = true, desc = "Up (wrap-aware)" })
 
 vim.keymap.set("n", "<leader>c", ":nohlsearch<CR>", { desc = "Clear search highlights" })
@@ -44,13 +44,13 @@ vim.keymap.set("v", ">", ">gv", { desc = "Indent right and reselect" })
 vim.keymap.set("n", "J", "mzJ`z", { desc = "Join lines and keep cursor position" })
 
 vim.keymap.set("n", "<leader>pa", function() -- show file path
-	local path = vim.fn.expand("%:p")
-	vim.fn.setreg("+", path)
-	print("file:", path)
+    local path = vim.fn.expand("%:p")
+    vim.fn.setreg("+", path)
+    print("file:", path)
 end, { desc = "Copy full file path" })
 
 vim.keymap.set("n", "<leader>td", function()
-	vim.diagnostic.enable(not vim.diagnostic.is_enabled())
+    vim.diagnostic.enable(not vim.diagnostic.is_enabled())
 
 end, { desc = "Toggle diagnostics" })
 
@@ -58,22 +58,22 @@ end, { desc = "Toggle diagnostics" })
 -- Tree-sitter incremental selection
 
 vim.keymap.set("n", "<Enter>", function()
-	vim.treesitter.select("parent")
+    vim.treesitter.select("parent")
 end, {
-		desc = "Treesitter: start selection",
-	})
+	desc = "Treesitter: start selection",
+    })
 
 vim.keymap.set("x", "<Enter>", function()
-	vim.treesitter.select("parent")
+    vim.treesitter.select("parent")
 end, {
-		desc = "Treesitter: expand selection",
-	})
+	desc = "Treesitter: expand selection",
+    })
 
 vim.keymap.set("x", "<Backspace>", function()
-	vim.treesitter.select("child")
+    vim.treesitter.select("child")
 end, {
-		desc = "Treesitter: shrink selection",
-	})
+	desc = "Treesitter: shrink selection",
+    })
 
 -- Treesitter Textobjects Keymaps
 
@@ -82,27 +82,34 @@ local select = require("nvim-treesitter-textobjects.select")
 vim.keymap.set({ "x", "o" }, "af", function()
     select.select_textobject("@function.outer", "textobjects")
 end, {
-    desc = "Treesitter: around function",
-})
+	desc = "Treesitter: around function",
+    })
 
 vim.keymap.set({ "x", "o" }, "if", function()
     select.select_textobject("@function.inner", "textobjects")
 end, {
-    desc = "Treesitter: inside function",
-})
+	desc = "Treesitter: inside function",
+    })
 
 vim.keymap.set({ "x", "o" }, "ac", function()
     select.select_textobject("@class.outer", "textobjects")
 end, {
-    desc = "Treesitter: around class",
-})
+	desc = "Treesitter: around class",
+    })
 
 vim.keymap.set({ "x", "o" }, "ic", function()
     select.select_textobject("@class.inner", "textobjects")
 end, {
-    desc = "Treesitter: inside class",
-})
+	desc = "Treesitter: inside class",
+    })
 
+vim.keymap.set("n", "<leader>a", function()
+    require("nvim-treesitter-textobjects.swap").swap_next("@parameter.inner")
+end, { desc = "Swap with next parameter" })
+
+vim.keymap.set("n", "<leader>A", function()
+    require("nvim-treesitter-textobjects.swap").swap_previous("@parameter.inner")
+end, { desc = "Swap with previous parameter" })
 -- Telescope Keymaps
 
 local builtin = require('telescope.builtin')
