@@ -1,3 +1,5 @@
+-- Hide git files
+
 local function parse_output(proc)
   local result = proc:wait()
   local ret = {}
@@ -54,16 +56,6 @@ end
 
 local git_status = new_git_status()
 
-function _G.get_oil_winbar()
-  local bufnr = vim.api.nvim_win_get_buf(vim.g.statusline_winid)
-  local dir = require("oil").get_current_dir(bufnr)
-
-  if dir then
-    return vim.fn.fnamemodify(dir, ":~")
-  else
-    return vim.api.nvim_buf_get_name(0)
-  end
-end
 
 return {
   "stevearc/oil.nvim",
@@ -114,9 +106,29 @@ return {
         return nil
       end,
     },
+    keymaps = {
+      ["g?"] = { "actions.show_help", mode = "n" },
+      ["<CR>"] = "actions.select",
+      ["<C-s>"] = { "actions.select", opts = { vertical = true } },
+      ["<C-h>"] = { "actions.select", opts = { horizontal = true } },
+      ["<C-t>"] = { "actions.select", opts = { tab = true } },
+      ["<C-p>"] = "actions.preview",
+      ["<C-c>"] = { "actions.close", mode = "n" },
+      ["<C-l>"] = "actions.refresh",
+      ["-"] = { "actions.parent", mode = "n" },
+      ["_"] = { "actions.open_cwd", mode = "n" },
+      ["`"] = { "actions.cd", mode = "n" },
+      ["g~"] = { "actions.cd", opts = { scope = "tab" }, mode = "n" },
+      ["gs"] = { "actions.change_sort", mode = "n" },
+      ["gx"] = "actions.open_external",
+      ["g."] = { "actions.toggle_hidden", mode = "n" },
+      ["g\\"] = { "actions.toggle_trash", mode = "n" },
+    },
+    -- Set to false to disable all of the above keymaps
+    use_default_keymaps = true,
 
     float = {
-      padding = 5,
+      padding = 0,
       max_width = 0,
       max_height = 0,
       border = nil,
@@ -183,10 +195,6 @@ return {
 
     keymaps_help = {
       border = nil,
-    },
-
-    win_options = {
-      winbar = "%!v:lua.get_oil_winbar()",
     },
   },
 
