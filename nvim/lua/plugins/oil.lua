@@ -56,9 +56,14 @@ end
 
 local git_status = new_git_status()
 
-
 return {
   "stevearc/oil.nvim",
+
+  dependencies = {
+    { "nvim-mini/mini.icons", opts = {} },
+  },
+
+  lazy = false,
 
   ---@module "oil"
   ---@type oil.SetupOpts
@@ -85,10 +90,6 @@ return {
         return git_status[dir].ignored[name]
       end,
 
-      is_always_hidden = function(name, bufnr)
-        return false
-      end,
-
       natural_order = "fast",
       case_insensitive = false,
 
@@ -96,16 +97,8 @@ return {
         { "type", "asc" },
         { "name", "asc" },
       },
-
-      highlight_filename = function(
-        entry,
-        is_hidden,
-        is_link_target,
-        is_link_orphan
-      )
-        return nil
-      end,
     },
+
     keymaps = {
       ["g?"] = { "actions.show_help", mode = "n" },
       ["<CR>"] = "actions.select",
@@ -124,91 +117,24 @@ return {
       ["g."] = { "actions.toggle_hidden", mode = "n" },
       ["g\\"] = { "actions.toggle_trash", mode = "n" },
     },
-    -- Set to false to disable all of the above keymaps
+
     use_default_keymaps = true,
 
     float = {
-      padding = 0,
-      max_width = 0,
-      max_height = 0,
-      border = nil,
-
-      win_options = {
-        winblend = 0,
-      },
-
-      preview_split = "auto",
-
-      override = function(conf)
-        return conf
-      end,
-    },
-
-    preview_win = {
-      update_on_cursor_moved = true,
-      preview_method = "fast_scratch",
-
-      disable_preview = function(filename)
-        return false
-      end,
-
-      win_options = {},
-    },
-
-    confirmation = {
+      padding = 2,
       max_width = 0.9,
-      min_width = { 40, 0.4 },
-      width = nil,
-
-      max_height = 0.9,
-      min_height = { 5, 0.1 },
-      height = nil,
-
-      border = nil,
+      max_height = 0.7,
+      border = "rounded",
 
       win_options = {
         winblend = 0,
       },
     },
-
-    progress = {
-      max_width = 0.9,
-      min_width = { 40, 0.4 },
-      width = nil,
-
-      max_height = { 10, 0.9 },
-      min_height = { 5, 0.1 },
-      height = nil,
-
-      border = nil,
-
-      minimized_border = "none",
-
-      win_options = {
-        winblend = 0,
-      },
-    },
-
-    ssh = {
-      border = nil,
-    },
-
-    keymaps_help = {
-      border = nil,
-    },
-
   },
-
-  dependencies = {
-    { "nvim-mini/mini.icons", opts = {} },
-  },
-
-  lazy = false,
 
   config = function(_, opts)
     require("oil").setup(opts)
 
-    -- Oil is now loaded, so oil.actions exists.
     local refresh = require("oil.actions").refresh
     local orig_refresh = refresh.callback
 

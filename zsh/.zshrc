@@ -74,9 +74,27 @@ if command -v fzf >/dev/null 2>&1; then
     export FZF_CTRL_T_OPTS="
     --style full
     --preview 'bat -n --color=always {}'
-    --bind 'ctrl-/:change-preview-window(down|hidden|)'"
+    --bind 'ctrl-/:change-preview-window(down|hidden|)'
+    --preview-window=right,60%
+    --bind 'ctrl-u:preview-page-up,ctrl-d:preview-page-down'
+    --height 90%"
+
+    export FZF_DEFAULT_OPTS="
+    --layout=reverse
+    --border
+    --color=fg:#DCD7BA,bg:#1F1F28,fg+:#DCD7BA,bg+:#2D4F67
+    --color=hl:#7FB4CA,hl+:#7FB4CA
+    --color=pointer:#957FB8,marker:#E6C384
+    --color=prompt:#7E9CD8,info:#727169
+    --color=border:#54546D"
+
 fi
 
+# bat
+
+if command -v bat >/dev/null 2>&1; then
+    export BAT_THEME="Kanagawa"
+fi
 
 # Custom Aliases
 

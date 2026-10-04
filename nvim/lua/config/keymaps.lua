@@ -1,66 +1,248 @@
-vim.keymap.set("n", "-", "<cmd>Oil --float<CR>", {desc="Open Parent Directory in Oil"})
+-- Leader
 
--- better movement in wrapped text
+vim.g.mapleader = " "
+vim.g.maplocalleader = "\\"
+
+-- General
+
+-- Exit insert mode
+
+vim.keymap.set("i", "<C-c>", "<Esc>", { desc = "Exit insert mode" })
+vim.keymap.set("v", "<C-c>", "<Esc>", { desc = "Exit visual mode" })
+
+-- Command line
+
+vim.keymap.set("n", "<leader>;", ":", { desc = "Command line" })
+
+-- Save
+
+vim.keymap.set("n", "<leader>w", "<cmd>w<CR>", { desc = "Save file" })
+vim.keymap.set("i", "<C-s>", "<Esc><cmd>w<CR>", { desc = "Save file" })
+
+-- Quit
+
+vim.keymap.set("n", "<leader>q", "<cmd>q<CR>", { desc = "Quit" })
+vim.keymap.set("n", "<leader>Q", "<cmd>q!<CR>", { desc = "Quit without saving" })
+vim.keymap.set("n", "<leader>QQ", "<cmd>qa!<CR>", { desc = "Quit all without saving" })
+
+-- Clear search highlighting
+
+vim.keymap.set("n", "<leader>/", "<cmd>nohlsearch<CR>", {
+    desc = "Clear search highlights",
+})
+
+-- Toggle word wrap
+
+vim.keymap.set("n", "<leader>e", function()
+    vim.opt.wrap = not vim.opt.wrap:get()
+    vim.notify("Wrap: " .. (vim.opt.wrap:get() and "ON" or "OFF"))
+end, { desc = "Toggle word wrap" })
+
+-- Conceal Level
+
+vim.keymap.set("n", "<leader>co", function()
+    local level = vim.opt.conceallevel:get()
+    local next = (level + 1) % 4
+
+    vim.opt.conceallevel = next
+    vim.notify("Conceal " .. next)
+end, { desc = "Cycle conceal level" })
+
+-- Toggle whitespace
+
+vim.keymap.set("n", "<leader>l", "<cmd>set list!<CR>", {
+    desc = "Toggle whitespace",
+})
+
+-- Navigation
+
+-- Wrap-aware movement
+
 vim.keymap.set("n", "j", function()
     return vim.v.count == 0 and "gj" or "j"
-end, { expr = true, silent = true, desc = "Down (wrap-aware)" })
+end, {
+	expr = true,
+	silent = true,
+	desc = "Down (wrap-aware)",
+    })
+
 vim.keymap.set("n", "k", function()
     return vim.v.count == 0 and "gk" or "k"
-end, { expr = true, silent = true, desc = "Up (wrap-aware)" })
+end, {
+	expr = true,
+	silent = true,
+	desc = "Up (wrap-aware)",
+    })
 
-vim.keymap.set("i", "<C-c>", "<Esc>", {desc="Exit insert mode"})
-vim.keymap.set("v", "<C-c>", "<Esc>", {desc="Exit visual mode"})
-vim.keymap.set("n", "<leader>:", ":", { desc = "Command line" })
-vim.keymap.set("n", "<leader>c", ":nohlsearch<CR>", { desc = "Clear search highlights" })
-vim.keymap.set("n", "<leader>q", "<cmd>q<CR>", { desc = "Quit" })
-vim.keymap.set("i", "<C-s>", "<Esc><cmd>w<CR>", { desc = "Save file" })
-vim.keymap.set("n", "<C-s>", "<cmd>w<CR>", { desc = "Save file" })
-vim.keymap.set("n", "<leader>w", "<cmd>set wrap!<CR>", { desc = "Toggle word wrap" })
+-- Keep search results centered
 
-vim.keymap.set("n", "n", "nzzzv", { desc = "Next search result (centered)" })
-vim.keymap.set("n", "N", "Nzzzv", { desc = "Previous search result (centered)" })
-vim.keymap.set("n", "<C-d>", "<C-d>zz", { desc = "Half page down (centered)" })
-vim.keymap.set("n", "<C-u>", "<C-u>zz", { desc = "Half page up (centered)" })
+vim.keymap.set("n", "n", "nzzzv", {
+    desc = "Next search result",
+})
 
-vim.keymap.set("x", "<leader>p", '"_dP', { desc = "Paste without yanking" })
-vim.keymap.set({ "n", "v" }, "<leader>x", '"_d', { desc = "Delete without yanking" })
+vim.keymap.set("n", "N", "Nzzzv", {
+    desc = "Previous search result",
+})
 
-vim.keymap.set("n", "<leader>bn", ":bnext<CR>", { desc = "Next buffer" })
-vim.keymap.set("n", "<leader>bp", ":bprevious<CR>", { desc = "Previous buffer" })
+-- Keep half-page jumps centered
 
-vim.keymap.set("n", "<C-h>", "<cmd>TmuxNavigateLeft<CR>", { desc = "Move to left window/pane" })
-vim.keymap.set("n", "<C-j>", "<cmd>TmuxNavigateDown<CR>", { desc = "Move to bottom window/pane" })
-vim.keymap.set("n", "<C-k>", "<cmd>TmuxNavigateUp<CR>", { desc = "Move to top window/pane" })
-vim.keymap.set("n", "<C-l>", "<cmd>TmuxNavigateRight<CR>", { desc = "Move to right window/pane" })
+vim.keymap.set("n", "<C-d>", "<C-d>zz", {
+    desc = "Half page down",
+})
 
-vim.keymap.set("n", "<leader>sv", ":vsplit<CR>", { desc = "Split window vertically" })
-vim.keymap.set("n", "<leader>sh", ":split<CR>", { desc = "Split window horizontally" })
-vim.keymap.set("n", "<C-Up>", ":resize +2<CR>", { desc = "Increase window height" })
-vim.keymap.set("n", "<C-Down>", ":resize -2<CR>", { desc = "Decrease window height" })
-vim.keymap.set("n", "<C-Right>", ":vertical resize -2<CR>", { desc = "Decrease window width" })
-vim.keymap.set("n", "<C-Left>", ":vertical resize +2<CR>", { desc = "Increase window width" })
+vim.keymap.set("n", "<C-u>", "<C-u>zz", {
+    desc = "Half page up",
+})
 
-vim.keymap.set("n", "<A-j>", ":m .+1<CR>==", { desc = "Move line down" })
-vim.keymap.set("n", "<A-k>", ":m .-2<CR>==", { desc = "Move line up" })
-vim.keymap.set("v", "<A-j>", ":m '>+1<CR>gv=gv", { desc = "Move selection down" })
-vim.keymap.set("v", "<A-k>", ":m '<-2<CR>gv=gv", { desc = "Move selection up" })
+-- Editing
 
-vim.keymap.set("v", "<", "<gv", { desc = "Indent left and reselect" })
-vim.keymap.set("v", ">", ">gv", { desc = "Indent right and reselect" })
+-- Paste without replacing yank register
 
-vim.keymap.set("n", "J", "mzJ`z", { desc = "Join lines and keep cursor position" })
+vim.keymap.set("x", "<leader>p", '"_dP', {
+    desc = "Paste without yanking",
+})
 
-vim.keymap.set("n", "<leader>pa", function() -- show file path
-    local path = vim.fn.expand("%:p")
-    vim.fn.setreg("+", path)
-    print("file:", path)
-end, { desc = "Copy full file path" })
+-- Delete without yanking
+
+vim.keymap.set({ "n", "v" }, "<leader>x", '"_d', {
+    desc = "Delete without yanking",
+})
+
+-- Move lines
+
+vim.keymap.set("n", "<A-j>", ":m .+1<CR>==", {
+    desc = "Move line down",
+})
+
+vim.keymap.set("n", "<A-k>", ":m .-2<CR>==", {
+    desc = "Move line up",
+})
+
+vim.keymap.set("v", "<A-j>", ":m '>+1<CR>gv=gv", {
+    desc = "Move selection down",
+})
+
+vim.keymap.set("v", "<A-k>", ":m '<-2<CR>gv=gv", {
+    desc = "Move selection up",
+})
+
+-- Indent and keep selection
+
+vim.keymap.set("v", "<", "<gv", {
+    desc = "Indent left",
+})
+
+vim.keymap.set("v", ">", ">gv", {
+    desc = "Indent right",
+})
+
+-- Join lines without moving cursor
+
+vim.keymap.set("n", "J", "mzJ`z", {
+    desc = "Join lines",
+})
+
+-- Windows
+
+-- Navigate windows / tmux panes
+vim.keymap.set("n", "<C-h>", "<cmd>TmuxNavigateLeft<CR>", {
+    desc = "Move left",
+})
+
+vim.keymap.set("n", "<C-j>", "<cmd>TmuxNavigateDown<CR>", {
+    desc = "Move down",
+
+})
+
+vim.keymap.set("n", "<C-k>", "<cmd>TmuxNavigateUp<CR>", {
+    desc = "Move up",
+})
+
+vim.keymap.set("n", "<C-l>", "<cmd>TmuxNavigateRight<CR>", {
+    desc = "Move right",
+})
+
+-- Split windows
+
+vim.keymap.set("n", "<leader>sv", "<cmd>vsplit<CR>", {
+    desc = "Split vertically",
+})
+
+vim.keymap.set("n", "<leader>sh", "<cmd>split<CR>", {
+    desc = "Split horizontally",
+})
+
+-- Resize windows
+
+vim.keymap.set("n", "<C-Up>", "<cmd>resize +2<CR>", {
+    desc = "Increase window height",
+})
+
+vim.keymap.set("n", "<C-Down>", "<cmd>resize -2<CR>", {
+    desc = "Decrease window height",
+})
+
+vim.keymap.set("n", "<C-Left>", "<cmd>vertical resize +2<CR>", {
+    desc = "Increase window width",
+})
+
+vim.keymap.set("n", "<C-Right>", "<cmd>vertical resize -2<CR>", {
+    desc = "Decrease window width",
+})
+
+-- Buffers
+
+vim.keymap.set("n", "<leader>bn", "<cmd>bnext<CR>", {
+    desc = "Next buffer",
+})
+
+vim.keymap.set("n", "<leader>bp", "<cmd>bprevious<CR>", {
+    desc = "Previous buffer",
+})
+
+-- Comments
+
+-- Requires Comment.nvim
+
+vim.keymap.set("n", "<leader>c", "gcc", {
+    remap = true,
+    desc = "Toggle comment",
+})
+
+vim.keymap.set("v", "<leader>c", "gc", {
+    remap = true,
+    desc = "Toggle comment",
+})
+
+-- File / Oil
+
+vim.keymap.set("n", "-", function()
+	require("oil").open_float(nil, {
+		preview = {
+			vertical = true,
+		},
+	})
+end, {
+	desc = "Open parent directory in Oil",
+})
+
+-- Diagnostics
 
 vim.keymap.set("n", "<leader>td", function()
     vim.diagnostic.enable(not vim.diagnostic.is_enabled())
+end, {
+	desc = "Toggle diagnostics",
+    })
 
-end, { desc = "Toggle diagnostics" })
+-- File path
 
+vim.keymap.set("n", "<leader>pa", function()
+    local path = vim.fn.expand("%:p")
+    vim.fn.setreg("+", path)
+    print("file:", path)
+end, {
+	desc = "Copy full file path",
+    })
 
 -- Tree-sitter incremental selection
 
@@ -82,7 +264,7 @@ end, {
 	desc = "Treesitter: shrink selection",
     })
 
--- Treesitter Textobjects Keymaps
+-- Tree-sitter textobjects
 
 local select = require("nvim-treesitter-textobjects.select")
 
@@ -112,16 +294,42 @@ end, {
 
 vim.keymap.set("n", "<leader>a", function()
     require("nvim-treesitter-textobjects.swap").swap_next("@parameter.inner")
-end, { desc = "Swap with next parameter" })
+end, {
+	desc = "Swap with next parameter",
+    })
 
 vim.keymap.set("n", "<leader>A", function()
     require("nvim-treesitter-textobjects.swap").swap_previous("@parameter.inner")
-end, { desc = "Swap with previous parameter" })
+end, {
+	desc = "Swap with previous parameter",
+    })
 
--- Telescope Keymaps
+-- Telescope
 
-local builtin = require('telescope.builtin')
-vim.keymap.set('n', '<leader>ff', builtin.find_files, { desc = 'Telescope find files' })
-vim.keymap.set('n', '<leader>fg', builtin.live_grep, { desc = 'Telescope live grep' })
-vim.keymap.set('n', '<leader>fb', builtin.buffers, { desc = 'Telescope buffers' })
-vim.keymap.set('n', '<leader>fh', builtin.help_tags, { desc = 'Telescope help tags' })
+local builtin = require("telescope.builtin")
+
+vim.keymap.set("n", "<leader>ff", builtin.find_files, {
+    desc = "Find files",
+})
+
+vim.keymap.set("n", "<leader>fg", builtin.live_grep, {
+    desc = "Live grep",
+})
+
+vim.keymap.set("n", "<leader>fb", builtin.buffers, {
+    desc = "Find buffers",
+})
+
+vim.keymap.set("n", "<leader>fh", builtin.help_tags, {
+    desc = "Find help",
+})
+
+-- TreeSJ
+-- Split/join the code block under the cursor.
+-- <leader> = Space, so this is Space + Shift-M.
+
+vim.keymap.set("n", "<leader>m", function()
+	require("treesj").toggle()
+end, {
+	desc = "TreeSJ: Toggle split/join",
+})

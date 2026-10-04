@@ -8,8 +8,9 @@
   window-save-state = always
   confirm-close-surface = false
 
-  window-padding-x = 10
-  window-padding-balance = true
+ window-padding-x = 5,10
+ window-padding-y = 0,5
+ window-padding-balance = true
 
 #---------------------------------------------------------
 # Ghostty Icon
@@ -40,7 +41,7 @@
 # Overrides
 
 # background = #282c34
-# background = #232424
+# background = #262626
 # background = #1e1e27
 # foreground = #cdcdc0
 # foreground = #adadc0

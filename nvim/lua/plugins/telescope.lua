@@ -24,18 +24,44 @@ return {
 
     telescope.setup({
       defaults = {
-        layout_strategy = "horizontal",
+        layout_strategy = "vertical",
 
         layout_config = {
-          horizontal = {
+          vertical = {
+            mirror = false,
             width = 0.99,
             height = 0.99,
-            preview_width = 0.6,
+            preview_height = 0.7,
           },
+        },
+
+        file_ignore_patterns = {
+          "%.git/",
+          "node_modules/",
+        },
+      },
+
+      pickers = {
+        find_files = {
+          hidden = true,
+        },
+
+        live_grep = {
+          additional_args = function()
+            return { "--hidden" }
+          end,
+        },
+      },
+
+      extensions = {
+        fzf = {
+          fuzzy = true,
+          override_generic_sorter = true,
+          override_file_sorter = true,
+          case_mode = "smart_case",
         },
       },
     })
-
     telescope.load_extension("fzf")
   end,
 }
