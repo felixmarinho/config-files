@@ -49,8 +49,8 @@ local function FloatingTerminal()
 
   vim.wo[terminal_state.win].winblend = 0
   vim.wo[terminal_state.win].winhighlight = "Normal:FloatingTermNormal,FloatBorder:FloatingTermBorder"
-  vim.api.nvim_set_hl(0, "FloatingTermNormal", { bg = "none" })
-  vim.api.nvim_set_hl(0, "FloatingTermBorder", { bg = "none" })
+  vim.api.nvim_set_hl(0, "FloatingTermNormal", { bg = "#15161d" })
+  vim.api.nvim_set_hl(0, "FloatingTermBorder", { bg = "#15161d", fg = "#54546d" })
 
   local has_terminal = vim.bo[terminal_state.buf].buftype == "terminal"
   if not has_terminal then

@@ -1,3 +1,12 @@
+
+-- Colors
+local KanagawaDragon =  "#15161d"
+local KanagawaWave_bg = "#1f1f28"
+local DragonBlack =	"#0d0c0c"
+local DarkFg	= "#54546d"
+local DarkCursorLine	= "#22222b"
+local Whitespaces = "#2c2c2e"
+
 return {
 	"rebelot/kanagawa.nvim",
 	config = function()
@@ -25,6 +34,7 @@ return {
 
 					["@punctuation.bracket.json"] = { bold = false },
 
+
 					-- Statements
 					Statement = { bold = false },
 					Boolean = { bold = false },
@@ -40,34 +50,72 @@ return {
 
 					-- Sign Column 
 					SignColumn = {
-						bg = "#1f1f28",
+						bg = KanagawaWave_bg,
 					},
 					-- Line number column
 					LineNr = {
-						fg = "#54546d",
-						bg = "#1f1f28",
+						fg = DarkFg,
+						bg = KanagawaWave_bg,
 					},
-
 					-- Current line number
 					CursorLineNr = {
-						--fg = "#e6c384",
-						bg = "#2a2a37",
+						bg = DarkCursorLine,
 						bold = true,
 					},
 
 					-- Current line background
 					CursorLine = {
-						bg = "#252531",
+						bg = DarkCursorLine,
 					},
 
 					-- Non Text
 					Whitespace = {
-						fg = "#2c2c2e",
+						fg = Whitespaces,
 					},
 
 					-- Color column
 					ColorColumn = {
-						bg = "#22222b",
+						bg = DarkCursorLine,
+					},
+					-- Winsepator Color
+					WinSeparator = {
+						fg = DarkFg,
+					},
+					-- Telescope
+					TelescopeNormal = {
+						bg = KanagawaDragon,
+					},
+
+					TelescopeBorder = {
+						fg = DarkFg,
+						bg = KanagawaDragon,
+					},
+
+					TelescopePromptNormal = {
+						bg = KanagawaDragon,
+					},
+
+					TelescopePromptBorder = {
+						fg = DarkFg,
+						bg = KanagawaDragon,
+					},
+
+					TelescopeResultsNormal = {
+						bg = KanagawaDragon,
+					},
+
+					TelescopeResultsBorder = {
+						fg = DarkFg,
+						bg = KanagawaDragon,
+					},
+
+					TelescopePreviewNormal = {
+						bg = KanagawaDragon,
+					},
+
+					TelescopePreviewBorder = {
+						fg = DarkFg,
+						bg = KanagawaDragon,
 					},
 				}
 			end,

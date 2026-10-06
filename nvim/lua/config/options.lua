@@ -44,9 +44,9 @@ vim.opt.guicursor =
 vim.opt.wrap = false -- do not wrap lines by default
 vim.opt.breakindent = true -- Enable break indent
 
-vim.opt.tabstop = 4 -- tabwidth
-vim.opt.shiftwidth = 4 -- indent width
-vim.opt.softtabstop = 4 -- soft tab stop not tabs on tab/backspace
+vim.opt.tabstop = 2 -- tabwidth
+vim.opt.shiftwidth = 2 -- indent width
+vim.opt.softtabstop = 2 -- soft tab stop not tabs on tab/backspace
 
 vim.opt.expandtab = true -- use spaces instead of tabs
 vim.opt.smartindent = true -- smart auto-indent
@@ -130,10 +130,10 @@ vim.opt.diffopt:append("linematch:60") -- improve diff display
 -- Sets how neovim will display certain whitespace characters in the editor.
 --  See `:help 'list'`
 --  and `:help 'listchars'`
-vim.opt.list = true
-vim.opt.listchars = {
-	tab = "» ",
-	trail = "·",
-	nbsp = "␣",
-}
+-- vim.opt.list = true
+-- vim.opt.listchars = {
+-- 	tab = "» ",
+-- 	trail = "·",
+-- 	nbsp = "␣",
+-- }
 

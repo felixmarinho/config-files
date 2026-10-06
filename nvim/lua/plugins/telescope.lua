@@ -24,14 +24,14 @@ return {
 
     telescope.setup({
       defaults = {
-        layout_strategy = "vertical",
+        layout_strategy = "horizontal",
 
         layout_config = {
-          vertical = {
-            mirror = false,
-            width = 0.99,
-            height = 0.99,
-            preview_height = 0.7,
+          horizontal = {
+            -- mirror = false,
+            width = 0.8,
+            height = 0.8,
+            preview_width = 0.6,
           },
         },
 

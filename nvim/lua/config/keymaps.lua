@@ -172,6 +172,116 @@ vim.keymap.set("n", "<leader>sh", "<cmd>split<CR>", {
     desc = "Split horizontally",
 })
 
+vim.keymap.set("n", "<leader>si", function()
+    local layout = vim.fn.winlayout()
+
+    -- Vertical split → horizontal split
+    if layout[1] == "row" then
+        vim.cmd("wincmd J")
+
+    -- Horizontal split → vertical split
+    elseif layout[1] == "col" then
+        vim.cmd("wincmd L")
+    end
+end, { desc = "Toggle split orientation" })
+
+vim.keymap.set("n", "<leader>so", function()
+    local current = vim.api.nvim_get_current_win()
+
+    local function overlap(a1, a2, b1, b2)
+        return math.min(a2, b2) - math.max(a1, b1) > 0
+    end
+
+    local current_pos = vim.api.nvim_win_get_position(current)
+    local current_row = current_pos[1]
+    local current_col = current_pos[2]
+    local current_height = vim.api.nvim_win_get_height(current)
+    local current_width = vim.api.nvim_win_get_width(current)
+
+    local best_win = nil
+    local best_distance = math.huge
+    local orientation = nil
+    local current_after = false
+
+    for _, win in ipairs(vim.api.nvim_list_wins()) do
+        if win ~= current and vim.api.nvim_win_is_valid(win) then
+            local pos = vim.api.nvim_win_get_position(win)
+            local row = pos[1]
+            local col = pos[2]
+            local height = vim.api.nvim_win_get_height(win)
+            local width = vim.api.nvim_win_get_width(win)
+
+            -- Windows side-by-side
+            if overlap(
+                current_row,
+                current_row + current_height,
+                row,
+                row + height
+            ) then
+                local distance
+
+                if col > current_col then
+                    distance = col - (current_col + current_width)
+                elseif current_col > col then
+                    distance = current_col - (col + width)
+                end
+
+                if distance and distance >= 0 and distance < best_distance then
+                    best_win = win
+                    best_distance = distance
+                    orientation = "vertical"
+                    current_after = col > current_col
+                end
+            end
+
+            -- Windows above/below
+            if overlap(
+                current_col,
+                current_col + current_width,
+                col,
+                col + width
+            ) then
+                local distance
+
+                if row > current_row then
+                    distance = row - (current_row + current_height)
+                elseif current_row > row then
+                    distance = current_row - (row + height)
+                end
+
+                if distance and distance >= 0 and distance < best_distance then
+                    best_win = win
+                    best_distance = distance
+                    orientation = "horizontal"
+                    current_after = row > current_row
+                end
+            end
+        end
+    end
+
+    if not best_win then
+        return
+    end
+
+    -- Vertical split → horizontal split
+    if orientation == "vertical" then
+        vim.fn.win_splitmove(current, best_win, {
+            vertical = false,
+            rightbelow = current_after,
+        })
+
+    -- Horizontal split → vertical split
+    elseif orientation == "horizontal" then
+        vim.fn.win_splitmove(current, best_win, {
+            vertical = true,
+            rightbelow = current_after,
+        })
+    end
+
+    vim.api.nvim_set_current_win(current)
+end, { desc = "Toggle split orientation" })
+
+
 -- Resize windows
 
 vim.keymap.set("n", "<C-Up>", "<cmd>resize +2<CR>", {
@@ -200,6 +310,12 @@ vim.keymap.set("n", "<leader>bp", "<cmd>bprevious<CR>", {
     desc = "Previous buffer",
 })
 
+-- Close current buffer
+vim.keymap.set("n", "<leader>bq", "<cmd>bdelete<CR>", { desc = "Close buffer" })
+
+-- Force close
+vim.keymap.set("n", "<leader>bx", "<cmd>bdelete!<CR>", { desc = "Force close buffer" })
+
 -- Comments
 
 -- Requires Comment.nvim
@@ -219,7 +335,7 @@ vim.keymap.set("v", "<leader>c", "gc", {
 vim.keymap.set("n", "-", function()
 	require("oil").open_float(nil, {
 		preview = {
-			vertical = true,
+			vertical = false,
 		},
 	})
 end, {
@@ -333,3 +449,15 @@ vim.keymap.set("n", "<leader>m", function()
 end, {
 	desc = "TreeSJ: Toggle split/join",
 })
+
+-- Quick Fix
+
+vim.keymap.set("n", "<leader>vo", "<cmd>copen<CR>", { desc = "Open quickfix" })
+
+vim.keymap.set("n", "<leader>vc", "<cmd>cclose<CR>", { desc = "Close quickfix" })
+
+vim.keymap.set("n", "<C-n>", "<cmd>cnext<CR>", { desc = "Next quickfix item" })
+
+vim.keymap.set("n", "<C-p>", "<cmd>cprev<CR>", { desc = "Previous quickfix item" })
+
+

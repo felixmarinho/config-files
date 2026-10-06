@@ -8,9 +8,9 @@
   window-save-state = always
   confirm-close-surface = false
 
- window-padding-x = 5,10
- window-padding-y = 0,5
- window-padding-balance = true
+  window-padding-x = 0,0
+  window-padding-y = 0,0
+  window-padding-balance = true
 
 #---------------------------------------------------------
 # Ghostty Icon
@@ -43,6 +43,8 @@
 # background = #282c34
 # background = #262626
 # background = #1e1e27
+# background = #1a1a1f
+## #15161d" | update | bd atual bg no kanagawa
 # foreground = #cdcdc0
 # foreground = #adadc0
 
