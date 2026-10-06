@@ -97,3 +97,7 @@ vim.api.nvim_create_autocmd("FileType", {
 
 	end,
 })
+-- Auto resize windows as terminal is resized
+vim.api.nvim_create_autocmd("VimResized", {
+    command = "wincmd =",
+})

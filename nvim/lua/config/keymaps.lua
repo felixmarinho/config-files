@@ -1,4 +1,4 @@
--- Leader
+
 
 vim.g.mapleader = " "
 vim.g.maplocalleader = "\\"
@@ -10,15 +10,10 @@ vim.g.maplocalleader = "\\"
 vim.keymap.set("i", "<C-c>", "<Esc>", { desc = "Exit insert mode" })
 vim.keymap.set("v", "<C-c>", "<Esc>", { desc = "Exit visual mode" })
 
--- Command line
-
-vim.keymap.set("n", "<leader>;", ":", { desc = "Command line" })
-
 -- Save
 
 vim.keymap.set("n", "<leader>w", "<cmd>w<CR>", { desc = "Save file" })
-vim.keymap.set("i", "<C-s>", "<Esc><cmd>w<CR>", { desc = "Save file" })
-
+vim.keymap.set("i", "<C-c>", "<Esc><cmd>w<CR>", { desc = "Save file" })
 -- Quit
 
 vim.keymap.set("n", "<leader>q", "<cmd>q<CR>", { desc = "Quit" })
@@ -284,7 +279,7 @@ end, { desc = "Toggle split orientation" })
 
 -- Resize windows
 
-vim.keymap.set("n", "<C-Up>", "<cmd>resize +2<CR>", {
+vim.keymap.set("n", "<cmd>resize +2<CR>", "<C-Up>", {
     desc = "Increase window height",
 })
 
@@ -314,7 +309,7 @@ vim.keymap.set("n", "<leader>bp", "<cmd>bprevious<CR>", {
 vim.keymap.set("n", "<leader>bq", "<cmd>bdelete<CR>", { desc = "Close buffer" })
 
 -- Force close
-vim.keymap.set("n", "<leader>bx", "<cmd>bdelete!<CR>", { desc = "Force close buffer" })
+vim.keymap.set("n", "<leader>bqx", "<cmd>bdelete!<CR>", { desc = "Force close buffer" })
 
 -- Comments
 

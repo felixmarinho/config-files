@@ -57,7 +57,7 @@
   font-family-italic = JetBrains Mono Italic
   font-family-bold-italic = JetBrains Mono Bold Italic
 
-  font-size = 16
+  font-size = 18
   window-inherit-font-size = true
   font-thicken = true
 # adjust-cell-width = 5%
