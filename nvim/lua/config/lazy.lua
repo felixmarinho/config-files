@@ -29,6 +29,9 @@ require("config.autocmd")
 
 -- Setup lazy.nvim
 require("lazy").setup({
+  rocks = {
+        enabled = false,
+    },
   spec = {
     -- import your plugins
     { import = "plugins" },

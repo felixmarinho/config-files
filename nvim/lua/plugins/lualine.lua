@@ -1,3 +1,10 @@
+-- Progress to Line Numbers Function
+
+local function progress_p()
+    local total = vim.fn.line("$")
+    return string.format(" %d",total)
+end
+
 return {
     'nvim-lualine/lualine.nvim',
     dependencies = { 'nvim-tree/nvim-web-devicons' },
@@ -7,7 +14,9 @@ return {
         local custom_kanagawa = require('lualine.themes.kanagawa')
 
         -- Change the background of lualine_c section for normal mode
-        custom_kanagawa.normal.c.bg = '#1a1a23'
+        -- custom_kanagawa.normal.c.bg = '#1a1a23'
+        custom_kanagawa.normal.c.bg = '#202228'
+
 
         require('lualine').setup ({
             options = {
@@ -47,14 +56,15 @@ return {
                             },
                             inactive = {
                                 fg = '#727169',
-                                bg = '#1a1a23',
+                                -- bg = '#1a1a23',
+                                bg = '#26272f',
                             },
                         },
                     },
                 },
                 lualine_c = {},
-                lualine_x = {'branch', 'diff', 'diagnostics', 'filetype'},
-                lualine_y = {'progress'},
+                lualine_x = {'branch', 'diff', 'diagnostics'},
+                lualine_y = {progress_p},
                 lualine_z = {'location'},
             },
             inactive_sections = {
@@ -76,7 +86,7 @@ return {
                 lualine_b = {'branch', 'diff', 'diagnostics'},
                 lualine_c = {},
                 lualine_x = {'filetype'},
-                lualine_y = {'progress'},
+                lualine_y = {progress_p},
                 lualine_z = {'location'}
             },
         })

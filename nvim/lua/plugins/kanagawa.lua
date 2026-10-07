@@ -1,10 +1,19 @@
 -- Colors
-local KanagawaDragon =  "#15161d"
-local KanagawaWave_bg = "#1f1f28"
+local BackgroundColor = "#272a31"
+local BackgroundDarkerColor = "#1d2027"
 local DragonBlack =	"#0d0c0c"
-local DarkFg	= "#54546d"
-local DarkCursorLine	= "#22222b"
-local Whitespaces = "#2c2c2e"
+local DimmedForeground= "#54545f"
+local CursorLineColor = "#26292f"
+local MsgLineColor = "#202228"
+local Whitespaces = "#38383f"
+local Selection = "#393d47"
+
+-- local KanagawaDragon =  "#15161d"
+-- local KanagawaWave_bg = "#1f1f28"
+-- local DragonBlack =	"#0d0c0c"
+-- local DarkFg	= "#54546d"
+-- local DarkCursorLine	= "#22222b"
+-- local Whitespaces = "#2c2c2e"
 
 return {
     "rebelot/kanagawa.nvim",
@@ -47,24 +56,28 @@ return {
                     Comment = { bold = false },
                     Number = { bold = false },
 
+                    -- Normal Bg
+                    Normal = {
+                        bg = BackgroundColor,
+                    },
                     -- Sign Column 
                     SignColumn = {
-                        bg = KanagawaWave_bg,
+                        bg = BackgroundColor,
                     },
                     -- Line number column
                     LineNr = {
-                        fg = DarkFg,
-                        bg = KanagawaWave_bg,
+                        fg = DimmedForeground,
+                        bg = BackgroundColor,
                     },
                     -- Current line number
                     CursorLineNr = {
-                        bg = DarkCursorLine,
+                        bg = CursorLineColor,
                         bold = true,
                     },
 
                     -- Current line background
                     CursorLine = {
-                        bg = DarkCursorLine,
+                        bg = CursorLineColor,
                     },
 
                     -- Non Text
@@ -74,50 +87,71 @@ return {
 
                     -- Color column
                     ColorColumn = {
-                        bg = DarkCursorLine,
+                        bg = CursorLineColor,
                     },
                     -- Winsepator Color
                     WinSeparator = {
-                        fg = DarkFg,
+                        fg = DimmedForeground,
                     },
                     -- Telescope
                     TelescopeNormal = {
-                        bg = KanagawaDragon,
+                        bg = MsgLineColor,
                     },
 
                     TelescopeBorder = {
-                        fg = DarkFg,
-                        bg = KanagawaDragon,
+                        fg = DimmedForeground,
+                        bg = MsgLineColor,
                     },
 
                     TelescopePromptNormal = {
-                        bg = KanagawaDragon,
+                        bg = MsgLineColor,
                     },
 
                     TelescopePromptBorder = {
-                        fg = DarkFg,
-                        bg = KanagawaDragon,
+                        fg = DimmedForeground,
+                        bg = MsgLineColor,
                     },
 
                     TelescopeResultsNormal = {
-                        bg = KanagawaDragon,
+                        bg = MsgLineColor,
                     },
 
                     TelescopeResultsBorder = {
-                        fg = DarkFg,
-                        bg = KanagawaDragon,
+                        fg = DimmedForeground,
+                        bg = MsgLineColor,
+                    },
+                    TelescopeResultsName = {
+                        fg = DimmedForeground,
                     },
 
                     TelescopePreviewNormal = {
-                        bg = KanagawaDragon,
+                        bg = MsgLineColor,
                     },
 
                     TelescopePreviewBorder = {
-                        fg = DarkFg,
-                        bg = KanagawaDragon,
+                        fg = DimmedForeground,
+                        bg = MsgLineColor,
                     },
                     MsgArea = {
-                        bg = "#1a1a23",
+                        bg = MsgLineColor,
+                    },
+                    -- Selection
+                    Visual = {
+                        bg = Selection,
+                    },
+                    -- Floating windows
+                    FloatBorder = {
+                        fg = DimmedForeground,
+                        bg = MsgLineColor,
+                    },
+
+                    NormalFloat = {
+                        bg = MsgLineColor,
+                    },
+                    WinBar = {
+                        fg = DimmedForeground,
+                        bg = MsgLineColor,
+                        bold = false,
                     },
                 }
             end,

@@ -13,7 +13,7 @@ vim.keymap.set("v", "<C-c>", "<Esc>", { desc = "Exit visual mode" })
 -- Save
 
 vim.keymap.set("n", "<leader>w", "<cmd>w<CR>", { desc = "Save file" })
-vim.keymap.set("i", "<C-c>", "<Esc><cmd>w<CR>", { desc = "Save file" })
+--
 -- Quit
 
 vim.keymap.set("n", "<leader>q", "<cmd>q<CR>", { desc = "Quit" })
@@ -45,7 +45,15 @@ end, { desc = "Cycle conceal level" })
 
 -- Toggle whitespace
 
-vim.keymap.set("n", "<leader>l", "<cmd>set list!<CR>", {
+vim.keymap.set("n", "<leader>l", function()
+    vim.opt.list = not vim.opt.list:get()
+
+    if vim.opt.list:get() then
+        vim.notify("Toggle Whitespace ON")
+    else
+        vim.notify("Toggle Whitespace OFF")
+    end
+end, {
     desc = "Toggle whitespace",
 })
 
@@ -306,10 +314,121 @@ vim.keymap.set("n", "<leader>bp", "<cmd>bprevious<CR>", {
 })
 
 -- Close current buffer
-vim.keymap.set("n", "<leader>bq", "<cmd>bdelete<CR>", { desc = "Close buffer" })
+
+local function delete_buffer_keep_window()
+    local current = vim.api.nvim_get_current_buf()
+
+    -- Buffers currently visible in other windows
+    local visible = {}
+    for _, win in ipairs(vim.api.nvim_list_wins()) do
+        if win ~= vim.api.nvim_get_current_win() then
+            visible[vim.api.nvim_win_get_buf(win)] = true
+        end
+    end
+
+    -- Find the next listed buffer that isn't visible elsewhere
+    local buffers = vim.api.nvim_list_bufs()
+    local current_index
+
+    for i, buf in ipairs(buffers) do
+        if buf == current then
+            current_index = i
+            break
+        end
+    end
+
+    local next_buf
+
+    for offset = 1, #buffers do
+        local i = ((current_index + offset - 1) % #buffers) + 1
+        local buf = buffers[i]
+
+        if vim.api.nvim_buf_is_valid(buf)
+            and vim.bo[buf].buflisted
+            and not visible[buf]
+        then
+            next_buf = buf
+            break
+        end
+    end
+
+    if next_buf then
+        vim.api.nvim_set_current_buf(next_buf)
+        vim.api.nvim_buf_delete(current, { force = false })
+    else
+        vim.notify("No unused buffer available", vim.log.levels.INFO)
+    end
+end
+
+vim.keymap.set("n", "<leader>bq", delete_buffer_keep_window, { desc = "Delete buffer, keep window",})
+
+
+-- Force Close Buffer Keep Window
+
+local function delete_buffer_keep_window(force)
+    local current = vim.api.nvim_get_current_buf()
+    local current_win = vim.api.nvim_get_current_win()
+
+    -- Buffers visible in other windows
+    local visible = {}
+    for _, win in ipairs(vim.api.nvim_list_wins()) do
+        if win ~= current_win then
+            visible[vim.api.nvim_win_get_buf(win)] = true
+        end
+    end
+
+    -- Find another listed buffer that isn't visible elsewhere
+    local buffers = vim.api.nvim_list_bufs()
+    local current_index = 0
+
+    for i, buf in ipairs(buffers) do
+        if buf == current then
+            current_index = i
+            break
+        end
+    end
+
+    local next_buf
+
+    for offset = 1, #buffers do
+        local i = ((current_index + offset - 1) % #buffers) + 1
+        local buf = buffers[i]
+
+        if vim.api.nvim_buf_is_valid(buf)
+            and vim.bo[buf].buflisted
+            and not visible[buf]
+        then
+            next_buf = buf
+            break
+        end
+    end
+
+    if not next_buf then
+        vim.notify("No unused buffer available", vim.log.levels.INFO)
+        return
+    end
+
+    -- Switch first, then delete the old buffer
+    vim.api.nvim_set_current_buf(next_buf)
+    vim.api.nvim_buf_delete(current, { force = force })
+end
+
+-- Normal close
+vim.keymap.set("n", "<leader>bd", function()
+    delete_buffer_keep_window(false)
+end, {
+    desc = "Delete buffer, keep window",
+})
 
 -- Force close
-vim.keymap.set("n", "<leader>bqx", "<cmd>bdelete!<CR>", { desc = "Force close buffer" })
+vim.keymap.set("n", "<leader>bqx", function()
+    delete_buffer_keep_window(true)
+end, { desc = "Force delete buffer, keep window",})
+
+-- vim.keymap.set("n", "<leader>bq", "<cmd>bnext<bar>bdelete #<CR>", { desc = "Delete buffer, keep window",})
+
+-- Force close
+-- vim.keymap.set("n", "<leader>bqx", "<cmd>bnext<bar>bdelete!<CR>", { desc = "Force close buffer" })
 
 -- Comments
 

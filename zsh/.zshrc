@@ -82,18 +82,26 @@ if command -v fzf >/dev/null 2>&1; then
     export FZF_DEFAULT_OPTS="
     --layout=reverse
     --border
-    --color=fg:#DCD7BA,bg:#1F1F28,fg+:#DCD7BA,bg+:#2D4F67
-    --color=hl:#7FB4CA,hl+:#7FB4CA
-    --color=pointer:#957FB8,marker:#E6C384
-    --color=prompt:#7E9CD8,info:#727169
-    --color=border:#54546D"
-
+    --color=fg:#ABB2BF,bg:#272A31,fg+:#ABB2BF,bg+:#3E4451
+    --color=hl:#61AFEF,hl+:#61AFEF
+    --color=pointer:#C678DD,marker:#E5C07B
+    --color=prompt:#98C379,info:#5C6370
+    --color=border:#4B5263"
 fi
+
+
+#   --layout=reverse
+#   --border
+#   --color=fg:#DCD7BA,bg:#1F1F28,fg+:#DCD7BA,bg+:#2D4F67
+#   --color=hl:#7FB4CA,hl+:#7FB4CA
+#   --color=pointer:#957FB8,marker:#E6C384
+#   --color=prompt:#7E9CD8,info:#727169
+#   --color=border:#54546D"
 
 # bat
 
 if command -v bat >/dev/null 2>&1; then
-    export BAT_THEME="Kanagawa"
+    export BAT_THEME="OneHalfDark"
 fi
 
 # Custom Aliases

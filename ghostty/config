@@ -36,7 +36,8 @@
 # theme = Raycast Dark
 # theme = Nvim Dark
 # theme = Kanagawabones
- theme = Kanagawa Wave
+  theme = Kanagawa Wave
+#  theme = One Double Dark
 
 # Overrides
 
@@ -44,7 +45,7 @@
 # background = #262626
 # background = #1e1e27
 # background = #1a1a1f
-## #15161d" | update | bd atual bg no kanagawa
+  background = #272a31
 # foreground = #cdcdc0
 # foreground = #adadc0
 
@@ -59,7 +60,7 @@
 
   font-size = 18
   window-inherit-font-size = true
-  font-thicken = true
+#  font-thicken = true
 # adjust-cell-width = 5%
 
 #---------------------------------------------------------
