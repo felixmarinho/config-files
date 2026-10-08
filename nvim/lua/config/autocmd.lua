@@ -101,3 +101,9 @@ vim.api.nvim_create_autocmd("FileType", {
 vim.api.nvim_create_autocmd("VimResized", {
     command = "wincmd =",
 })
+-- Mdx reads as Markdown
+vim.filetype.add({
+  extension = {
+    mdx = "markdown",
+  },
+})

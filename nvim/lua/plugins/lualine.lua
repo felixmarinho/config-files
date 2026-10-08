@@ -2,7 +2,7 @@
 
 local function progress_p()
     local total = vim.fn.line("$")
-    return string.format(" %d",total)
+    return string.format("%d",total)
 end
 
 return {
@@ -15,7 +15,8 @@ return {
 
         -- Change the background of lualine_c section for normal mode
         -- custom_kanagawa.normal.c.bg = '#1a1a23'
-        custom_kanagawa.normal.c.bg = '#202228'
+        custom_kanagawa.normal.c.bg = '#1f1f28'
+        -- custom_kanagawa.normal.c.bg = '#202228'
 
 
         require('lualine').setup ({
@@ -57,7 +58,8 @@ return {
                             inactive = {
                                 fg = '#727169',
                                 -- bg = '#1a1a23',
-                                bg = '#26272f',
+                                -- bg = '#26272f',
+                                bg = '#1f1f28',
                             },
                         },
                     },
@@ -71,16 +73,6 @@ return {
                 lualine_a = {
                     {
                         'buffers',
-                        buffers_color = {
-                            active = {
-                                fg = '#f2ecbc',
-                                bg = '#3a455e',
-                            },
-                            inactive = {
-                                fg = '#727169',
-                                bg = '#1a1a23',
-                            },
-                        },
                     },
                 },
                 lualine_b = {'branch', 'diff', 'diagnostics'},

@@ -17,7 +17,7 @@ vim.opt.relativenumber = true -- relative line numbers
 vim.opt.cursorline = true -- highlight current line
 
 vim.opt.signcolumn = "yes" -- always show a sign column
-vim.opt.colorcolumn = "100" -- show a column at 100 position chars
+-- vim.opt.colorcolumn = "100" -- show a column at 100 position chars
 
 vim.opt.showmatch = true -- highlights matching brackets
 vim.opt.cmdheight = 1 -- single line command line

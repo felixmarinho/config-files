@@ -8,7 +8,7 @@
   window-save-state = always
   confirm-close-surface = false
 
-  window-padding-x = 0,0
+  window-padding-x = 0,10
   window-padding-y = 0,0
   window-padding-balance = true
 
@@ -45,7 +45,7 @@
 # background = #262626
 # background = #1e1e27
 # background = #1a1a1f
-  background = #272a31
+# background = #272a31
 # foreground = #cdcdc0
 # foreground = #adadc0
 
@@ -58,7 +58,7 @@
   font-family-italic = JetBrains Mono Italic
   font-family-bold-italic = JetBrains Mono Bold Italic
 
-  font-size = 18
+  font-size = 17
   window-inherit-font-size = true
 #  font-thicken = true
 # adjust-cell-width = 5%

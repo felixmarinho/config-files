@@ -1,19 +1,23 @@
--- Colors
-local BackgroundColor = "#272a31"
-local BackgroundDarkerColor = "#1d2027"
-local DragonBlack =	"#0d0c0c"
-local DimmedForeground= "#54545f"
-local CursorLineColor = "#26292f"
-local MsgLineColor = "#202228"
-local Whitespaces = "#38383f"
-local Selection = "#393d47"
-
--- local KanagawaDragon =  "#15161d"
--- local KanagawaWave_bg = "#1f1f28"
+-- Colors Onedark Match
+-- local BackgroundColor = "#272a31"
+-- local BackgroundDarkerColor = "#1d2027"
 -- local DragonBlack =	"#0d0c0c"
--- local DarkFg	= "#54546d"
--- local DarkCursorLine	= "#22222b"
--- local Whitespaces = "#2c2c2e"
+-- local DimmedForeground= "#54545f"
+-- local CursorLineColor = "#26292f"
+-- local MsgLineColor = "#202228"
+-- local Whitespaces = "#38383f"
+-- local Selection = "#393d47"
+
+-- Kanagawa
+local BackgroundColor = "#1f1f28"
+-- local BackgroundDarkerColor = "#1d2027"
+-- local DragonBlack =	"#0d0c0c"
+local DimmedForeground= "#54546d"
+local CursorLineColor = "#22222b"
+local MsgLineColor = "#22222b"
+local MsgLineFgColor = "#adadba"
+local Whitespaces = "#2c2c2e"
+-- local Selection = "#393d47"
 
 return {
     "rebelot/kanagawa.nvim",
@@ -56,17 +60,13 @@ return {
                     Comment = { bold = false },
                     Number = { bold = false },
 
-                    -- Normal Bg
-                    Normal = {
-                        bg = BackgroundColor,
-                    },
                     -- Sign Column 
                     SignColumn = {
                         bg = BackgroundColor,
                     },
                     -- Line number column
                     LineNr = {
-                        fg = DimmedForeground,
+                        -- fg = DimmedForeground,
                         bg = BackgroundColor,
                     },
                     -- Current line number
@@ -93,66 +93,67 @@ return {
                     WinSeparator = {
                         fg = DimmedForeground,
                     },
-                    -- Telescope
-                    TelescopeNormal = {
-                        bg = MsgLineColor,
-                    },
-
-                    TelescopeBorder = {
-                        fg = DimmedForeground,
-                        bg = MsgLineColor,
-                    },
-
-                    TelescopePromptNormal = {
-                        bg = MsgLineColor,
-                    },
-
-                    TelescopePromptBorder = {
-                        fg = DimmedForeground,
-                        bg = MsgLineColor,
-                    },
-
-                    TelescopeResultsNormal = {
-                        bg = MsgLineColor,
-                    },
-
-                    TelescopeResultsBorder = {
-                        fg = DimmedForeground,
-                        bg = MsgLineColor,
-                    },
-                    TelescopeResultsName = {
-                        fg = DimmedForeground,
-                    },
-
-                    TelescopePreviewNormal = {
-                        bg = MsgLineColor,
-                    },
-
-                    TelescopePreviewBorder = {
-                        fg = DimmedForeground,
-                        bg = MsgLineColor,
-                    },
+                    -- -- Telescope
+                    -- TelescopeNormal = {
+                    --     bg = MsgLineColor,
+                    -- },
+                    --
+                    -- TelescopeBorder = {
+                    --     fg = DimmedForeground,
+                    --     bg = MsgLineColor,
+                    -- },
+                    --
+                    -- TelescopePromptNormal = {
+                    --     bg = MsgLineColor,
+                    -- },
+                    --
+                    -- TelescopePromptBorder = {
+                    --     fg = DimmedForeground,
+                    --     bg = MsgLineColor,
+                    -- },
+                    --
+                    -- TelescopeResultsNormal = {
+                    --     bg = MsgLineColor,
+                    -- },
+                    --
+                    -- TelescopeResultsBorder = {
+                    --     fg = DimmedForeground,
+                    --     bg = MsgLineColor,
+                    -- },
+                    -- TelescopeResultsName = {
+                    --     fg = DimmedForeground,
+                    -- },
+                    --
+                    -- TelescopePreviewNormal = {
+                    --     bg = MsgLineColor,
+                    -- },
+                    --
+                    -- TelescopePreviewBorder = {
+                    --     fg = DimmedForeground,
+                    --     bg = MsgLineColor,
+                    -- },
                     MsgArea = {
-                        bg = MsgLineColor,
+                        fg =MsgLineFgColor,
+                        -- bg = MsgLineColor,
                     },
-                    -- Selection
-                    Visual = {
-                        bg = Selection,
-                    },
-                    -- Floating windows
-                    FloatBorder = {
-                        fg = DimmedForeground,
-                        bg = MsgLineColor,
-                    },
-
-                    NormalFloat = {
-                        bg = MsgLineColor,
-                    },
-                    WinBar = {
-                        fg = DimmedForeground,
-                        bg = MsgLineColor,
-                        bold = false,
-                    },
+                    -- -- Selection
+                    -- Visual = {
+                    --     bg = Selection,
+                    -- },
+                    -- -- Floating windows
+                    -- FloatBorder = {
+                    --     fg = DimmedForeground,
+                    --     bg = MsgLineColor,
+                    -- },
+                    --
+                    -- NormalFloat = {
+                    --     bg = MsgLineColor,
+                    -- },
+                    -- WinBar = {
+                    --     fg = DimmedForeground,
+                    --     bg = MsgLineColor,
+                    --     bold = false,
+                    -- },
                 }
             end,
         })
