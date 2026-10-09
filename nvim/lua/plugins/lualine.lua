@@ -13,11 +13,10 @@ return {
 
         local custom_kanagawa = require('lualine.themes.kanagawa')
 
-        -- Change the background of lualine_c section for normal mode
+        -- change the background of lualine_c section for normal mode
         -- custom_kanagawa.normal.c.bg = '#1a1a23'
-        custom_kanagawa.normal.c.bg = '#1f1f28'
+        custom_kanagawa.normal.c.bg = "NONE"
         -- custom_kanagawa.normal.c.bg = '#202228'
-
 
         require('lualine').setup ({
             options = {
@@ -82,5 +81,7 @@ return {
                 lualine_z = {'location'}
             },
         })
+        vim.cmd("highlight StatusLine guibg=NONE")
+        vim.cmd("highlight StatusLineNC guibg=NONE")
     end,
 }

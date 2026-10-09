@@ -12,6 +12,12 @@
   window-padding-y = 0,0
   window-padding-balance = true
 
+  background-opacity = 0.9
+  background-blur = true
+  background-opacity-cells = true
+
+
+
 #---------------------------------------------------------
 # Ghostty Icon
 #---------------------------------------------------------
@@ -37,7 +43,9 @@
 # theme = Nvim Dark
 # theme = Kanagawabones
   theme = Kanagawa Wave
-#  theme = One Double Dark
+# theme = One Double Dark
+# theme = Catppucin Mocha
+# theme = Tokyonight Night
 
 # Overrides
 
@@ -105,6 +113,7 @@
   keybind = super+ctrl+right=unbind
   keybind = super+shift+enter=unbind
   keybind = super+ctrl+equal=unbind
+  keybind = super+ctrl+f=unbind
   keybind = super+t=unbind
   keybind = super+shift+[=unbind
   keybind = super+shift+]=unbind

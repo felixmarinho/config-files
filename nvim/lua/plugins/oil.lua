@@ -121,7 +121,7 @@ return {
     use_default_keymaps = true,
 
     float = {
-      padding = 0,
+      padding = 2,
       max_width = 0.99,
       max_height = 0.99,
       border = "rounded",

@@ -1,4 +1,4 @@
-
+-- Leader
 
 vim.g.mapleader = " "
 vim.g.maplocalleader = "\\"
@@ -14,7 +14,11 @@ vim.keymap.set("v", "<C-c>", "<Esc>", { desc = "Exit visual mode" })
 -- Save
 
 vim.keymap.set("n", "<leader>w", "<cmd>w<CR>", { desc = "Save file" })
---
+
+-- Restart Neovim
+
+vim.keymap.set("n", "<leader>r", "<cmd>restart<CR>", { desc = "Restart Neovim" })
+
 -- Quit
 
 vim.keymap.set("n", "<leader>q", "<cmd>q<CR>", { desc = "Quit" })
@@ -399,7 +403,7 @@ end, {
     })
 
 -- Force close
-vim.keymap.set("n", "<leader>bq1", function()
+vim.keymap.set("n", "<leader>bqq", function()
     delete_buffer_keep_window(true)
 end, { desc = "Force delete buffer, keep window",})
 
@@ -486,51 +490,6 @@ vim.keymap.set("n", "<leader>A", function()
 end, {
 	desc = "Swap with previous parameter",
     })
-
-
--- Telescope
---
--- local builtin = require("telescope.builtin")
---
--- vim.keymap.set("n", "<leader>ff", builtin.find_files, {
---     desc = "Find Files",
--- })
---
--- vim.keymap.set("n", "<leader>fg", builtin.live_grep, {
---     desc = "live Grep",
--- })
---
--- vim.keymap.set("n", "<leader>fo", function()
---     builtin.live_grep({
---         grep_open_files = true,
---     })
--- end, {
---     desc = "Grep Open Files",
--- })
---
--- vim.keymap.set("n", "<leader>fs", builtin.grep_string, {
---     desc = "Grep String",
--- })
---
--- vim.keymap.set("v", "<leader>fs", builtin.grep_string, {
---     desc = "Grep Selection",
--- })
---
--- vim.keymap.set("n", "<leader>fr", builtin.oldfiles, {
---     desc = "Recent Files",
--- })
---
--- vim.keymap.set("n", "<leader>fb", builtin.buffers, {
---     desc = "Find buffers",
--- })
---
--- vim.keymap.set("n", "<leader>fh", builtin.help_tags, {
---     desc = "Find help",
--- })
---
--- vim.keymap.set("n", "<leader>gd", "<cmd>Telescope git_status<CR>", {
---   desc = "Git Status",
--- })
 
 -- TreeSJ
 -- Split/join the code block under the cursor.
@@ -639,8 +598,63 @@ local function live_grep_open_files()
     })
 end
 
-vim.keymap.set("n", "<leader>fb", live_grep_open_files, {
+vim.keymap.set("n", "<leader>fbb", live_grep_open_files, {
     desc = "Live grep open files",
 })
 
+-- Flash Nvim
+--
+-- local Flash = require("flash")
 
+local function flash_2char_jump()
+    ---@param opts Flash.Format
+    local function format(opts)
+        return {
+            { opts.match.label1, "FlashMatch" },
+            { opts.match.label2, "FlashLabel" },
+        }
+    end
+
+    Flash.jump({
+        search = { mode = "search" },
+        label = {
+            after = false,
+            before = { 0, 0 },
+            uppercase = false,
+            format = format,
+        },
+        pattern = [[\<]],
+        action = function(match, state)
+            state:hide()
+
+            Flash.jump({
+                search = { max_length = 0 },
+                highlight = { matches = false },
+                label = { format = format },
+                matcher = function(win)
+                    return vim.tbl_filter(function(m)
+                        return m.label == match.label and m.win == win
+                    end, state.results)
+                end,
+                labeler = function(matches)
+                    for _, m in ipairs(matches) do
+                        m.label = m.label2
+                    end
+                end,
+            })
+        end,
+        labeler = function(matches, state)
+            local labels = state:labels()
+
+            for m, match in ipairs(matches) do
+                match.label1 = labels[math.floor((m - 1) / #labels) + 1]
+                match.label2 = labels[(m - 1) % #labels + 1]
+                match.label = match.label1
+            end
+        end,
+    })
+end
+
+vim.keymap.set("n", "z", flash_2char_jump, {
+    desc = "Flash 2-char jump",
+})

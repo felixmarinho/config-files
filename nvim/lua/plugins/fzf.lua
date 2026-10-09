@@ -4,8 +4,118 @@ return {
     -- dependencies = { "nvim-tree/nvim-web-devicons" },
     -- or if using mini.icons/mini.nvim
     dependencies = { "nvim-mini/mini.icons" },
-    opts = {},
+    opts = {
+        winopts = {
+            height = 0.75,
+            width = 0.75,
+            border = "rounded",
+
+            preview = {
+                layout = "vertical",
+                vertical = "down:60%",
+                border = "rounded",
+            },
+            winblend = true,
+            backdrop = 0,
+        },
+        fzf_colors = {
+            ["bg"] = "-1",
+            ["bg+"] = "-1",
+            ["gutter"] = "-1",
+        },
+
+        fzf_opts = {
+            ["--ansi"] = true,
+            ["--layout"] = "reverse",
+            ["--info"] = "inline-right",
+            ["--highlight-line"] = true,
+        },
+        hls = {
+            border = "FzfLuaCustomBorder",
+            preview_border = "FzfLuaCustomBorder",
+        },
+        keymap = {
+            builtin = {
+                ["<C-d>"] = "preview-half-page-down",
+                ["<C-u>"] = "preview-half-page-up",
+            },
+            -- fzf's native previewer
+            fzf = {
+                ["ctrl-d"] = "preview-page-down",
+                ["ctrl-u"] = "preview-page-up",
+            },
+        },
+        actions = {
+            files = {
+                true,
+
+                ["alt-q"] = {
+                    fn = function(selected, opts)
+                        require("fzf-lua.actions").file_sel_to_qf(selected, opts)
+                    end,
+                    prefix = "select-all",
+                },
+            },
+        },
+        git = {
+            commits = {
+                actions = {
+                    ["ctrl-d"] = false,
+
+                    ["ctrl-o"] = function(selected, opts)
+                        if not selected[1] then
+                            return
+                        end
+
+                        local commit = selected[1]:match("[^ ]+")
+                        local result = vim.system({
+                            "git",
+                            "show",
+                            "--no-ext-diff",
+                            "--no-color",
+                            commit,
+                        }, {
+                                cwd = opts.cwd or vim.fn.getcwd(),
+                                text = true,
+                            }):wait()
+
+                        if result.code ~= 0 then
+                            vim.notify(result.stderr, vim.log.levels.ERROR)
+                            return
+                        end
+
+                        vim.cmd("vnew")
+
+                        local buf = vim.api.nvim_get_current_buf()
+                        local lines = vim.split(result.stdout, "\n", {
+                            plain = true,
+                        })
+
+                        if lines[#lines] == "" then
+                            table.remove(lines)
+                        end
+
+                        vim.api.nvim_buf_set_lines(buf, 0, -1, false, lines)
+
+                        vim.bo[buf].buftype = "nofile"
+                        vim.bo[buf].bufhidden = "wipe"
+                        vim.bo[buf].swapfile = false
+                        vim.bo[buf].filetype = "diff"
+                        vim.bo[buf].modifiable = false
+                    end,
+                },
+            },
+        },
+    },
+
+
     keys={
+        {
+            "<leader>ft",
+            function() require('fzf-lua').colorschemes() end,
+            desc="Find Themes"
+        },
+
         {
             "<leader>ff",
             function() require('fzf-lua').files() end,
@@ -28,7 +138,7 @@ return {
         {
             "<leader>fw",
             function()
-               require("fzf-lua").grep_cword()
+                require("fzf-lua").grep_cword()
             end,
             desc = "[F]ind current [W]ord",
         },
@@ -40,7 +150,7 @@ return {
             desc = "[F]ind current [W]ORD",
         },
         {
-            "<leader>/",
+            "<leader>fb",
             function()
                 require("fzf-lua").lgrep_curbuf()
             end,
@@ -97,6 +207,20 @@ return {
                 require("fzf-lua").git_status()
             end,
             desc = "[F]ind Git Status",
+        },
+        {
+            "<leader>gc",
+            function()
+                require("fzf-lua").git_commits()
+            end,
+            desc = "[F]ind Git Commits",
+        },
+        {
+            "<leader>bc",
+            function()
+                require("fzf-lua").changes()
+            end,
+            desc = "[F]ind Buffer Changes",
         },
     }
 }

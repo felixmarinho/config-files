@@ -1,139 +1,137 @@
 return {
-  "neovim/nvim-lspconfig",
+	"neovim/nvim-lspconfig",
 
-  dependencies = {
-    { "williamboman/mason.nvim", opts = {} },
-    "williamboman/mason-lspconfig.nvim",
-    "WhoIsSethDaniel/mason-tool-installer.nvim",
-    { "j-hui/fidget.nvim", opts = {} },
-  },
+	dependencies = {
+		{ "williamboman/mason.nvim", opts = {} },
+		"williamboman/mason-lspconfig.nvim",
+		"WhoIsSethDaniel/mason-tool-installer.nvim",
+		{ "j-hui/fidget.nvim", opts = {} },
+	},
 
-  config = function()
-    -- Highlight references under the cursor
-    vim.api.nvim_create_autocmd("LspAttach", {
-      group = vim.api.nvim_create_augroup("lsp-highlight", { clear = true }),
+	config = function()
+		-- Highlight references under the cursor
+		vim.api.nvim_create_autocmd("LspAttach", {
+			group = vim.api.nvim_create_augroup("lsp-highlight", { clear = true }),
 
-      callback = function(event)
-        local client = vim.lsp.get_client_by_id(event.data.client_id)
+			callback = function(event)
+				local client = vim.lsp.get_client_by_id(event.data.client_id)
 
-        if not client then
-          return
-        end
+				if not client then
+					return
+				end
 
-        if client:supports_method("textDocument/documentHighlight") then
-          vim.api.nvim_create_autocmd(
-            { "CursorHold", "CursorHoldI" },
-            {
-              buffer = event.buf,
-              callback = vim.lsp.buf.document_highlight,
-            }
-          )
+				if client:supports_method("textDocument/documentHighlight") then
+					vim.api.nvim_create_autocmd({ "CursorHold", "CursorHoldI" }, {
+						buffer = event.buf,
+						callback = vim.lsp.buf.document_highlight,
+					})
 
-          vim.api.nvim_create_autocmd(
-            { "CursorMoved", "CursorMovedI" },
-            {
-              buffer = event.buf,
-              callback = vim.lsp.buf.clear_references,
-            }
-          )
-        end
-      end,
-    })
+					vim.api.nvim_create_autocmd({ "CursorMoved", "CursorMovedI" }, {
+						buffer = event.buf,
+						callback = vim.lsp.buf.clear_references,
+					})
+				end
+			end,
+		})
 
-    -- Diagnostics
-    vim.diagnostic.config({
-      severity_sort = true,
+		-- Diagnostics
+		vim.diagnostic.config({
+			severity_sort = true,
 
-      float = {
-        border = "rounded",
-        source = "if_many",
-      },
+			float = {
+				border = "rounded",
+				source = "if_many",
+			},
 
-      underline = {
-        severity = vim.diagnostic.severity.ERROR,
-      },
-      signs = {
-        text = {
-          [vim.diagnostic.severity.ERROR] = "󰅚 ",
-          [vim.diagnostic.severity.WARN] = "󰀪 ",
-          [vim.diagnostic.severity.INFO] = "󰋽 ",
-          [vim.diagnostic.severity.HINT] = "󰌶 ",
-        },
-      },
+			underline = {
+				severity = vim.diagnostic.severity.ERROR,
+			},
+			signs = {
+				text = {
+					[vim.diagnostic.severity.ERROR] = "󰅚 ",
+					[vim.diagnostic.severity.WARN] = "󰀪 ",
+					[vim.diagnostic.severity.INFO] = "󰋽 ",
+					[vim.diagnostic.severity.HINT] = "󰌶 ",
+				},
+			},
 
-      virtual_text = {
-        source = "if_many",
-        spacing = 2,
-      },
-    })
+			virtual_text = {
+				source = "if_many",
+				spacing = 2,
+			},
+		})
 
-    -- LSP capabilities
-    local capabilities = vim.lsp.protocol.make_client_capabilities()
+		-- LSP capabilities
+		local capabilities = vim.lsp.protocol.make_client_capabilities()
 
-    -- Language servers
-    local servers = {
-      bashls = {},
-      marksman = {},
-      ts_ls = {},
-      lua_ls = {
-        on_init = function(client)
-          client.server_capabilities.documentFormattingProvider = false -- Disable formatting (formatting is done by stylua)
+		-- Language servers
+		local servers = {
+			bashls = {},
+			marksman = {},
+			ts_ls = {},
+			pylsp = {},
+			clangd = {},
+			lua_ls = {
+				on_init = function(client)
+					client.server_capabilities.documentFormattingProvider = false -- Disable formatting (formatting is done by stylua)
 
-          if client.workspace_folders then
-            local path = client.workspace_folders[1].name
-            if path ~= vim.fn.stdpath 'config' and (vim.uv.fs_stat(path .. '/.luarc.json') or vim.uv.fs_stat(path .. '/.luarc.jsonc')) then return end
-          end
+					if client.workspace_folders then
+						local path = client.workspace_folders[1].name
+						if
+							path ~= vim.fn.stdpath("config")
+							and (vim.uv.fs_stat(path .. "/.luarc.json") or vim.uv.fs_stat(path .. "/.luarc.jsonc"))
+						then
+							return
+						end
+					end
 
-          local current_settings = client.config.settings --[[@as lspconfig.settings.lua_ls]]
-          client.config.settings.Lua = vim.tbl_deep_extend('force', current_settings.Lua, {
-            runtime = {
-              version = 'LuaJIT',
-              path = { 'lua/?.lua', 'lua/?/init.lua' },
-            },
-            workspace = {
-              checkThirdParty = false,
-              -- NOTE: this is a lot slower and will cause issues when working on your own configuration.
-              --  See https://github.com/neovim/nvim-lspconfig/issues/3189
-              library = vim.api.nvim_get_runtime_file('', true),
-            },
-          })
-        end,
-        ---@type lspconfig.settings.lua_ls
-        settings = {
-          Lua = {
-            format = { enable = false }, -- Disable formatting (formatting is done by stylua)
-          },
-        },
-      },
-    }
+					local current_settings = client.config.settings --[[@as lspconfig.settings.lua_ls]]
+					client.config.settings.Lua = vim.tbl_deep_extend("force", current_settings.Lua, {
+						runtime = {
+							version = "LuaJIT",
+							path = { "lua/?.lua", "lua/?/init.lua" },
+						},
+						workspace = {
+							checkThirdParty = false,
+							-- NOTE: this is a lot slower and will cause issues when working on your own configuration.
+							--  See https://github.com/neovim/nvim-lspconfig/issues/3189
+							library = vim.api.nvim_get_runtime_file("", true),
+						},
+					})
+				end,
+				---@type lspconfig.settings.lua_ls
+				settings = {
+					Lua = {
+						format = { enable = false }, -- Disable formatting (formatting is done by stylua)
+					},
+				},
+			},
+		}
 
-    -- Make Mason install the servers above
-    local ensure_installed = vim.tbl_keys(servers)
+		-- Make Mason install the servers above
+		local ensure_installed = vim.tbl_keys(servers)
 
-    vim.list_extend(ensure_installed, {
-      "stylua",
-    })
+		vim.list_extend(ensure_installed, {
+			"stylua",
+			"prettierd", -- Used to format Javascript
+			"prettier",
+		})
 
-    require("mason-tool-installer").setup({
-      ensure_installed = ensure_installed,
-    })
+		require("mason-tool-installer").setup({
+			ensure_installed = ensure_installed,
+		})
 
-    require("mason-lspconfig").setup({
-      ensure_installed = {},
-      automatic_installation = false,
-    })
+		require("mason-lspconfig").setup({
+			ensure_installed = {},
+			automatic_installation = false,
+		})
 
-    -- Configure and enable LSP servers
-    for server, config in pairs(servers) do
-      config.capabilities = vim.tbl_deep_extend(
-        "force",
-        {},
-        capabilities,
-        config.capabilities or {}
-      )
+		-- Configure and enable LSP servers
+		for server, config in pairs(servers) do
+			config.capabilities = vim.tbl_deep_extend("force", {}, capabilities, config.capabilities or {})
 
-      vim.lsp.config(server, config)
-      vim.lsp.enable(server)
-    end
-  end,
+			vim.lsp.config(server, config)
+			vim.lsp.enable(server)
+		end
+	end,
 }

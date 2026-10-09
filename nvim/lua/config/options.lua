@@ -37,7 +37,7 @@ vim.opt.concealcursor = "" -- do not hide cursorline in markup
 vim.opt.fillchars = { eob = " " } -- hide "\~" on empty lines
 
 vim.opt.guicursor =
-"n-v-c:block,i-ci-ve:block,r-cr:hor20,o:hor50,a:blinkwait700-blinkoff400-blinkon250-Cursor/lCursor,sm:block-blinkwait175-blinkoff150-blinkon175" -- cursor blinking and settings
+"n-v-c:block,i-ci-ve:block,r-cr:hor20,o:hor50,a:blinkwait400-blinkoff200-blinkon150-Cursor/lCursor,sm:block-blinkwait175-blinkoff150-blinkon175" -- cursor blinking and settings
 
 -- Editing / Indentation
 
