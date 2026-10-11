@@ -7,9 +7,11 @@ vim.g.maplocalleader = "\\"
 
 -- Exit insert mode
 
-vim.keymap.set("i", "<C-c>", "<Esc>", { desc = "Exit insert mode" })
+vim.keymap.set({ "i", "v" }, "<C-c>", "<Esc>", { desc = "Exit insert mode" })
 
-vim.keymap.set("v", "<C-c>", "<Esc>", { desc = "Exit visual mode" })
+-- Exit terminal mode
+
+vim.keymap.set("t", "<Esc>", [[<C-\><C-n>]], { desc = "Exit terminal mode" })
 
 -- Save
 
@@ -21,9 +23,9 @@ vim.keymap.set("n", "<leader>r", "<cmd>restart<CR>", { desc = "Restart Neovim" }
 
 -- Quit
 
-vim.keymap.set("n", "<leader>q", "<cmd>q<CR>", { desc = "Quit" })
+vim.keymap.set("n", "<leader>rq", "<cmd>q<CR>", { desc = "Quit" })
 
-vim.keymap.set("n", "<leader>qq", "<cmd>q!<CR>", { desc = "Quit without saving" })
+vim.keymap.set("n", "<leader>1", "<cmd>q!<CR>", { desc = "Quit without saving" })
 
 -- Close Split while keep buffer
 --
@@ -329,14 +331,14 @@ local function delete_buffer_keep_window(force)
 end
 
 -- Normal close
-vim.keymap.set("n", "<leader>bq", function()
+vim.keymap.set("n", "<leader>q", function()
   delete_buffer_keep_window(false)
 end, {
   desc = "Delete buffer, keep window",
 })
 
 -- Force close
-vim.keymap.set("n", "<leader>bqq", function()
+vim.keymap.set("n", "<leader>bfq", function()
   delete_buffer_keep_window(true)
 end, { desc = "Force delete buffer, keep window" })
 
@@ -370,7 +372,7 @@ end, {
 
 -- Tree-sitter incremental selection
 
-vim.keymap.set("n", "<leader><CR>", function()
+vim.keymap.set("n", "=", function()
   vim.treesitter.select("parent")
 end, {
   desc = "Treesitter: start selection",
@@ -452,7 +454,7 @@ end, {
 
 -- Quick Fix
 
-vim.keymap.set("n", "<leader>qo", "<cmd>copen<CR>", { desc = "Open quickfix" })
+vim.keymap.set("n", "qo", "<cmd>copen<CR>", { desc = "Open quickfix" })
 
 -- vim.keymap.set("n", "<leader>qq", "<cmd>cclose<CR>", { desc = "Close quickfix" })
 
@@ -460,20 +462,20 @@ vim.keymap.set("n", "<C-n>", "<cmd>cnext<CR>", { desc = "Next quickfix item" })
 
 vim.keymap.set("n", "<C-p>", "<cmd>cprev<CR>", { desc = "Previous quickfix item" })
 
-vim.keymap.set("n", "<leader>ql", function()
+vim.keymap.set("n", "ql", function()
   vim.diagnostic.setqflist()
 end, {
   desc = "Diagnostics to Quickfix",
 })
 
-vim.keymap.set("n", "<leader>qc", function()
+vim.keymap.set("n", "qc", function()
   vim.fn.setqflist({})
 end, {
   desc = "Clear Quickfix List",
 })
-vim.keymap.set("n", "]q", "<cmd>cnext<CR>", { desc = "Next Quickfix Item" })
-
-vim.keymap.set("n", "[q", "<cmd>cprev<CR>", { desc = "Previous Quickfix Item" })
+-- vim.keymap.set("n", "]q", "<cmd>cnext<CR>", { desc = "Next Quickfix Item" })
+--
+-- vim.keymap.set("n", "[q", "<cmd>cprev<CR>", { desc = "Previous Quickfix Item" })
 
 -- Lsp
 
@@ -483,19 +485,19 @@ vim.keymap.set("n", "gd", builtin.lsp_definitions, { desc = "LSP: Goto Definitio
 
 vim.keymap.set("n", "gr", builtin.lsp_references, { desc = "LSP: Goto References" })
 
-vim.keymap.set("n", "gI", builtin.lsp_implementations, { desc = "LSP: Goto Implementation" })
+vim.keymap.set("n", "gi", builtin.lsp_implementations, { desc = "LSP: Goto Implementation" })
 
-vim.keymap.set("n", "<leader>gt", builtin.lsp_typedefs, { desc = "LSP: Type Definition" })
+vim.keymap.set("n", "gt", builtin.lsp_typedefs, { desc = "LSP: Type Definition" })
 
-vim.keymap.set("n", "<leader>ds", builtin.lsp_document_symbols, { desc = "LSP: Document Symbols" })
+vim.keymap.set("n", "gs", builtin.lsp_document_symbols, { desc = "LSP: Document Symbols" })
 
-vim.keymap.set("n", "<leader>ws", builtin.lsp_live_workspace_symbols, { desc = "LSP: Workspace Symbols" })
+vim.keymap.set("n", "gw", builtin.lsp_live_workspace_symbols, { desc = "LSP: Workspace Symbols" })
 
-vim.keymap.set("n", "<leader>cr", vim.lsp.buf.rename, { desc = "LSP: Rename" })
+vim.keymap.set("n", "cr", vim.lsp.buf.rename, { desc = "LSP: Rename" })
 
-vim.keymap.set({ "n", "x" }, "<leader>ca", vim.lsp.buf.code_action, { desc = "LSP: Code Action" })
+vim.keymap.set({ "n", "x" }, "ga", vim.lsp.buf.code_action, { desc = "LSP: Code Action" })
 
-vim.keymap.set("n", "gdd", vim.lsp.buf.declaration, { desc = "LSP: Goto Declaration" })
+vim.keymap.set("n", "<leader>gd", vim.lsp.buf.declaration, { desc = "LSP: Goto Declaration" })
 
 -- fzf-lua
 
