@@ -1,24 +1,21 @@
-#---------------------------------------------------------
-# Window General Settings
-#---------------------------------------------------------
+
+# Window General Settings ------------------------
  
-  macos-titlebar-style = hidden
-  macos-non-native-fullscreen = true
-  
-  window-save-state = always
-  confirm-close-surface = false
+macos-titlebar-style = hidden
+macos-non-native-fullscreen = true
 
-  window-padding-x = 0,10
-  window-padding-y = 0,0
-  window-padding-balance = true
+window-save-state = always
+confirm-close-surface = false
 
-  background-opacity = 0.9
-  background-blur = true
-  background-opacity-cells = true
+window-padding-x = 0,10
+window-padding-y = 0,0
+window-padding-balance = true
 
-#---------------------------------------------------------
-# Themes
-#---------------------------------------------------------
+background-opacity = 0.9
+background-blur = true
+background-opacity-cells = true
+
+# Themes ------------------------
 
 # theme = Raycast Dark
 # theme = Nvim Dark
@@ -28,105 +25,91 @@
 # theme = Catppucin Mocha
 # theme = Tokyonight Night
 
-# Overrides
+# Overrides ------------------------
 
 # background = #262626
-#  background = #1f1f1f
+# background = #1f1f1f
 # background = #272a31
- background = #29292d
+  background = #29292d
 # foreground = #cdcdc0
 # foreground = #adadc0
 
+# Ghostty Icon ------------------------
 
-#---------------------------------------------------------
-# Ghostty Icon
-#---------------------------------------------------------
+macos-icon = custom-style
+macos-icon-frame = plastic
+macos-icon-ghost-color = #42FF9D
+macos-icon-screen-color = #000000
 
-  macos-icon = custom-style
-  macos-icon-frame = plastic
-  macos-icon-ghost-color = #42FF9D
-  macos-icon-screen-color = #000000
-
-#---------------------------------------------------------
-# Quick Terminal
-#---------------------------------------------------------
+# Quick Terminal ------------------------
  
-  keybind = global:opt+grave_accent=toggle_quick_terminal
-  quick-terminal-screen = main
-  quick-terminal-position = top
+keybind = global:opt+grave_accent=toggle_quick_terminal
+quick-terminal-screen = main
+quick-terminal-position = top
 
-
-#---------------------------------------------------------
-# Fonts
-#---------------------------------------------------------
+# Fonts ------------------------
  
-  font-family = JetBrains Mono Light
-  font-family-bold = JetBrains Mono Bold
-  font-family-italic = JetBrains Mono Italic
-  font-family-bold-italic = JetBrains Mono Bold Italic
+font-family = JetBrains Mono Light
+font-family-bold = JetBrains Mono Bold
+font-family-italic = JetBrains Mono Italic
+font-family-bold-italic = JetBrains Mono Bold Italic
 
-  font-size = 17
-  window-inherit-font-size = true
-# font-thicken = true
-# adjust-cell-width = 5%
+font-size = 17
+window-inherit-font-size = true
+#font-thicken = true
+#adjust-cell-width = 5%
 
-#---------------------------------------------------------
-# Cursor Style
-#---------------------------------------------------------
+# Cursor Style ------------------------
 
-  cursor-style = block
-  cursor-style-blink = false
-  shell-integration-features = cursor
-  cursor-color = #e26c88
+cursor-style = block
+cursor-style-blink = false
+shell-integration-features = cursor
+cursor-color = #e26c88
 
-#---------------------------------------------------------
-# Clipboard and Selection
-#---------------------------------------------------------
+# Clipboard and Selection ------------------------
  
-  copy-on-select = clipboard
-  selection-clear-on-copy = true
-  mouse-hide-while-typing =true
+copy-on-select = clipboard
+selection-clear-on-copy = true
+mouse-hide-while-typing =true
 
-#---------------------------------------------------------
-# Shortcuts
-#---------------------------------------------------------
+# Shortcuts ------------------------
 
-  macos-option-as-alt = true
-# keybind = alt+k=scroll_page_lines:-5
-# keybind = alt+j=scroll_page_lines:5
-# keybind = alt+h=jump_to_prompt:-1
-# keybind = alt+l=jump_to_prompt:1
-# keybind = alt+shift+l=scroll_to_bottom
+macos-option-as-alt = true
+#keybind = alt+k=scroll_page_lines:-5
+#keybind = alt+j=scroll_page_lines:5
+#keybind = alt+h=jump_to_prompt:-1
+#keybind = alt+l=jump_to_prompt:1
+#keybind = alt+shift+l=scroll_to_bottom
   
-# Unbind Split panels
+# Unbind Split panels ------------------------
 
-  keybind = super+d=unbind
-  keybind = super+shift+d=unbind
-  keybind = super+alt+up=unbind
-  keybind = super+alt+down=unbind
-  keybind = super+alt+left=unbind
-  keybind = super+alt+right=unbind
-  keybind = super+ctrl+up=unbind
-  keybind = super+ctrl+down=unbind
-  keybind = super+ctrl+left=unbind
-  keybind = super+ctrl+right=unbind
-  keybind = super+shift+enter=unbind
-  keybind = super+ctrl+equal=unbind
-  keybind = super+ctrl+f=unbind
-  keybind = super+t=unbind
-  keybind = super+shift+[=unbind
-  keybind = super+shift+]=unbind
+keybind = super+d=unbind
+keybind = super+shift+d=unbind
+keybind = super+alt+up=unbind
+keybind = super+alt+down=unbind
+keybind = super+alt+left=unbind
+keybind = super+alt+right=unbind
+keybind = super+ctrl+up=unbind
+keybind = super+ctrl+down=unbind
+keybind = super+ctrl+left=unbind
+keybind = super+ctrl+right=unbind
+keybind = super+shift+enter=unbind
+keybind = super+ctrl+equal=unbind
+keybind = super+ctrl+f=unbind
+keybind = super+t=unbind
+keybind = super+shift+[=unbind
+keybind = super+shift+]=unbind
 
-# Disable tab navigation
+# Disable tab navigation ------------------------
 
-  keybind = super+1=unbind
-  keybind = super+2=unbind
-  keybind = super+3=unbind
-  keybind = super+4=unbind
-  keybind = super+5=unbind
-  keybind = super+6=unbind
-  keybind = super+7=unbind
-  keybind = super+8=unbind
-  keybind = super+9=unbind 
+keybind = super+1=unbind
+keybind = super+2=unbind
+keybind = super+3=unbind
+keybind = super+4=unbind
+keybind = super+5=unbind
+keybind = super+6=unbind
+keybind = super+7=unbind
+keybind = super+8=unbind
+keybind = super+9=unbind 
 
 
