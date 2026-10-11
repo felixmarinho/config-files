@@ -15,6 +15,10 @@ vim.opt.modifiable = true -- allow buffer modifications
 vim.opt.number = true -- line number
 vim.opt.relativenumber = true -- relative line numbers
 vim.opt.cursorline = true -- highlight current line
+vim.o.winborder = "rounded"
+vim.opt.sessionoptions:remove("blank")
+-- vim.opt.sessionoptions:remove("buffers")
+vim.opt.sessionoptions:remove("curdir")
 
 vim.opt.signcolumn = "yes" -- always show a sign column
 -- vim.opt.colorcolumn = "100" -- show a column at 100 position chars
@@ -37,8 +41,9 @@ vim.opt.concealcursor = "" -- do not hide cursorline in markup
 vim.opt.fillchars = { eob = " " } -- hide "\~" on empty lines
 
 vim.opt.guicursor =
-"n-v-c:block,i-ci-ve:block,r-cr:hor20,o:hor50,a:blinkwait400-blinkoff200-blinkon150-Cursor/lCursor,sm:block-blinkwait175-blinkoff150-blinkon175" -- cursor blinking and settings
+  "n-v-c:block,i-ci-ve:block,r-cr:hor20,o:hor50,a:blinkwait400-blinkoff200-blinkon150-Cursor/lCursor,sm:block-blinkwait175-blinkoff150-blinkon175" -- cursor blinking and settings
 
+-- Editing / Indentation
 -- Editing / Indentation
 
 vim.opt.wrap = false -- do not wrap lines by default
@@ -78,9 +83,10 @@ vim.opt.undofile = true -- do create an undo file
 
 local undodir = vim.fn.expand("~/.vim/undodir")
 
-if vim.fn.isdirectory(undodir) == 0 -- create undodir if nonexistent
+if
+  vim.fn.isdirectory(undodir) == 0 -- create undodir if nonexistent
 then
-	vim.fn.mkdir(undodir, "p")
+  vim.fn.mkdir(undodir, "p")
 end
 
 vim.opt.undodir = undodir -- set the undo directory
@@ -132,8 +138,8 @@ vim.opt.diffopt:append("linematch:60") -- improve diff display
 --  and `:help 'listchars'`
 vim.opt.list = true
 vim.opt.listchars = {
-	tab = "» ",
-	trail = "·",
-	nbsp = "␣",
+  tab = "» ",
+  trail = "·",
+  leadmultispace = "» ",
+  nbsp = "␣",
 }
-

@@ -27,12 +27,13 @@ require("config.floatterminal")
 
 require("config.autocmd")
 
+require("config.filetypes")
 
 -- Setup lazy.nvim
 require("lazy").setup({
   rocks = {
-        enabled = false,
-    },
+    enabled = false,
+  },
   spec = {
     -- import your plugins
     { import = "plugins" },

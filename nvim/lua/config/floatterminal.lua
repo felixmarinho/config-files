@@ -82,4 +82,3 @@ vim.keymap.set("t", "<C-q>", function()
     terminal_state.is_open = false
   end
 end, { noremap = true, silent = true, desc = "Close floating terminal" })
-

@@ -16,6 +16,26 @@
   background-blur = true
   background-opacity-cells = true
 
+#---------------------------------------------------------
+# Themes
+#---------------------------------------------------------
+
+# theme = Raycast Dark
+# theme = Nvim Dark
+# theme = Kanagawabones
+  theme = Kanagawa Wave
+# theme = One Double Dark
+# theme = Catppucin Mocha
+# theme = Tokyonight Night
+
+# Overrides
+
+# background = #262626
+#  background = #1f1f1f
+# background = #272a31
+ background = #29292d
+# foreground = #cdcdc0
+# foreground = #adadc0
 
 
 #---------------------------------------------------------
@@ -35,27 +55,6 @@
   quick-terminal-screen = main
   quick-terminal-position = top
 
-#---------------------------------------------------------
-# Themes
-#---------------------------------------------------------
-
-# theme = Raycast Dark
-# theme = Nvim Dark
-# theme = Kanagawabones
-  theme = Kanagawa Wave
-# theme = One Double Dark
-# theme = Catppucin Mocha
-# theme = Tokyonight Night
-
-# Overrides
-
-# background = #282c34
-# background = #262626
-# background = #1e1e27
-# background = #1a1a1f
-# background = #272a31
-# foreground = #cdcdc0
-# foreground = #adadc0
 
 #---------------------------------------------------------
 # Fonts
@@ -68,7 +67,7 @@
 
   font-size = 17
   window-inherit-font-size = true
-#  font-thicken = true
+# font-thicken = true
 # adjust-cell-width = 5%
 
 #---------------------------------------------------------
