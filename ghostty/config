@@ -17,22 +17,15 @@ background-opacity-cells = true
 
 # Themes ------------------------
 
-# theme = Raycast Dark
-# theme = Nvim Dark
-# theme = Kanagawabones
   theme = Kanagawa Wave
-# theme = One Double Dark
-# theme = Catppucin Mocha
-# theme = Tokyonight Night
 
 # Overrides ------------------------
 
 # background = #262626
-# background = #1f1f1f
+# background = #231f27
+  background = #202022
 # background = #272a31
-  background = #29292d
-# foreground = #cdcdc0
-# foreground = #adadc0
+# background = #29292d
 
 # Ghostty Icon ------------------------
 

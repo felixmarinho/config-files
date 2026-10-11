@@ -78,7 +78,7 @@ if command -v fzf >/dev/null 2>&1; then
     --bind 'ctrl-u:preview-page-up,ctrl-d:preview-page-down'"
 
     export FZF_DEFAULT_OPTS="
-    --color=fg:#DCD7BA,bg:#1F1F28,fg+:#DCD7BA,bg+:#2D4F67
+    --color=fg:#DCD7BA,bg:-1,fg+:#DCD7BA,bg+:-1
     --color=hl:#7FB4CA,hl+:#7FB4CA
     --color=pointer:#957FB8,marker:#E6C384
     --color=prompt:#7E9CD8,info:#727169
