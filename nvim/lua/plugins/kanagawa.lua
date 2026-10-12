@@ -178,6 +178,22 @@ return {
 						bg = Selection,
 						-- bold = false,
 					},
+					VisualNOS = {
+						bg = Selection,
+						-- bold = false,
+					},
+					Search = {
+						bg = "#123c98",
+						-- bold = false,
+					},
+					IncSearch = {
+						bg = "#f8fc88",
+						-- bold = false,
+					},
+					CurSearch = {
+						bg = "#c83c93",
+						-- bold = false,
+					},
 					FzfLuaCustomBorder = {
 						fg = FloatBorder,
 						bg = "NONE",
