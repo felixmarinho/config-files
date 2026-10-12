@@ -1,12 +1,12 @@
 -- Kanagawa
 local NewCursorColor = "#e26c88"
-local CursorLineColor = "#22222b"
+local CursorLineColor = "#202022"
 local LineNumbers = "#5d5d69"
 local DimmedForeground = "#8f8f9f"
 local FloatBorder = "#d9d5bb"
 local MsgLineFgColor = "#bdbdcf"
 local Whitespaces = "#313131"
--- local Selection = "#393d47"
+local Selection = "#393d47"
 
 return {
 	"rebelot/kanagawa.nvim",
@@ -33,8 +33,8 @@ return {
 					["@boolean.json"] = { bold = false },
 					["@constant.json"] = { bold = false },
 					["@keyword.json"] = { bold = false },
-
 					["@punctuation.bracket.json"] = { bold = false },
+					["@keyword.operator"] = { link = "Keyword" },
 
 					-- Statements
 					Statement = { bold = false },
@@ -48,9 +48,15 @@ return {
 					String = { bold = false },
 					Comment = { bold = false },
 					Number = { bold = false },
+					Title = { bold = false },
+					Operator = { bold = false },
 
 					-- Sign Column
 					SignColumn = {
+						bg = "NONE",
+					},
+					-- Fold Column
+					FoldColumn = {
 						bg = "NONE",
 					},
 					-- Sign column on the current line
@@ -90,7 +96,7 @@ return {
 					},
 					-- Current line background
 					CursorLine = {
-						bg = "NONE",
+						bg = "#262628",
 					},
 					-- Current line background
 					Cursor = {
@@ -112,6 +118,22 @@ return {
 					},
 					MsgArea = {
 						fg = MsgLineFgColor,
+						bg = "NONE",
+					},
+
+					MsgSeparator = {
+						bg = "NONE",
+					},
+					ErrorMsg = {
+						bg = "NONE",
+					},
+					WarningMsg = {
+						bg = "NONE",
+					},
+					ModeMsg = {
+						bg = "NONE",
+					},
+					MoreMsg = {
 						bg = "NONE",
 					},
 					-- floating windows
@@ -150,6 +172,10 @@ return {
 					},
 					WinBarNC = {
 						bg = "NONE",
+						-- bold = false,
+					},
+					Visual = {
+						bg = Selection,
 						-- bold = false,
 					},
 					FzfLuaCustomBorder = {
