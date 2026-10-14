@@ -70,14 +70,19 @@ return {
 			marksman = {},
 			html = {},
 			cssls = {},
+			eslint = {},
+			ts_ls = {},
 			docker_compose_language_service = {},
 			dockerls = {},
 			jsonls = {},
 			yamlls = {},
-			ts_ls = {},
+			yamllint = {},
 			jinja_lsp = {},
 			pylsp = {},
-			-- clangd = {},
+			ruff = {},
+			-- clangd = {
+			-- 	cmd = { "clangd", "--clang-tidy" },
+			-- },
 			lua_ls = {
 				on_init = function(client)
 					client.server_capabilities.documentFormattingProvider = false -- Disable formatting (formatting is done by stylua)
@@ -120,9 +125,9 @@ return {
 
 		vim.list_extend(ensure_installed, {
 			"stylua",
+			"eslint-lsp",
 			"prettierd",
 			"prettier",
-			"docker-compose-linter",
 			"yamlfmt",
 			"clang-format",
 			"isort",
@@ -141,7 +146,7 @@ return {
 
 		-- Configure and enable LSP servers
 		for server, config in pairs(servers) do
-			config.c, apabilities = vim.tbl_deep_extend("force", {}, capabilities, config.capabilities or {})
+			config.capabilities = vim.tbl_deep_extend("force", {}, capabilities, config.capabilities or {})
 
 			vim.lsp.config(server, config)
 			vim.lsp.enable(server)
