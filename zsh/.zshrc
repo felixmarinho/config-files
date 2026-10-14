@@ -25,25 +25,25 @@ export CONFIG_DIR="$HOME/.config-files"
 # OS-specific configuration
 
 if [[ "$OSTYPE" == darwin* ]]; then
+# macOS: BSD ls
+export LSCOLORS="Gxfxcxdxbxexexaxaxaxaxaxa"
 
-    # macOS
-    export LSCOLORS="Gxfxcxdxbxexexaxaxaxaxaxa"
-    export EZA_COLORS='di=34:ln=36:pi=33:so=35:bd=36:cd=36:ex=32'
+# GNU-style colors for compatible tools, including tree
+# export LS_COLORS='di=36:ln=35:so=32:pi=33:ex=31:bd=34;46:cd=34;43:su=30;41:sg=30;46:tw=30;42:ow=30;43'
 
-    alias ls='eza --color=auto'
-    alias grep='grep -G'
-    alias fgrep='fgrep -G'
-    alias egrep='egrep -F'
+alias ls='ls -G'
+alias grep='grep -G'
+alias fgrep='fgrep -G'
+alias egrep='egrep -E'
 
 elif [[ "$OSTYPE" == linux* ]]; then
+# Linux: GNU-style colors
+export LS_COLORS='di=36:ln=35:so=32:pi=33:ex=31:bd=34;46:cd=34;43:su=30;41:sg=30;46:tw=30;42:ow=30;43'
 
-    # Linux
-    export EZA_COLORS='di=34:ln=36:pi=33:so=35:bd=36:cd=36:ex=32'
-
-    alias ls='eza --color=auto'
-    alias grep='grep --color=auto'
-    alias fgrep='fgrep --color=auto'
-    alias egrep='egrep --color=auto'
+alias ls='ls --color=auto'
+alias grep='grep --color=auto'
+alias fgrep='grep -F --color=auto'
+alias egrep='grep -E --color=auto'
 
 fi
 
@@ -64,7 +64,6 @@ fi
 if command -v zoxide >/dev/null 2>&1; then
     eval "$(zoxide init zsh)"
 fi
-
 
 # fzf
 
@@ -115,10 +114,10 @@ alias ..='cd ..'
 alias ...='cd ../..'
 
 # General
-alias ll='eza -l'
-alias lla='eza -la'
-alias la='eza -a'
-alias l='eza'
+alias ll='ls -l'
+alias lla='ls -la'
+alias la='ls -a'
+alias l='ls'
 alias c="clear"
 alias cod="code ."
 alias his="history"
@@ -149,6 +148,8 @@ alias v="nvim"
 alias vi="nvim"
 alias vim="nvim"
 
+#Tree
+alias tree='command tree -C'
 
 # Starship
 

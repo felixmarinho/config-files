@@ -1,4 +1,6 @@
 -- Kanagawa
+local DarkGrayEyes = "#202023"
+local DarkGrayEyesFloatBg = "#1c1c1f"
 local NewCursorColor = "#e26c88"
 local CursorLineColor = "#202022"
 local LineNumbers = "#5d5d69"
@@ -13,7 +15,7 @@ return {
 	config = function()
 		require("kanagawa").setup({
 			compile = true,
-			transparent = true,
+			-- transparent = true,
 			background = {
 				dark = "wave",
 			},
@@ -51,47 +53,51 @@ return {
 					Title = { bold = false },
 					Operator = { bold = false },
 
+					-- Normal BG
+					Normal = {
+						bg = DarkGrayEyes,
+					},
 					-- Sign Column
 					SignColumn = {
-						bg = "NONE",
+						bg = DarkGrayEyes,
 					},
 					-- Fold Column
 					FoldColumn = {
-						bg = "NONE",
+						bg = DarkGrayEyes,
 					},
 					-- Sign column on the current line
 					CursorLineSign = {
-						bg = "NONE",
+						bg = DarkGrayEyes,
 					},
 					-- LSP Diagnostic Signs
 					DiagnosticSignError = {
 						fg = colors.palette.samuraiRed,
-						bg = "NONE",
+						bg = DarkGrayEyes,
 					},
 					DiagnosticSignWarn = {
 						fg = colors.palette.roninYellow,
-						bg = "NONE",
+						bg = DarkGrayEyes,
 					},
 					DiagnosticSignInfo = {
 						fg = colors.palette.dragonBlue,
-						bg = "NONE",
+						bg = DarkGrayEyes,
 					},
 					DiagnosticSignHint = {
 						fg = colors.palette.waveAqua1,
-						bg = "NONE",
+						bg = DarkGrayEyes,
 					},
 					DiagnosticSignOk = {
 						fg = colors.palette.springGreen,
-						bg = "NONE",
+						bg = DarkGrayEyes,
 					},
 					-- Line number column
 					LineNr = {
 						fg = LineNumbers,
-						bg = "NONE",
+						bg = DarkGrayEyes,
 					},
 					-- Current line number
 					CursorLineNr = {
-						bg = "NONE",
+						bg = DarkGrayEyes,
 						bold = true,
 					},
 					-- Current line background
@@ -118,60 +124,60 @@ return {
 					},
 					MsgArea = {
 						fg = MsgLineFgColor,
-						bg = "NONE",
+						bg = DarkGrayEyesFloatBg,
 					},
 
 					MsgSeparator = {
-						bg = "NONE",
+						bg = DarkGrayEyes,
 					},
 					ErrorMsg = {
-						bg = "NONE",
+						bg = DarkGrayEyes,
 					},
 					WarningMsg = {
-						bg = "NONE",
+						bg = DarkGrayEyes,
 					},
 					ModeMsg = {
-						bg = "NONE",
+						bg = DarkGrayEyes,
 					},
 					MoreMsg = {
-						bg = "NONE",
+						bg = DarkGrayEyes,
 					},
 					-- floating windows
 					FloatBorder = {
 						fg = FloatBorder,
-						bg = "none",
+						bg = DarkGrayEyesFloatBg,
 					},
 
 					NormalFloat = {
-						bg = "none",
+						bg = DarkGrayEyesFloatBg,
 					},
 					FloatTitle = {
 						fg = MsgLineFgColor,
-						bg = "NONE",
+						bg = DarkGrayEyesFloatBg,
 						-- bold = false,
 					},
 					Winbar = {
 						fg = MsgLineFgColor,
-						bg = "none",
+						bg = DarkGrayEyes,
 						-- bold = false,
 					},
 					-- Tabline
 					TabLine = {
 						fg = DimmedForeground,
-						bg = "NONE",
+						bg = DarkGrayEyes,
 					},
 
 					TabLineFill = {
-						bg = "NONE",
+						bg = DarkGrayEyes,
 					},
 
 					TabLineSel = {
 						fg = MsgLineFgColor,
-						bg = "NONE",
+						bg = DarkGrayEyes,
 						bold = false,
 					},
 					WinBarNC = {
-						bg = "NONE",
+						bg = DarkGrayEyes,
 						-- bold = false,
 					},
 					Visual = {
@@ -183,7 +189,7 @@ return {
 						-- bold = false,
 					},
 					Search = {
-						bg = "#123c98",
+						bg = "#383c98",
 						-- bold = false,
 					},
 					IncSearch = {
@@ -196,7 +202,10 @@ return {
 					},
 					FzfLuaCustomBorder = {
 						fg = FloatBorder,
-						bg = "NONE",
+						-- bg = DarkGrayEyes,
+					},
+					fzfluaBackdrop = {
+						bg = "#000000",
 					},
 				}
 			end,

@@ -4,7 +4,7 @@ return {
 	opts = {
 		options = {
 			parsers = {
-				names = { enable = true }, -- "Name" codes like Blue
+				-- names = { enable = true }, -- "Name" codes like Blue
 				RGB = { enable = true }, -- #RGB hex codes
 				RRGGBB = { enable = true }, -- #RRGGBB hex codes
 				RRGBA = { enable = false }, -- #RGBA hex codes

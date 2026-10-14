@@ -7,13 +7,11 @@ vim.g.maplocalleader = "\\"
 
 -- Exit insert mode
 
-vim.keymap.set({ "i", "v" }, "<C-c>", "<Esc>", { desc = "Exit insert/visual mode" })
-
-vim.keymap.set("c", "<C-c>", "<Esc>", { desc = "Cancel command line" })
+vim.keymap.set({ "i", "v", "c" }, "<C-c>", "<Esc>", { desc = "Exit modes" })
 
 -- Exit terminal mode
 
-vim.keymap.set("t", "<Esc>", [[<C-\><C-n>]], { desc = "Exit terminal mode" })
+-- vim.keymap.set("t", "<C-q>", [[<C-\><C-n>]], { desc = "Exit terminal mode" })
 
 -- Save
 
@@ -29,13 +27,14 @@ vim.keymap.set("n", "<leader>1", "<cmd>q<CR>", { desc = "Quit" })
 
 vim.keymap.set("n", "<leader>2", "<cmd>q!<CR>", { desc = "Quit without saving" })
 
--- Delete Buffer, Keep Split; Close Split If No Next Buffer
+-- Delete Buffer, Keep Split; Preserve Persistent Terminals
 
 local function delete_buffer_keep_window(force)
 	local current = vim.api.nvim_get_current_buf()
 	local current_win = vim.api.nvim_get_current_win()
+	local is_terminal = vim.bo[current].buftype == "terminal"
 
-	if not force and vim.bo[current].modified then
+	if not is_terminal and not force and vim.bo[current].modified then
 		vim.notify("Buffer has unsaved changes", vim.log.levels.WARN)
 		return
 	end
@@ -48,7 +47,6 @@ local function delete_buffer_keep_window(force)
 			and vim.bo[buf].filetype ~= "dashboard"
 	end
 
-	-- Track buffers visible in other windows and count normal windows
 	local visible = {}
 	local normal_windows = {}
 	local current_visible_elsewhere = false
@@ -70,7 +68,7 @@ local function delete_buffer_keep_window(force)
 		end
 	end
 
-	-- Find a file buffer that is not displayed in another window
+	-- Find an unused file buffer
 	local next_buf
 
 	for _, buf in ipairs(vim.api.nvim_list_bufs()) do
@@ -81,34 +79,44 @@ local function delete_buffer_keep_window(force)
 	end
 
 	if next_buf then
-		-- Keep the current split and switch to the next buffer
 		vim.api.nvim_win_set_buf(current_win, next_buf)
 
-		-- Do not delete a buffer that another window still displays
-		if not current_visible_elsewhere then
+		-- Never delete a persistent terminal buffer
+		if not is_terminal and not current_visible_elsewhere then
 			vim.api.nvim_buf_delete(current, { force = force })
 		end
 
 		return
 	end
 
-	-- No unused file buffer remains
+	-- Close only this split if other normal windows remain
 	if #normal_windows > 1 then
-		-- Close only the current window
 		vim.api.nvim_win_close(current_win, force)
 
-		-- Delete the buffer only if no other window uses it
-		if not current_visible_elsewhere and vim.api.nvim_buf_is_valid(current) then
+		-- Preserve terminal sessions when hiding their split
+		if not is_terminal and not current_visible_elsewhere and vim.api.nvim_buf_is_valid(current) then
 			vim.api.nvim_buf_delete(current, { force = force })
 		end
 
 		return
 	end
 
-	-- Last normal window: quit only if this is the last listed buffer
-	local listed_buffers = vim.fn.getbufinfo({ buflisted = 1 })
+	-- Do not quit Neovim just to close a persistent terminal
+	if is_terminal then
+		vim.notify("No unused file buffer available; terminal session preserved", vim.log.levels.INFO)
+		return
+	end
 
-	if #listed_buffers == 1 then
+	-- Count normal file buffers, ignoring persistent terminals
+	local file_buffers = 0
+
+	for _, buf in ipairs(vim.api.nvim_list_bufs()) do
+		if is_file_buffer(buf) then
+			file_buffers = file_buffers + 1
+		end
+	end
+
+	if file_buffers <= 1 then
 		vim.cmd(force and "qa!" or "qa")
 	else
 		vim.notify("No unused file buffer available", vim.log.levels.INFO)
@@ -127,14 +135,36 @@ end, {
 	desc = "Force delete buffer, keep split",
 })
 
--- Close Split while keep buffer
---
+-- Delete Split
+
 vim.keymap.set("n", "<leader>sq", "<cmd>close<cr>", { desc = "Close split" })
 
 -- Clear search highlighting
 
-vim.keymap.set("n", "<leader>c", "<cmd>nohlsearch<CR>", {
+vim.keymap.set("n", "<leader>/", "<cmd>nohlsearch<CR>", {
 	desc = "Clear search highlights",
+})
+
+-- TreeSJ
+-- Split/join the code block under the cursor.
+-- <leader> = Space, so this is Space + Shift-M.
+
+vim.keymap.set("n", "<leader>j", function()
+	local before = vim.api.nvim_buf_line_count(0)
+
+	require("treesj").toggle()
+
+	local after = vim.api.nvim_buf_line_count(0)
+
+	if after > before then
+		vim.notify("Code block: SPLIT")
+	elseif after < before then
+		vim.notify("Code block: JOINED")
+	else
+		vim.notify("Code block: UNCHANGED")
+	end
+end, {
+	desc = "TreeSJ: Toggle split/join",
 })
 
 -- Toggle Word Wrap
@@ -174,26 +204,6 @@ vim.keymap.set("n", "]d", vim.diagnostic.goto_next, { desc = "Next Diagnostic" }
 vim.keymap.set("n", "[d", vim.diagnostic.goto_prev, {
 	desc = "Previous Diagnostic",
 })
-
--- Tabs Management
-
-vim.keymap.set("n", "<leader>tn", "<cmd>tabnew<CR>", { desc = "New tab" })
-
-vim.keymap.set("n", "<leader>tc", "<cmd>tabclose<CR>", { desc = "Close tab" })
-
-vim.keymap.set("n", "<leader>to", "<cmd>tabonly<CR>", { desc = "Close other tabs" })
-
-vim.keymap.set("n", "<leader>]t", "<cmd>tabnext<CR>", { desc = "Next tab" })
-
-vim.keymap.set("n", "<leader>[t", "<cmd>tabprevious<CR>", { desc = "Previous tab" })
-
-vim.keymap.set("n", "<leader>h", function()
-	local showtabline = vim.opt.showtabline:get()
-	local next = showtabline == 0 and 2 or 0
-
-	vim.opt.showtabline = next
-	vim.notify("Tabline " .. (next == 0 and "hidden" or "visible"))
-end, { desc = "Toggle tabline visibility" })
 
 -- Conceal Level
 
@@ -247,6 +257,10 @@ vim.keymap.set("x", "<leader>p", '"_dP', { desc = "Paste without yanking" })
 
 vim.keymap.set({ "n", "v" }, "<leader>x", '"_d', { desc = "Delete without yanking" })
 
+-- Find and Replace
+
+vim.keymap.set("n", "<leader>sr", [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]])
+
 -- Move lines
 
 vim.keymap.set("n", "<A-j>", ":m .+1<CR>==", { desc = "Move line down" })
@@ -263,19 +277,21 @@ vim.keymap.set("v", "<", "<gv", { desc = "Indent left" })
 
 vim.keymap.set("v", ">", ">gv", { desc = "Indent right" })
 
+vim.keymap.set("n", "<leader>ap", "ma=ap`a", { desc = "Reindent paragraph and restore cursor" })
+
 -- Join lines without moving cursor
 
 vim.keymap.set("n", "J", "mzJ`z", { desc = "Join lines" })
 
 -- Navigate windows / tmux panes
 
-vim.keymap.set("n", "<C-h>", "<cmd>TmuxNavigateLeft<CR>", { desc = "Move left" })
+vim.keymap.set({ "n", "t" }, "<C-h>", "<cmd>TmuxNavigateLeft<CR>", { desc = "Move left" })
 
-vim.keymap.set("n", "<C-j>", "<cmd>TmuxNavigateDown<CR>", { desc = "Move down" })
+vim.keymap.set({ "n", "t" }, "<C-j>", "<cmd>TmuxNavigateDown<CR>", { desc = "Move down" })
 
-vim.keymap.set("n", "<C-k>", "<cmd>TmuxNavigateUp<CR>", { desc = "Move up" })
+vim.keymap.set({ "n", "t" }, "<C-k>", "<cmd>TmuxNavigateUp<CR>", { desc = "Move up" })
 
-vim.keymap.set("n", "<C-l>", "<cmd>TmuxNavigateRight<CR>", { desc = "Move right" })
+vim.keymap.set({ "n", "t" }, "<C-l>", "<cmd>TmuxNavigateRight<CR>", { desc = "Move right" })
 
 -- Split windows
 
@@ -397,6 +413,7 @@ vim.keymap.set("n", "<leader>so", function()
 		vim.api.nvim_set_current_win(current)
 	end
 end, { desc = "Toggle split orientation" })
+
 -- Resize windows
 
 vim.keymap.set("n", "<C-Up>", "<cmd>resize +2<CR>", { desc = "Increase window height" })
@@ -409,17 +426,94 @@ vim.keymap.set("n", "<C-Right>", "<cmd>vertical resize -2<CR>", { desc = "Decrea
 
 -- Buffers
 
-vim.keymap.set("n", "<leader>bn", "<cmd>bnext<CR>", { desc = "Next buffer" })
+vim.keymap.set("n", "<leader>[b", "<cmd>bnext<CR>", { desc = "Next buffer" })
 
-vim.keymap.set("n", "<leader>bp", "<cmd>bprevious<CR>", { desc = "Previous buffer" })
+vim.keymap.set("n", "<leader>]b", "<cmd>bprevious<CR>", { desc = "Previous buffer" })
 
 -- File / Oil
 
+local backdrop_win
+
+local function close_backdrop()
+	if backdrop_win and vim.api.nvim_win_is_valid(backdrop_win) then
+		vim.api.nvim_win_close(backdrop_win, true)
+	end
+	backdrop_win = nil
+end
+
+local function find_oil_float()
+	for _, win in ipairs(vim.api.nvim_list_wins()) do
+		local config = vim.api.nvim_win_get_config(win)
+		local buf = vim.api.nvim_win_get_buf(win)
+
+		if vim.bo[buf].filetype == "oil" and config.relative ~= "" then
+			return win
+		end
+	end
+end
+
 vim.keymap.set("n", "-", function()
-	require("oil").open_float()
+	local oil = require("oil")
+	local existing = find_oil_float()
+
+	-- Close Oil and its backdrop if already open
+	if existing then
+		vim.api.nvim_win_close(existing, true)
+		close_backdrop()
+		return
+	end
+
+	-- Create the dimmed backdrop
+	vim.api.nvim_set_hl(0, "OilBackdrop", {
+		bg = "#000000",
+	})
+
+	local buf = vim.api.nvim_create_buf(false, true)
+
+	backdrop_win = vim.api.nvim_open_win(buf, false, {
+		relative = "editor",
+		row = 0,
+		col = 0,
+		width = vim.o.columns,
+		height = vim.o.lines - 1,
+		style = "minimal",
+		focusable = false,
+		zindex = 40,
+		border = "none",
+	})
+
+	vim.wo[backdrop_win].winblend = 60
+	vim.wo[backdrop_win].winhighlight = "Normal:OilBackdrop"
+
+	local this_backdrop = backdrop_win
+
+	-- Open Oil above the backdrop
+	oil.open_float(nil, {}, function()
+		local oil_win = find_oil_float()
+
+		if oil_win then
+			vim.api.nvim_create_autocmd("WinClosed", {
+				pattern = tostring(oil_win),
+				once = true,
+				callback = function()
+					if backdrop_win == this_backdrop then
+						close_backdrop()
+					end
+				end,
+			})
+		else
+			close_backdrop()
+		end
+	end)
 end, {
 	desc = "Open parent directory in Oil (float)",
 })
+
+-- vim.keymap.set("n", "-", function()
+-- 	require("oil").open_float()
+-- end, {
+-- 	desc = "Open parent directory in Oil (float)",
+-- })
 
 -- vim.keymap.set("n", "-", function()
 --   require("oil").open_float(nil, {
@@ -449,7 +543,7 @@ end, {
 	desc = "Treesitter: start selection",
 })
 
-vim.keymap.set("x", "<Enter>", function()
+vim.keymap.set("x", "=", function()
 	vim.treesitter.select("parent")
 end, {
 	desc = "Treesitter: expand selection",
@@ -501,37 +595,15 @@ end, {
 	desc = "Swap with previous parameter",
 })
 
--- TreeSJ
--- Split/join the code block under the cursor.
--- <leader> = Space, so this is Space + Shift-M.
-
-vim.keymap.set("n", "<leader>j", function()
-	local before = vim.api.nvim_buf_line_count(0)
-
-	require("treesj").toggle()
-
-	local after = vim.api.nvim_buf_line_count(0)
-
-	if after > before then
-		vim.notify("Code block: SPLIT")
-	elseif after < before then
-		vim.notify("Code block: JOINED")
-	else
-		vim.notify("Code block: UNCHANGED")
-	end
-end, {
-	desc = "TreeSJ: Toggle split/join",
-})
-
 -- Quick Fix
 
 vim.keymap.set("n", "qo", "<cmd>copen<CR>", { desc = "Open quickfix" })
 
 -- vim.keymap.set("n", "<leader>qq", "<cmd>cclose<CR>", { desc = "Close quickfix" })
 
-vim.keymap.set("n", "<C-n>", "<cmd>cnext<CR>", { desc = "Next quickfix item" })
+vim.keymap.set("n", "<C-n>", "<cmd>cnext<CR>zz", { desc = "Next quickfix item" })
 
-vim.keymap.set("n", "<C-p>", "<cmd>cprev<CR>", { desc = "Previous quickfix item" })
+vim.keymap.set("n", "<C-p>", "<cmd>cprev<CR>zz", { desc = "Previous quickfix item" })
 
 vim.keymap.set("n", "ql", function()
 	vim.diagnostic.setqflist()
@@ -544,9 +616,36 @@ vim.keymap.set("n", "qc", function()
 end, {
 	desc = "Clear Quickfix List",
 })
--- vim.keymap.set("n", "]q", "<cmd>cnext<CR>", { desc = "Next Quickfix Item" })
---
--- vim.keymap.set("n", "[q", "<cmd>cprev<CR>", { desc = "Previous Quickfix Item" })
+
+vim.api.nvim_create_autocmd("FileType", {
+	pattern = "qf",
+	callback = function()
+		vim.keymap.set("n", "dd", function()
+			local idx = vim.api.nvim_win_get_cursor(0)[1]
+			local items = vim.fn.getqflist()
+
+			if idx > #items then
+				return
+			end
+
+			table.remove(items, idx)
+			vim.fn.setqflist(items, "r")
+
+			if #items > 0 then
+				vim.api.nvim_win_set_cursor(0, {
+					math.min(idx, #items),
+					0,
+				})
+			end
+		end, { buffer = true, desc = "Remove quickfix item" })
+	end,
+})
+
+-- Location Lists
+
+vim.keymap.set("n", "<M-n>", "<cmd>lnext<CR>zz", { desc = "Next LocationList item" })
+
+vim.keymap.set("n", "<M-p>", "<cmd>lprev<CR>zz", { desc = "Previous LocationList  item" })
 
 -- Lsp
 
@@ -564,14 +663,17 @@ vim.keymap.set("n", "gs", builtin.lsp_document_symbols, { desc = "LSP: Document 
 
 vim.keymap.set("n", "gw", builtin.lsp_live_workspace_symbols, { desc = "LSP: Workspace Symbols" })
 
-vim.keymap.set("n", "cr", vim.lsp.buf.rename, { desc = "LSP: Rename" })
+vim.keymap.set("n", "<leader>cr", vim.lsp.buf.rename, { desc = "LSP: Rename" })
 
 vim.keymap.set({ "n", "x" }, "ga", vim.lsp.buf.code_action, { desc = "LSP: Code Action" })
 
 vim.keymap.set("n", "<leader>gd", vim.lsp.buf.declaration, { desc = "LSP: Goto Declaration" })
 
--- fzf-lua
+-- Lsp restart
 
+vim.keymap.set("n", "<leader>zig", "<cmd>lsp restart<CR>", { desc = "Restart LSP" })
+
+-- fzf-lua
 -- fzf-lua grep open files
 local fzf = require("fzf-lua")
 
@@ -603,7 +705,6 @@ vim.keymap.set("n", "<leader>fbb", live_grep_open_files, {
 })
 
 -- Flash Nvim
---
 -- local Flash = require("flash")
 
 local function flash_2char_jump()
@@ -656,3 +757,75 @@ local function flash_2char_jump()
 end
 
 vim.keymap.set("n", "z", flash_2char_jump, { desc = "Flash 2-char jump" })
+
+-- Terminals
+-- Toggle bottom terminal in the current file's directory
+local terminal_win = nil
+local terminal_buf = nil
+
+local function toggle_terminal()
+	local api = vim.api
+
+	-- Close the terminal if it is already open
+	if
+		terminal_win
+		and api.nvim_win_is_valid(terminal_win)
+		and terminal_buf
+		and api.nvim_buf_is_valid(terminal_buf)
+		and api.nvim_win_get_buf(terminal_win) == terminal_buf
+	then
+		if #api.nvim_list_wins() > 1 then
+			api.nvim_win_close(terminal_win, true)
+		else
+			-- Keep Neovim's last window alive
+			api.nvim_win_set_buf(terminal_win, api.nvim_create_buf(true, false))
+		end
+
+		terminal_win = nil
+		terminal_buf = nil
+		return
+	end
+
+	terminal_win = nil
+	terminal_buf = nil
+
+	-- Determine the directory of the current file
+	local buf = api.nvim_get_current_buf()
+	local name = api.nvim_buf_get_name(buf)
+	local dir = vim.fn.getcwd()
+
+	if vim.bo[buf].buftype == "" and name ~= "" and not name:match("^%w[%w+.-]*://") then
+		dir = vim.fn.fnamemodify(name, ":p:h")
+	end
+
+	-- Open a fresh 10-line bottom split
+	vim.cmd("botright 10new")
+
+	terminal_win = api.nvim_get_current_win()
+	terminal_buf = api.nvim_get_current_buf()
+
+	-- Discard the buffer when its window is closed
+	vim.bo[terminal_buf].bufhidden = "wipe"
+
+	-- Disable line numbers
+	vim.wo[terminal_win].number = false
+	vim.wo[terminal_win].relativenumber = false
+	vim.wo[terminal_win].signcolumn = "no"
+
+	-- Start a new shell in the file's parent directory
+	local job = vim.fn.termopen({ vim.o.shell }, { cwd = dir })
+
+	if job <= 0 then
+		vim.notify("Failed to start terminal", vim.log.levels.ERROR)
+		api.nvim_win_close(terminal_win, true)
+		terminal_win = nil
+		terminal_buf = nil
+		return
+	end
+
+	vim.cmd("startinsert")
+end
+
+vim.keymap.set({ "n", "t" }, "<M-t>", toggle_terminal, {
+	desc = "Toggle bottom terminal",
+})

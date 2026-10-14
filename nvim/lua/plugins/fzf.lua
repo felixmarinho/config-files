@@ -14,7 +14,7 @@ return {
 				vertical = "down:60%",
 			},
 			winblend = true,
-			backdrop = 0,
+			backdrop = 60,
 		},
 		fzf_colors = {
 			["bg"] = "-1",

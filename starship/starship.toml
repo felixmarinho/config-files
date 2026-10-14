@@ -12,6 +12,7 @@ $os\
 $username\
 $hostname\
 $directory\
+
 $vcsh\
 $fossil_branch\
 $fossil_metrics\

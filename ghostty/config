@@ -3,15 +3,16 @@
  
 macos-titlebar-style = hidden
 macos-non-native-fullscreen = true
+fullscreen = false
 
-window-save-state = always
+window-save-state = never
 confirm-close-surface = false
 
 window-padding-x = 0,10
 window-padding-y = 0,0
 window-padding-balance = true
 
-background-opacity = 0.9
+background-opacity = 1
 background-blur = true
 background-opacity-cells = true
 
@@ -24,6 +25,7 @@ background-opacity-cells = true
 # background = #262626
 # background = #231f27
   background = #202022
+#default ghostty  background = #282C34
 # background = #272a31
 # background = #29292d
 
@@ -42,15 +44,17 @@ quick-terminal-position = top
 
 # Fonts ------------------------
  
-font-family = JetBrains Mono Light
-font-family-bold = JetBrains Mono Bold
-font-family-italic = JetBrains Mono Italic
-font-family-bold-italic = JetBrains Mono Bold Italic
+# font-family = "JetBrainsMono NFM"
+# font-style = Thin
+# font-family = JetBrains Mono Light
+# font-family-bold = JetBrains Mono Bold
+# font-family-italic = JetBrains Mono Italic
+# font-family-bold-italic = JetBrains Mono Bold Italic
 
-font-size = 17
+font-size = 20
 window-inherit-font-size = true
 #font-thicken = true
-#adjust-cell-width = 5%
+
 
 # Cursor Style ------------------------
 
@@ -89,7 +93,7 @@ keybind = super+ctrl+right=unbind
 keybind = super+shift+enter=unbind
 keybind = super+ctrl+equal=unbind
 keybind = super+ctrl+f=unbind
-keybind = super+t=unbind
+keybind = super+t=text:\x1b[116;9u
 keybind = super+shift+[=unbind
 keybind = super+shift+]=unbind
 
