@@ -68,7 +68,19 @@ return {
 		local servers = {
 			bashls = {},
 			marksman = {},
-			html = {},
+			html = {
+				init_options = {
+					embeddedLanguages = {
+						css = true,
+						javascript = true,
+					},
+					configurationSection = {
+						"html",
+						"css",
+						"javascript",
+					},
+				},
+			},
 			cssls = {},
 			eslint = {},
 			ts_ls = {},

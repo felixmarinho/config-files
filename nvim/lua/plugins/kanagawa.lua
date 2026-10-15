@@ -1,8 +1,8 @@
 -- Kanagawa
 local DarkGrayEyes = "#202023"
-local DarkGrayEyesFloatBg = "#1c1c1f"
+local DarkGrayEyesFloatBg = "#1a1a1e"
 local NewCursorColor = "#e26c88"
-local CursorLineColor = "#202022"
+local CursorLineColor = "#262628"
 local LineNumbers = "#5d5d69"
 local DimmedForeground = "#8f8f9f"
 local FloatBorder = "#d9d5bb"
@@ -102,7 +102,7 @@ return {
 					},
 					-- Current line background
 					CursorLine = {
-						bg = "#262628",
+						bg = CursorLineColor,
 					},
 					-- Current line background
 					Cursor = {

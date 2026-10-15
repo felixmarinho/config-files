@@ -45,6 +45,8 @@ symbol = ' '
 
 [os]
 disabled = false
+#style = '#f9f0d3'
+#format = '[$symbol]($style)'
 
 [os.symbols]
 Windows = " "

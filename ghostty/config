@@ -8,7 +8,7 @@ fullscreen = false
 window-save-state = never
 confirm-close-surface = false
 
-window-padding-x = 0,10
+window-padding-x = 0,0
 window-padding-y = 0,0
 window-padding-balance = true
 
@@ -25,9 +25,10 @@ background-opacity-cells = true
 # background = #262626
 # background = #231f27
   background = #202022
-#default ghostty  background = #282C34
+# default ghostty  background = #282C34
 # background = #272a31
 # background = #29292d
+# foreground = #f9f0d3
 
 # Ghostty Icon ------------------------
 
