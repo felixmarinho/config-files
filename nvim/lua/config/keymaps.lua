@@ -11,7 +11,7 @@ vim.keymap.set({ "i", "v", "c" }, "<C-c>", "<Esc>", { desc = "Exit modes" })
 
 -- Exit terminal mode
 
--- vim.keymap.set("t", "<C-q>", [[<C-\><C-n>]], { desc = "Exit terminal mode" })
+vim.keymap.set("t", "<C-q>", [[<C-\><C-n>]], { desc = "Exit terminal mode" })
 
 -- Save
 
@@ -826,6 +826,78 @@ local function toggle_terminal()
 	vim.cmd("startinsert")
 end
 
-vim.keymap.set({ "n", "t" }, "<M-t>", toggle_terminal, {
+vim.keymap.set({ "n", "t" }, "<leader>th", toggle_terminal, {
 	desc = "Toggle bottom terminal",
+})
+
+--Vertical terminal
+-- Toggle right-side terminal in the current file's directory
+local terminal_win = nil
+local terminal_buf = nil
+
+local function toggle_terminal()
+	local api = vim.api
+
+	-- Close the terminal if it is already open
+	if
+		terminal_win
+		and api.nvim_win_is_valid(terminal_win)
+		and terminal_buf
+		and api.nvim_buf_is_valid(terminal_buf)
+		and api.nvim_win_get_buf(terminal_win) == terminal_buf
+	then
+		if #api.nvim_list_wins() > 1 then
+			api.nvim_win_close(terminal_win, true)
+		else
+			-- Keep Neovim's last window alive
+			api.nvim_win_set_buf(terminal_win, api.nvim_create_buf(true, false))
+		end
+
+		terminal_win = nil
+		terminal_buf = nil
+		return
+	end
+
+	terminal_win = nil
+	terminal_buf = nil
+
+	-- Determine the directory of the current file
+	local buf = api.nvim_get_current_buf()
+	local name = api.nvim_buf_get_name(buf)
+	local dir = vim.fn.getcwd()
+
+	if vim.bo[buf].buftype == "" and name ~= "" and not name:match("^%w[%w+.-]*://") then
+		dir = vim.fn.fnamemodify(name, ":p:h")
+	end
+
+	-- Open a 40-column vertical split on the right
+	vim.cmd("botright 60vnew")
+
+	terminal_win = api.nvim_get_current_win()
+	terminal_buf = api.nvim_get_current_buf()
+
+	-- Discard the buffer when its window is closed
+	vim.bo[terminal_buf].bufhidden = "wipe"
+
+	-- Disable line numbers
+	vim.wo[terminal_win].number = false
+	vim.wo[terminal_win].relativenumber = false
+	vim.wo[terminal_win].signcolumn = "no"
+
+	-- Start a new shell in the file's parent directory
+	local job = vim.fn.termopen({ vim.o.shell }, { cwd = dir })
+
+	if job <= 0 then
+		vim.notify("Failed to start terminal", vim.log.levels.ERROR)
+		api.nvim_win_close(terminal_win, true)
+		terminal_win = nil
+		terminal_buf = nil
+		return
+	end
+
+	vim.cmd("startinsert")
+end
+
+vim.keymap.set({ "n", "t" }, "<leader>tv", toggle_terminal, {
+	desc = "Toggle right-side terminal",
 })

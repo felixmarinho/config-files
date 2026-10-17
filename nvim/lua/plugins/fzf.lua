@@ -66,16 +66,18 @@ return {
 						end
 
 						local commit = selected[1]:match("[^ ]+")
-						local result = vim.system({
-							"git",
-							"show",
-							"--no-ext-diff",
-							"--no-color",
-							commit,
-						}, {
-							cwd = opts.cwd or vim.fn.getcwd(),
-							text = true,
-						}):wait()
+						local result = vim
+							.system({
+								"git",
+								"show",
+								"--no-ext-diff",
+								"--no-color",
+								commit,
+							}, {
+								cwd = opts.cwd or vim.fn.getcwd(),
+								text = true,
+							})
+							:wait()
 
 						if result.code ~= 0 then
 							vim.notify(result.stderr, vim.log.levels.ERROR)
