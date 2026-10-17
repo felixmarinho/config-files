@@ -60,6 +60,7 @@
   "terminal.integrated.enableMultiLinePasteWarning": "never",
 
   "workbench.colorCustomizations": {
+    "editorCursor.foreground": "#e26c88",
     "editor.background": "#201f23",
     "sideBar.background": "#201f23",
     "panel.background": "#201f23",
