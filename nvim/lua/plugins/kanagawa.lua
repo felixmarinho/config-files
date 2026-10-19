@@ -207,6 +207,31 @@ return {
 					fzfluaBackdrop = {
 						bg = "#000000",
 					},
+					-- Gitsigns: match sign backgrounds to the editor
+					GitSignsAdd = {
+						-- fg = colors.palette.autumnGreen,
+						bg = DarkGrayEyes,
+					},
+					GitSignsChange = {
+						-- fg = colors.palette.waveAqua1,
+						bg = DarkGrayEyes,
+					},
+					GitSignsDelete = {
+						-- fg = colors.palette.autumnRed,
+						bg = DarkGrayEyes,
+					},
+					GitSignsChangedelete = {
+						-- fg = colors.palette.waveAqua1,
+						bg = DarkGrayEyes,
+					},
+					GitSignsTopdelete = {
+						-- fg = colors.palette.autumnRed,
+						bg = DarkGrayEyes,
+					},
+					GitSignsUntracked = {
+						-- fg = colors.palette.autumnGreen,
+						bg = DarkGrayEyes,
+					},
 				}
 			end,
 		})
