@@ -6,7 +6,7 @@ return {
 
 	config = function()
 		-- THEME STYLE
-		vim.g.material_style = "oceanic"
+		vim.g.material_style = "darker"
 
 		require("material").setup({
 

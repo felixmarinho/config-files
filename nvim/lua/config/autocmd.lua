@@ -138,7 +138,7 @@ vim.api.nvim_create_autocmd("ColorScheme", {
 		vim.api.nvim_set_hl(0, "DiagnosticSignOk", { fg = "#9ECE6A" })
 
 		-- Line numbers
-		vim.api.nvim_set_hl(0, "LineNr", { fg = "#6D6D7d" })
+		vim.api.nvim_set_hl(0, "LineNr", { fg = "#5a5D6f" })
 
 		vim.api.nvim_set_hl(0, "CursorLineNr", { fg = "#F9F0D3", bold = true })
 
@@ -153,8 +153,8 @@ vim.api.nvim_create_autocmd("ColorScheme", {
 		vim.api.nvim_set_hl(0, "@comment", { fg = "#5F5F6F", italic = true })
 
 		-- Selection and search
-		vim.api.nvim_set_hl(0, "Visual", { bg = "#292d37" })
-		vim.api.nvim_set_hl(0, "VisualNOS", { bg = "#292d37" })
+		vim.api.nvim_set_hl(0, "Visual", { bg = "#2c2d34" })
+		vim.api.nvim_set_hl(0, "VisualNOS", { bg = "#2c2d34" })
 		vim.api.nvim_set_hl(0, "Search", { bg = "#da0c5a", fg = "#ffffff" })
 		vim.api.nvim_set_hl(0, "IncSearch", { bg = "#f8dc68", fg = "#111111" })
 		vim.api.nvim_set_hl(0, "CurSearch", { bg = "#f8cc68", fg = "#111111" })

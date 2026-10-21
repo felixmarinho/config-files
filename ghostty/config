@@ -12,28 +12,30 @@ window-padding-x = 0,10
 window-padding-y = 0,10
 window-padding-balance = true
 
-background-opacity = 0.95
+background-opacity = 1
  background-blur = true
 # background-opacity-cells = true
 
 # Themes ------------------------
 
 # theme = Kanagawa Wave
- theme = Material Ocean
+# theme = Material Ocean
 # theme = Material Darker
 # theme = One Double Dark
 #  theme = One Dark Two
+ theme = Onenord
 
 # Overrides ------------------------
 
 # background = #262626
 # background = #231f27
 #  background = #202022
-  background = #1b1a1d
-# default ghostty  background = #282C34
+#  background = #1b1a1d
+#    background = #282C34
 # background = #272a31
 # background = #29292d
-# foreground = #bbbbbb
+  background = #2E3340	
+  foreground = #bbbbcb
 
 # Ghostty Icon ------------------------
 
