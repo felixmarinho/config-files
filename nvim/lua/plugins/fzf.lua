@@ -14,7 +14,7 @@ return {
 				vertical = "down:60%",
 			},
 			winblend = true,
-			backdrop = 60,
+			-- backdrop = 60,
 		},
 		fzf_colors = {
 			["bg"] = "-1",
@@ -28,10 +28,10 @@ return {
 			["--info"] = "inline-right",
 			["--highlight-line"] = true,
 		},
-		hls = {
-			border = "FzfLuaCustomBorder",
-			preview_border = "FzfLuaCustomBorder",
-		},
+		-- hls= {
+		-- 	border = "FzfLuaCustomBorder",
+		-- 	preview_border = "FzfLuaCustomBorder",
+		-- },
 		keymap = {
 			builtin = {
 				["<C-d>"] = "preview-half-page-down",

@@ -23,7 +23,7 @@ return {
 			-- Border style for the floating window
 			-- nil inherits vim.o.winborder at setup() time, falling back to "rounded"
 			-- Set to "none" to disable the border
-			border = nil,
+			border = single,
 
 			-- Horizontal offset of the completion menu anchor from the window's left inner edge
 			-- Used to align blink.cmp / nvim-cmp menus with the cmdline window

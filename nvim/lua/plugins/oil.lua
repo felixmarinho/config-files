@@ -120,7 +120,6 @@ return {
 			-- padding = 2,
 			max_width = 0.7,
 			max_height = 0.7,
-			-- preview_split = "below",
 
 			win_options = {
 				winblend = 0,

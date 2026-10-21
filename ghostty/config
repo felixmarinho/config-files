@@ -8,27 +8,32 @@ fullscreen = false
 window-save-state = never
 confirm-close-surface = false
 
-window-padding-x = 0,0
-window-padding-y = 0,0
+window-padding-x = 0,10
+window-padding-y = 0,10
 window-padding-balance = true
 
-background-opacity = 1
-background-blur = true
-background-opacity-cells = true
+background-opacity = 0.95
+ background-blur = true
+# background-opacity-cells = true
 
 # Themes ------------------------
 
-  theme = Kanagawa Wave
+# theme = Kanagawa Wave
+ theme = Material Ocean
+# theme = Material Darker
+# theme = One Double Dark
+#  theme = One Dark Two
 
 # Overrides ------------------------
 
 # background = #262626
 # background = #231f27
-  background = #202022
+#  background = #202022
+  background = #1b1a1d
 # default ghostty  background = #282C34
 # background = #272a31
 # background = #29292d
-# foreground = #f9f0d3
+# foreground = #bbbbbb
 
 # Ghostty Icon ------------------------
 
@@ -52,7 +57,7 @@ quick-terminal-position = top
 # font-family-italic = JetBrains Mono Italic
 # font-family-bold-italic = JetBrains Mono Bold Italic
 
-font-size = 20
+font-size = 18
 window-inherit-font-size = true
 #font-thicken = true
 
@@ -60,9 +65,9 @@ window-inherit-font-size = true
 # Cursor Style ------------------------
 
 cursor-style = block
-cursor-style-blink = false
+cursor-style-blink = true
 shell-integration-features = cursor
-cursor-color = #e26c88
+#cursor-color = #e26c88
 
 # Clipboard and Selection ------------------------
  

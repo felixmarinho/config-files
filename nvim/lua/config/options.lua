@@ -15,6 +15,7 @@ vim.opt.modifiable = true -- allow buffer modifications
 vim.opt.number = true -- line number
 vim.opt.relativenumber = true -- relative line numbers
 vim.opt.cursorline = true -- highlight current line
+vim.opt.cursorlineopt = "number"
 vim.o.winborder = "rounded"
 vim.opt.sessionoptions:remove("blank")
 -- vim.opt.sessionoptions:remove("buffers")
@@ -22,7 +23,7 @@ vim.opt.sessionoptions:remove("curdir")
 vim.opt.showtabline = 0
 
 vim.opt.signcolumn = "yes" -- always show a sign column
-vim.opt.colorcolumn = "100" -- show a column at 100 position chars
+-- vim.opt.colorcolumn = "100" -- show a column at 100 position chars
 
 vim.opt.showmatch = true -- highlights matching brackets
 vim.opt.cmdheight = 1 -- single line command line
@@ -33,8 +34,8 @@ vim.opt.scrolloff = 10 -- keep 10 lines above/below cursor
 vim.opt.sidescrolloff = 10 -- keep 10 lines to left/right cursor
 
 vim.opt.pumheight = 10 -- popup menu height
-vim.opt.pumblend = 10 -- popup menu transparency
-vim.opt.winblend = 1 -- floating window transparency
+-- vim.opt.pumblend = 10 -- popup menu transparency
+-- vim.opt.winblend = 1 -- floating window transparency
 
 vim.opt.conceallevel = 2 -- do not hide concealed characters
 vim.opt.concealcursor = "" -- do not hide cursorline in markup

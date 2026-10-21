@@ -76,12 +76,12 @@ if command -v fzf >/dev/null 2>&1; then
     --bind 'ctrl-/:change-preview-window(down|hidden|)'
     --bind 'ctrl-u:preview-page-up,ctrl-d:preview-page-down'"
 
-    export FZF_DEFAULT_OPTS="
-    --color=fg:#DCD7BA,bg:-1,fg+:#DCD7BA,bg+:-1
-    --color=hl:#7FB4CA,hl+:#7FB4CA
-    --color=pointer:#957FB8,marker:#E6C384
-    --color=prompt:#7E9CD8,info:#727169
-    --color=border:#54546D"
+   #  export FZF_DEFAULT_OPTS="
+   # --color=fg:#8F93A2,bg:-1,fg+:#C5CADB,bg+:-1
+   # --color=hl:#7186B5,hl+:#82AAFF
+   # --color=pointer:#84BFC7,marker:#A6C49A
+   # --color=prompt:#82AAFF,info:#717CB4
+   # --color=border:#34394F,spinner:#84BFC7,header:#717CB4"
 
     export FZF_CTRL_R_OPTS="
     --style full
@@ -92,9 +92,9 @@ fi
 
 # bat
 
-if command -v bat >/dev/null 2>&1; then
-    export BAT_THEME="Kanagawa"
-fi
+#if command -v bat >/dev/null 2>&1; then
+#    export BAT_THEME="Material Deep Ocean"
+#fi
 
 # Custom Aliases
 

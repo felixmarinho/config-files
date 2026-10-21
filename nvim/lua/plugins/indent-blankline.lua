@@ -2,43 +2,36 @@ return {
 	"lukas-reineke/indent-blankline.nvim",
 	main = "ibl",
 	config = function()
-		local highlight = {
-			"RainbowRed",
-			"RainbowYellow",
-			"RainbowBlue",
-			"RainbowOrange",
-			"RainbowGreen",
-			"RainbowViolet",
-			"RainbowCyan",
-		}
-
 		local hooks = require("ibl.hooks")
 
-		hooks.register(hooks.type.HIGHLIGHT_SETUP, function()
-			-- Muted rainbow scope highlights
-			vim.api.nvim_set_hl(0, "RainbowRed", { fg = "#554044" })
-			vim.api.nvim_set_hl(0, "RainbowYellow", { fg = "#56503D" })
-			vim.api.nvim_set_hl(0, "RainbowBlue", { fg = "#3D5550" })
-			vim.api.nvim_set_hl(0, "RainbowOrange", { fg = "#59483F" })
-			vim.api.nvim_set_hl(0, "RainbowGreen", { fg = "#414A3C" })
-			vim.api.nvim_set_hl(0, "RainbowViolet", { fg = "#4D4659" })
-			vim.api.nvim_set_hl(0, "RainbowCyan", { fg = "#3D5350" })
+		local function set_ibl_highlights()
+			vim.api.nvim_set_hl(0, "IblScope", {
+				fg = "#505568",
+			})
 
-			-- Hide regular indentation guides
-			vim.api.nvim_set_hl(0, "IblIndent", { fg = "#202023" })
-			vim.api.nvim_set_hl(0, "IblWhitespace", { fg = "#313131" })
+			vim.api.nvim_set_hl(0, "IblIndent", {
+				link = "Normal",
+			})
 
-			-- Subtle active scope guide
-			vim.api.nvim_set_hl(0, "IblScope", { fg = "#39393E" })
-		end)
+			vim.api.nvim_set_hl(0, "IblWhitespace", {
+				link = "Normal",
+			})
+		end
+
+		hooks.register(hooks.type.HIGHLIGHT_SETUP, set_ibl_highlights)
+
+		vim.api.nvim_create_autocmd("ColorScheme", {
+			callback = set_ibl_highlights,
+		})
 
 		require("ibl").setup({
 			indent = {
-				char = "▏",
+				char = " ",
+				highlight = "IblIndent",
 			},
 			scope = {
 				char = "▏",
-				highlight = highlight,
+				highlight = "IblScope",
 			},
 		})
 

@@ -187,7 +187,6 @@ vim.keymap.set("n", "<leader>l", function()
 end, {
 	desc = "Toggle whitespace",
 })
-
 -- Toggle Diagnostics and Diagnostics Handling
 
 vim.keymap.set("n", "<leader>;", function()
@@ -432,98 +431,11 @@ vim.keymap.set("n", "<leader>]b", "<cmd>bprevious<CR>", { desc = "Previous buffe
 
 -- File / Oil
 
-local backdrop_win
-
-local function close_backdrop()
-	if backdrop_win and vim.api.nvim_win_is_valid(backdrop_win) then
-		vim.api.nvim_win_close(backdrop_win, true)
-	end
-	backdrop_win = nil
-end
-
-local function find_oil_float()
-	for _, win in ipairs(vim.api.nvim_list_wins()) do
-		local config = vim.api.nvim_win_get_config(win)
-		local buf = vim.api.nvim_win_get_buf(win)
-
-		if vim.bo[buf].filetype == "oil" and config.relative ~= "" then
-			return win
-		end
-	end
-end
-
 vim.keymap.set("n", "-", function()
-	local oil = require("oil")
-	local existing = find_oil_float()
-
-	-- Close Oil and its backdrop if already open
-	if existing then
-		vim.api.nvim_win_close(existing, true)
-		close_backdrop()
-		return
-	end
-
-	-- Create the dimmed backdrop
-	vim.api.nvim_set_hl(0, "OilBackdrop", {
-		bg = "#000000",
-	})
-
-	local buf = vim.api.nvim_create_buf(false, true)
-
-	backdrop_win = vim.api.nvim_open_win(buf, false, {
-		relative = "editor",
-		row = 0,
-		col = 0,
-		width = vim.o.columns,
-		height = vim.o.lines - 1,
-		style = "minimal",
-		focusable = false,
-		zindex = 40,
-		border = "none",
-	})
-
-	vim.wo[backdrop_win].winblend = 60
-	vim.wo[backdrop_win].winhighlight = "Normal:OilBackdrop"
-
-	local this_backdrop = backdrop_win
-
-	-- Open Oil above the backdrop
-	oil.open_float(nil, {}, function()
-		local oil_win = find_oil_float()
-
-		if oil_win then
-			vim.api.nvim_create_autocmd("WinClosed", {
-				pattern = tostring(oil_win),
-				once = true,
-				callback = function()
-					if backdrop_win == this_backdrop then
-						close_backdrop()
-					end
-				end,
-			})
-		else
-			close_backdrop()
-		end
-	end)
+	require("oil").open_float()
 end, {
 	desc = "Open parent directory in Oil (float)",
 })
-
--- vim.keymap.set("n", "-", function()
--- 	require("oil").open_float()
--- end, {
--- 	desc = "Open parent directory in Oil (float)",
--- })
-
--- vim.keymap.set("n", "-", function()
---   require("oil").open_float(nil, {
---     preview = {
---       vertical = false,
---     },
---   })
--- end, {
---   desc = "Open parent directory in Oil",
--- })
 
 -- File path
 
