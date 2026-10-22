@@ -394,7 +394,7 @@
     "statusBar.noFolderBackground": "#005f5f",
     "statusBar.debuggingBackground": "#005f5f",
     "statusBar.foreground": "#ffffff",
-    "statusBar.debuggingForeground": "#ffffff",
+    "statusBar.debuggingForeground": "#ffffff"
   },
   "workbench.colorTheme": "OneNord",
 }
