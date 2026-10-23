@@ -53,18 +53,48 @@ return {
 			completion = {
 				menu = {
 					winhighlight = "Normal:NormalFloat,FloatBorder:FloatBorder,CursorLine:PmenuSel",
+
+					draw = {
+						components = {
+							-- Color the icon separately for each completion kind
+							kind_icon = {
+								text = function(ctx)
+									return ctx.kind_icon .. ctx.icon_gap
+								end,
+
+								highlight = function(ctx)
+									return {
+										{
+											group = "BlinkCmpIcon" .. ctx.kind,
+											priority = 20000,
+										},
+									}
+								end,
+							},
+
+							-- Keep completion kind labels neutral gray
+							kind = {
+								text = function(ctx)
+									return ctx.kind
+								end,
+
+								highlight = "BlinkCmpKind",
+							},
+						},
+					},
 				},
+
 				documentation = {
 					window = {
 						winhighlight = "Normal:NormalFloat,FloatBorder:FloatBorder",
 					},
 					auto_show = true,
 				},
+
 				ghost_text = {
 					enabled = true,
 				},
 			},
-
 			signature = {
 				window = {
 					winhighlight = "Normal:NormalFloat,FloatBorder:FloatBorder",

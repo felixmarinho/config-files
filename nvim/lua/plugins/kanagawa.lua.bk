@@ -5,7 +5,7 @@ local NewCursorColor = "#e26c88"
 local CursorLineColor = "#262628"
 local LineNumbers = "#5d5d69"
 local DimmedForeground = "#8f8f9f"
-local FloatBorder = "#d9d5bb"
+local FloatBorder = "#C0D0E0"
 local MsgLineFgColor = "#bdbdcf"
 local Whitespaces = "#313131"
 local Selection = "#393d47"
@@ -37,6 +37,11 @@ return {
 					["@keyword.json"] = { bold = false },
 					["@punctuation.bracket.json"] = { bold = false },
 					["@keyword.operator"] = { link = "Keyword" },
+					["@variable"] = { fg = "#D57780" },
+					["@lsp.type.variable"] = { fg = "#D57780" },
+					["@variable.parameter"] = { fg = "#D09470" },
+					["@variable.member"] = { fg = "#81A1C1" },
+					["@variable.builtin"] = { fg = "#B589D3" },
 
 					-- Statements
 					Statement = { bold = false },
@@ -44,8 +49,8 @@ return {
 					Keyword = { bold = false },
 					Type = { bold = false },
 					Function = { bold = false },
-					Constant = { bold = false },
-					Identifier = { bold = false },
+					Constant = { fg = "#C0D0E0", bold = false },
+					Identifier = { fg = "#C0D0E0", bold = false },
 					Special = { bold = false },
 					String = { bold = false },
 					Comment = { bold = false },
@@ -55,49 +60,50 @@ return {
 
 					-- Normal BG
 					Normal = {
-						bg = DarkGrayEyes,
+						bg = "none",
 					},
 					-- Sign Column
+
 					SignColumn = {
-						bg = DarkGrayEyes,
+						bg = "none",
 					},
 					-- Fold Column
 					FoldColumn = {
-						bg = DarkGrayEyes,
+						bg = "none",
 					},
 					-- Sign column on the current line
 					CursorLineSign = {
-						bg = DarkGrayEyes,
+						bg = "none",
 					},
 					-- LSP Diagnostic Signs
 					DiagnosticSignError = {
 						fg = colors.palette.samuraiRed,
-						bg = DarkGrayEyes,
+						bg = "none",
 					},
 					DiagnosticSignWarn = {
 						fg = colors.palette.roninYellow,
-						bg = DarkGrayEyes,
+						bg = "none",
 					},
 					DiagnosticSignInfo = {
 						fg = colors.palette.dragonBlue,
-						bg = DarkGrayEyes,
+						bg = "none",
 					},
 					DiagnosticSignHint = {
 						fg = colors.palette.waveAqua1,
-						bg = DarkGrayEyes,
+						bg = "none",
 					},
 					DiagnosticSignOk = {
 						fg = colors.palette.springGreen,
-						bg = DarkGrayEyes,
+						bg = "none",
 					},
 					-- Line number column
 					LineNr = {
 						fg = LineNumbers,
-						bg = DarkGrayEyes,
+						bg = "none",
 					},
 					-- Current line number
 					CursorLineNr = {
-						bg = DarkGrayEyes,
+						bg = "none",
 						bold = true,
 					},
 					-- Current line background
@@ -124,60 +130,60 @@ return {
 					},
 					MsgArea = {
 						fg = MsgLineFgColor,
-						bg = DarkGrayEyesFloatBg,
+						bg = "none",
 					},
 
 					MsgSeparator = {
-						bg = DarkGrayEyes,
+						bg = "none",
 					},
 					ErrorMsg = {
-						bg = DarkGrayEyes,
+						bg = "none",
 					},
 					WarningMsg = {
-						bg = DarkGrayEyes,
+						bg = "none",
 					},
 					ModeMsg = {
-						bg = DarkGrayEyes,
+						bg = "none",
 					},
 					MoreMsg = {
-						bg = DarkGrayEyes,
+						bg = "none",
 					},
 					-- floating windows
 					FloatBorder = {
 						fg = FloatBorder,
-						bg = DarkGrayEyesFloatBg,
+						bg = "none",
 					},
 
 					NormalFloat = {
-						bg = DarkGrayEyesFloatBg,
+						bg = "none",
 					},
 					FloatTitle = {
 						fg = MsgLineFgColor,
-						bg = DarkGrayEyesFloatBg,
+						bg = "none",
 						-- bold = false,
 					},
 					Winbar = {
 						fg = MsgLineFgColor,
-						bg = DarkGrayEyes,
+						bg = "none",
 						-- bold = false,
 					},
 					-- Tabline
 					TabLine = {
 						fg = DimmedForeground,
-						bg = DarkGrayEyes,
+						bg = "none",
 					},
 
 					TabLineFill = {
-						bg = DarkGrayEyes,
+						bg = "none",
 					},
 
 					TabLineSel = {
 						fg = MsgLineFgColor,
-						bg = DarkGrayEyes,
+						bg = "none",
 						bold = false,
 					},
 					WinBarNC = {
-						bg = DarkGrayEyes,
+						bg = "none",
 						-- bold = false,
 					},
 					Visual = {
@@ -202,7 +208,7 @@ return {
 					},
 					FzfLuaCustomBorder = {
 						fg = FloatBorder,
-						-- bg = DarkGrayEyes,
+						-- bg = "none",
 					},
 					fzfluaBackdrop = {
 						bg = "#000000",
@@ -210,27 +216,27 @@ return {
 					-- Gitsigns: match sign backgrounds to the editor
 					GitSignsAdd = {
 						-- fg = colors.palette.autumnGreen,
-						bg = DarkGrayEyes,
+						bg = "none",
 					},
 					GitSignsChange = {
 						-- fg = colors.palette.waveAqua1,
-						bg = DarkGrayEyes,
+						bg = "none",
 					},
 					GitSignsDelete = {
 						-- fg = colors.palette.autumnRed,
-						bg = DarkGrayEyes,
+						bg = "none",
 					},
 					GitSignsChangedelete = {
 						-- fg = colors.palette.waveAqua1,
-						bg = DarkGrayEyes,
+						bg = "none",
 					},
 					GitSignsTopdelete = {
 						-- fg = colors.palette.autumnRed,
-						bg = DarkGrayEyes,
+						bg = "none",
 					},
 					GitSignsUntracked = {
 						-- fg = colors.palette.autumnGreen,
-						bg = DarkGrayEyes,
+						bg = "none",
 					},
 				}
 			end,

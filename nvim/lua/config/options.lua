@@ -37,7 +37,7 @@ vim.opt.pumheight = 10 -- popup menu height
 -- vim.opt.pumblend = 10 -- popup menu transparency
 -- vim.opt.winblend = 1 -- floating window transparency
 
-vim.opt.conceallevel = 2 -- do not hide concealed characters
+vim.opt.conceallevel = 0 -- do not hide concealed characters
 vim.opt.concealcursor = "" -- do not hide cursorline in markup
 
 vim.opt.fillchars = { eob = " " } -- hide "\~" on empty lines
