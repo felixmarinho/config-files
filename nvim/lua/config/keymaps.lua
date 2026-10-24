@@ -431,7 +431,7 @@ vim.keymap.set("n", "<leader>]b", "<cmd>bprevious<CR>", { desc = "Previous buffe
 
 -- File / Oil
 
-vim.keymap.set("n", "-", function()
+vim.keymap.set("n", "<Backspace>", function()
 	require("oil").open_float()
 end, {
 	desc = "Open parent directory in Oil (float)",
@@ -461,7 +461,7 @@ end, {
 	desc = "Treesitter: expand selection",
 })
 
-vim.keymap.set("x", "<Backspace>", function()
+vim.keymap.set("x", "-", function()
 	vim.treesitter.select("child")
 end, {
 	desc = "Treesitter: shrink selection",

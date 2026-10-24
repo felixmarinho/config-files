@@ -99,7 +99,7 @@
     "<C-f>": false,
     "<C-z>": false,
     "<C-w>": false,
-    "<C-p>": false,
+    "<C-p>": false
   },
 
   // VSCodeVim — Insert Mode
@@ -107,8 +107,8 @@
   "vim.insertModeKeyBindings": [
     {
       "before": ["<C-c>"],
-      "after": ["<Esc>"],
-    },
+      "after": ["<Esc>"]
+    }
   ],
 
   // VSCodeVim — Normal Mode
@@ -117,202 +117,202 @@
     {
       "before": ["shift", ";"],
       "commands": ["vim.showQuickpickCmdLine"],
-      "when": "editorTextFocus && vim.mode != 'Insert'",
+      "when": "editorTextFocus && vim.mode != 'Insert'"
     },
     {
       "before": ["<leader>", "q"],
       "commands": ["workbench.action.closeActiveEditor"],
-      "silent": true,
+      "silent": true
     },
     {
       "before": ["<leader>", ";"],
       "commands": ["workbench.action.toggleStatusbarVisibility"],
-      "silent": true,
+      "silent": true
     },
     {
       "before": ["J"],
-      "after": ["o", "<Esc>", "k", "$"],
+      "after": ["o", "<Esc>", "k", "$"]
     },
     {
       "before": ["K"],
-      "after": ["O", "<Esc>", "j", "$"],
+      "after": ["O", "<Esc>", "j", "$"]
     },
     {
       "before": ["L"],
       "commands": ["lineBreakInsert"],
-      "silent": true,
+      "silent": true
     },
     {
       "before": ["z"],
-      "commands": ["flash-vscode.start"],
+      "commands": ["flash-vscode.start"]
     },
     {
       "before": ["F"],
-      "commands": ["flash-vscode.startSelection"],
+      "commands": ["flash-vscode.startSelection"]
     },
     {
       "before": ["Z"],
-      "commands": ["flash-vscode.jump.treesitterSelection"],
+      "commands": ["flash-vscode.jump.treesitterSelection"]
     },
     {
       "before": ["R"],
-      "commands": ["flash-vscode.remoteTreesitterSelection"],
+      "commands": ["flash-vscode.remoteTreesitterSelection"]
     },
     {
       "before": ["<BS>"],
-      "commands": ["flash-vscode.backspace"],
+      "commands": ["flash-vscode.backspace"]
     },
     {
       "before": ["<C-c>"],
-      "commands": ["flash-vscode.exit"],
+      "commands": ["flash-vscode.exit"]
     },
     {
       "before": ["n"],
-      "after": ["n", "z", "z", "z", "v"],
+      "after": ["n", "z", "z", "z", "v"]
     },
     {
       "before": ["N"],
-      "after": ["N", "z", "z", "z", "v"],
+      "after": ["N", "z", "z", "z", "v"]
     },
     {
       "before": ["<C-d>"],
-      "after": ["<C-d>", "z", "z"],
+      "after": ["<C-d>", "z", "z"]
     },
     {
       "before": ["<C-u>"],
-      "after": ["<C-u>", "z", "z"],
+      "after": ["<C-u>", "z", "z"]
     },
     {
       "before": ["j"],
-      "after": ["g", "j"],
+      "after": ["g", "j"]
     },
     {
       "before": ["k"],
-      "after": ["g", "k"],
+      "after": ["g", "k"]
     },
 
     // Delete without changing the yank register
     {
       "before": ["<leader>", "x"],
-      "after": ["\"", "_", "d"],
+      "after": ["\"", "_", "d"]
     },
 
     // Find and replace in the current editor
     {
       "before": ["<leader>", "s", "r"],
-      "commands": ["editor.action.startFindReplaceAction"],
+      "commands": ["editor.action.startFindReplaceAction"]
     },
 
     // Reindent paragraph and restore cursor
     {
       "before": ["<leader>", "a", "p"],
-      "after": ["m", "a", "=", "a", "p", "`", "a"],
+      "after": ["m", "a", "=", "a", "p", "`", "a"]
     },
 
     // Join lines and restore cursor
     {
       "before": ["J"],
-      "after": ["m", "z", "J", "`", "z"],
+      "after": ["m", "z", "J", "`", "z"]
     },
 
     // Next and previous editor tab
     {
       "before": ["[", "b"],
-      "commands": ["workbench.action.nextEditor"],
+      "commands": ["workbench.action.nextEditor"]
     },
     {
       "before": ["]", "b"],
-      "commands": ["workbench.action.previousEditor"],
+      "commands": ["workbench.action.previousEditor"]
     },
 
     // Toggle word wrap
     {
       "before": ["<leader>", "k"],
-      "commands": ["editor.action.toggleWordWrap"],
+      "commands": ["editor.action.toggleWordWrap"]
     },
 
     // Toggle whitespace rendering
     {
       "before": ["<leader>", "l"],
-      "commands": ["toggleRenderWhitespace"],
+      "commands": ["toggleRenderWhitespace"]
     },
 
     // Expand syntax-aware selection
     {
       "before": ["="],
-      "commands": ["editor.action.smartSelect.expand"],
+      "commands": ["editor.action.smartSelect.expand"]
     },
     {
       "before": ["<Backspace>"],
-      "commands": ["editor.action.smartSelect.shrink"],
-    },
+      "commands": ["editor.action.smartSelect.shrink"]
+    }
   ],
 
   "vim.normalModeKeyBindings": [
     {
       "before": ["<leader>", "/"],
-      "commands": [":nohl"],
+      "commands": [":nohl"]
     },
     {
       "before": ["<leader>", "w"],
-      "commands": ["workbench.action.files.save"],
+      "commands": ["workbench.action.files.save"]
     },
     {
       "before": ["£"],
-      "after": ["#"],
+      "after": ["#"]
     },
     {
       "before": ["<leader>", "f"],
-      "commands": ["revealInExplorer"],
+      "commands": ["revealInExplorer"]
     },
     {
       "before": ["<leader>", "p", "a"],
-      "commands": ["copyFilePath"],
+      "commands": ["copyFilePath"]
     },
 
     // Focus editor groups
     {
       "before": ["<C-h>"],
-      "commands": ["workbench.action.focusLeftGroup"],
+      "commands": ["workbench.action.focusLeftGroup"]
     },
     {
       "before": ["<C-j>"],
-      "commands": ["workbench.action.focusBelowGroup"],
+      "commands": ["workbench.action.focusBelowGroup"]
     },
     {
       "before": ["<C-k>"],
-      "commands": ["workbench.action.focusAboveGroup"],
+      "commands": ["workbench.action.focusAboveGroup"]
     },
     {
       "before": ["<C-l>"],
-      "commands": ["workbench.action.focusRightGroup"],
+      "commands": ["workbench.action.focusRightGroup"]
     },
 
     // Split editor
     {
       "before": ["<leader>", "s", "v"],
-      "after": ["<C-w>", "v"],
+      "after": ["<C-w>", "v"]
     },
     {
       "before": ["<leader>", "s", "h"],
-      "after": ["<C-w>", "s"],
+      "after": ["<C-w>", "s"]
     },
 
     // Git
     {
       "before": ["<leader>", "g", "p"],
-      "commands": ["editor.action.dirtydiff.next"],
+      "commands": ["editor.action.dirtydiff.next"]
     },
     {
       "before": ["<leader>", "g", "r"],
-      "commands": ["git.revertSelectedRanges"],
+      "commands": ["git.revertSelectedRanges"]
     },
 
     {
       "before": ["-"],
       "commands": ["workbench.files.action.focusFilesExplorer"],
-      "silent": true,
-    },
+      "silent": true
+    }
   ],
 
   // VSCodeVim — Visual Mode
@@ -320,55 +320,55 @@
   "vim.visualModeKeyBindingsNonRecursive": [
     {
       "before": ["<leader>", "p"],
-      "after": ["p", "g", "v", "y"],
+      "after": ["p", "g", "v", "y"]
     },
     // Delete without yanking
     {
       "before": ["<leader>", "x"],
-      "after": ["\"", "_", "d"],
+      "after": ["\"", "_", "d"]
     },
 
     // Indent and preserve selection
     {
       "before": ["<"],
-      "after": ["<", "g", "v"],
+      "after": ["<", "g", "v"]
     },
     {
       "before": [">"],
-      "after": [">", "g", "v"],
+      "after": [">", "g", "v"]
     },
 
     // Expand and shrink syntax-aware selection
     {
       "before": ["="],
-      "commands": ["editor.action.smartSelect.expand"],
+      "commands": ["editor.action.smartSelect.expand"]
     },
     {
       "before": ["<Backspace>"],
-      "commands": ["editor.action.smartSelect.shrink"],
-    },
+      "commands": ["editor.action.smartSelect.shrink"]
+    }
   ],
   // Exit insert mode with Ctrl+C
   "vim.insertModeKeyBindingsNonRecursive": [
     {
       "before": ["<C-c>"],
-      "after": ["<Esc>"],
-    },
+      "after": ["<Esc>"]
+    }
   ],
 
   "vim.visualModeKeyBindings": [
     {
       "before": ["<C-c>"],
-      "after": ["<Esc>"],
+      "after": ["<Esc>"]
     },
     {
       "before": ["J"],
-      "commands": ["editor.action.moveLinesUpAction"],
+      "commands": ["editor.action.moveLinesUpAction"]
     },
     {
       "before": ["K"],
-      "commands": ["editor.action.moveLinesDownAction"],
-    },
+      "commands": ["editor.action.moveLinesDownAction"]
+    }
   ],
 
   // VSCodeVim — macOS Input Method
@@ -381,7 +381,7 @@
   // Extensions
 
   "extensions.experimental.affinity": {
-    "vscodevim.vim": 1,
+    "vscodevim.vim": 1
   },
 
   "liveServer.settings.donotVerifyTags": true,
@@ -396,5 +396,6 @@
     "statusBar.foreground": "#ffffff",
     "statusBar.debuggingForeground": "#ffffff"
   },
-  "workbench.colorTheme": "OneNord",
+  "workbench.colorTheme": "Material Deep Ocean",
+  "workbench.statusBar.visible": false
 }

@@ -12,7 +12,7 @@ window-padding-x = 0,10
 window-padding-y = 0,10
 window-padding-balance = true
 
-background-opacity = 0.97
+ background-opacity = 0.9
  background-blur = true
 # background-opacity-cells = true
 
@@ -23,21 +23,54 @@ background-opacity = 0.97
 # theme = Material Darker
 # theme = One Double Dark
 # theme = One Dark Two
-  theme = Onenord
+#  theme = Onenord
 
 # Overrides ------------------------
 
-# background = #262626
-# background = #231f27
-# background = #202022
-# background = #1b1a1d
-# background = #282C34
-# background = #272a31
-# background = #29292d
-# background = #2E3340	
-  background = #1d1e26
-  foreground = #bbbbcb
 
+ 
+# dark 
+# background = #171a1d
+
+# medium blue 
+#  background = #2E3340
+
+# deepocean 
+# background = #1d1e23	
+
+# deep blue 
+  background = #202226
+
+# Medium blue gray
+#  background = #252932
+
+# medium gray 
+# background = #282C34   
+
+foreground = #bbbbcb
+
+selection-background = #2E3440
+selection-foreground = #C0D0E0
+
+# Normal colors
+palette = 0=#191D24
+palette = 1=#DF7C84
+palette = 2=#97D394
+palette = 3=#E6C17C
+palette = 4=#8CABE8
+palette = 5=#BE9ADC
+palette = 6=#8CC5DB
+palette = 7=#C0D0E0
+
+# Bright colors
+palette = 8=#3B4252
+palette = 9=#C76870
+palette = 10=#9DB97C
+palette = 11=#D7B36F
+palette = 12=#7697D3
+palette = 13=#A783C6
+palette = 14=#73AEC3
+palette = 15=#E0E6F0
 
 # Ghostty Icon ------------------------
 

@@ -12,7 +12,7 @@ return {
 
 		local c = {
 			-- Editor backgrounds: retain Deep Ocean
-			bg = "#0F111A",
+			-- bg = "#0F111A",
 			bg_alt = "#090B10",
 			float = "#11141D",
 			surface = "#171B25",
@@ -42,7 +42,7 @@ return {
 			yellow_dim = "#D7B36F",
 			blue = "#8CABE8",
 			blue_dim = "#7697D3",
-			paleblue = "#9EB5DF",
+			paleblue = "#9EBeD0",
 			cyan = "#8CC5DB",
 			cyan_dim = "#73AEC3",
 			purple = "#be8adc",
@@ -50,30 +50,36 @@ return {
 			orange = "#E09277",
 			orange_dim = "#D3866D",
 			pink = "#E49EAF",
+			pink_dk = "#e26c88",
 
 			-- Semantic colors
 			property = "#C0D0E0",
 			identifier = "#C0D0E0",
 			constant = "#C0D0E0",
 			func = "#8EA8E9",
-			type = "#BF9EDC",
-			keyword = "#BE9ADC",
+			type = "#BD8EDC",
+			keyword = "#BD8ADC",
 			string = "#97D394",
 			number = "#C0D0E0",
 			punctuation = "#8EBFCB",
-			operator = "#BE9ADC",
+			operator = "#BD8ADC",
 
 			-- Diagnostics
 			error = "#DF7C84",
 			warning = "#E6C17C",
 			info = "#9EB5DF",
-			hint = "#BE9ADC",
+			hint = "#BD8ADC",
 			ok = "#97D394",
 
 			-- Git
-			git_add = "#7DB98C",
+			git_add = "#7Dc96C",
 			git_change = "#8CABE8",
 			git_delete = "#DF7C84",
+
+			-- Search
+			search = "#383c98",
+			inc_search = "#f8fc88",
+			cur_search = "#c83c93",
 		}
 
 		-- ============================================================
@@ -116,9 +122,9 @@ return {
 
 		h.ColorColumn = { bg = c.surface }
 		h.Visual = { bg = c.selection }
-		h.Search = { fg = c.text, bg = c.selection }
-		h.IncSearch = { fg = c.bg, bg = c.accent }
-		h.CurSearch = { fg = c.bg, bg = c.accent, bold = true }
+		h.Search = { fg = c.text, bg = c.search }
+		h.IncSearch = { fg = c.bg, bg = c.inc_search }
+		h.CurSearch = { fg = c.bg, bg = c.cur_search, bold = true }
 		h.MatchParen = { fg = c.text, bg = c.selection, bold = true }
 
 		h.WinSeparator = { fg = c.border, bg = c.bg }
@@ -187,10 +193,14 @@ return {
 
 		set_fg({
 			"Operator",
-			"Delimiter",
 			"Special",
 			"SpecialChar",
 		}, c.operator)
+
+		set_fg({
+			"Delimiter",
+			"@punctuation.bracket",
+		}, c.paleblue)
 
 		set_fg({ "String" }, c.string)
 		set_fg({ "Underlined" }, c.blue, { underline = true })
@@ -288,7 +298,7 @@ return {
 		set_fg({
 			"@attribute",
 			"@tag.attribute",
-		}, c.accent)
+		}, c.yellow_dim)
 
 		set_fg({
 			"@tag",
@@ -299,8 +309,6 @@ return {
 		set_fg({
 			"@label",
 			"@annotation",
-			"@punctuation.bracket",
-			"@punctuation.delimiter",
 		}, c.blue_dim)
 
 		set_fg({
@@ -321,7 +329,7 @@ return {
 			"@markup.heading.4",
 			"@markup.heading.5",
 			"@markup.heading.6",
-		}, c.type)
+		}, c.text)
 
 		set_fg({ "@markup.strong" }, c.text, { bold = true })
 		set_fg({ "@markup.italic" }, c.fg, { italic = true })
@@ -345,7 +353,7 @@ return {
 			"@lsp.type.enumMember",
 			"@lsp.type.namespace",
 			"@punctuation",
-			"@punctuation.special",
+			"@punctuation.delimiter",
 		}, c.text)
 
 		set_fg({
