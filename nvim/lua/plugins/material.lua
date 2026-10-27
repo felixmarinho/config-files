@@ -6,13 +6,20 @@ return {
 	config = function()
 		vim.g.material_style = "deep ocean"
 
+		-- true: let Ghostty provide the terminal background and opacity.
+		-- false: use this file's configured c.bg color instead.
+		local transparent_background = true
+		local function bg(color)
+			return transparent_background and "NONE" or color
+		end
+
 		-- ============================================================
 		-- MUTED DEEP OCEAN PALETTE
 		-- ============================================================
 
 		local c = {
-			-- Editor backgrounds: retain Deep Ocean
-			-- bg = "#0F111A",
+			-- Editor backgrounds used when transparent_background = false
+			bg = "#202226",
 			bg_alt = "#090B10",
 			float = "#11141D",
 			surface = "#171B25",
@@ -23,7 +30,7 @@ return {
 
 			-- Text
 			fg = "#AEB8CA",
-			text = "#C0D0E0", -- Preferred color for properties, identifiers and constants
+			text = "#e0e0f0", -- Headings, emphasized text, and selected labels
 			muted = "#8993A6",
 			dim = "#6E788D",
 			comment = "#687387",
@@ -33,48 +40,48 @@ return {
 			accent = "#87969A",
 			accent_dim = "#717F84",
 
-			-- Syntax colors: approximately 60% blended toward Material's original palette
-			red = "#DF7C84",
-			red_dim = "#C76870",
-			green = "#97D394",
-			green_dim = "#7DB98C",
-			yellow = "#E6C17C",
-			yellow_dim = "#D7B36F",
-			blue = "#8CABE8",
-			blue_dim = "#7697D3",
-			paleblue = "#9EBeD0",
-			cyan = "#8CC5DB",
-			cyan_dim = "#73AEC3",
-			purple = "#be8adc",
-			purple_dim = "#A783C6",
-			orange = "#E09277",
-			orange_dim = "#D3866D",
-			pink = "#E49EAF",
-			pink_dk = "#e26c88",
+			-- Syntax colors: original Material palette (100%)
+			red = "#F07178",
+			red_dim = "#C53B53",
+			green = "#a3E88D",
+			green_dim = "#71B859",
+			yellow = "#FFCB6B",
+			yellow_dim = "#F98C6C",
+			blue = "#82AAFF",
+			blue_dim = "#5F87E5",
+			paleblue = "#B2CCD6",
+			cyan = "#89DDFF",
+			cyan_dim = "#39ADB5",
+			purple = "#C792EA",
+			purple_dim = "#A37ACC",
+			orange = "#F78C6C",
+			orange_dim = "#D9826B",
+			pink = "#F4aFa1",
+			pink_dk = "#FF5370",
 
 			-- Semantic colors
-			property = "#C0D0E0",
-			identifier = "#C0D0E0",
-			constant = "#C0D0E0",
-			func = "#8EA8E9",
-			type = "#BD8EDC",
-			keyword = "#BD8ADC",
-			string = "#97D394",
-			number = "#C0D0E0",
-			punctuation = "#8EBFCB",
-			operator = "#BD8ADC",
+			property = "#FFdB7B",
+			identifier = "#EEFFFF",
+			constant = "#EEFFFF",
+			func = "#82AAFF",
+			type = "#FFCB6B",
+			keyword = "#C792EA",
+			string = "#a3E88D",
+			number = "#F78C6C",
+			punctuation = "#89DDFF",
+			operator = "#89DDFF",
 
 			-- Diagnostics
-			error = "#DF7C84",
-			warning = "#E6C17C",
-			info = "#9EB5DF",
-			hint = "#BD8ADC",
-			ok = "#97D394",
-
+			error = "#F07178",
+			warning = "#FFCB6B",
+			info = "#82AAFF",
+			hint = "#C792EA",
+			ok = "#a3E88D",
+			--
 			-- Git
-			git_add = "#7Dc96C",
-			git_change = "#8CABE8",
-			git_delete = "#DF7C84",
+			git_add = "#6BBF59",
+			git_change = "#4A88F8",
+			git_delete = "#FF5C54",
 
 			-- Search
 			search = "#383c98",
@@ -110,9 +117,9 @@ return {
 		-- EDITOR AND UI
 		-- ============================================================
 
-		h.Normal = { fg = c.fg, bg = c.bg }
-		h.NormalNC = { fg = c.fg, bg = c.bg }
-		h.EndOfBuffer = { fg = c.bg_alt, bg = c.bg }
+		h.Normal = { fg = c.fg, bg = bg(c.bg) }
+		h.NormalNC = { fg = c.fg, bg = bg(c.bg) }
+		h.EndOfBuffer = { fg = c.bg_alt, bg = bg(c.bg) }
 		h.NonText = { fg = c.dim }
 		h.Whitespace = { fg = c.dim }
 
@@ -123,12 +130,12 @@ return {
 		h.ColorColumn = { bg = c.surface }
 		h.Visual = { bg = c.selection }
 		h.Search = { fg = c.text, bg = c.search }
-		h.IncSearch = { fg = c.bg, bg = c.inc_search }
+		h.IncSearch = { fg = c.bg_alt, bg = c.inc_search }
 		h.CurSearch = { fg = c.bg, bg = c.cur_search, bold = true }
 		h.MatchParen = { fg = c.text, bg = c.selection, bold = true }
 
-		h.WinSeparator = { fg = c.border, bg = c.bg }
-		h.VertSplit = { fg = c.border, bg = c.bg }
+		h.WinSeparator = { fg = c.border, bg = bg(c.bg) }
+		h.VertSplit = { fg = c.border, bg = bg(c.bg) }
 		h.FloatBorder = { fg = c.border, bg = c.float }
 		h.NormalFloat = { fg = c.fg, bg = c.float }
 		h.FloatTitle = { fg = c.text, bg = c.float }
@@ -136,7 +143,7 @@ return {
 
 		h.Folded = { fg = c.muted, bg = c.surface }
 		h.FoldColumn = { fg = c.dim }
-		h.SignColumn = { bg = c.bg }
+		h.SignColumn = { bg = bg(c.bg) }
 
 		h.Pmenu = { fg = c.fg, bg = c.float }
 		h.PmenuSel = { fg = c.text, bg = c.selection }
@@ -153,7 +160,7 @@ return {
 		h.Directory = { fg = c.blue }
 		h.QuickFixLine = { bg = c.selection }
 		h.MatchWord = { bg = c.selection }
-		h.Substitute = { fg = c.bg, bg = c.yellow }
+		h.Substitute = { fg = c.bg_alt, bg = c.yellow }
 		h.Conceal = { fg = c.muted }
 		h.WildMenu = { fg = c.text, bg = c.selection }
 
@@ -197,10 +204,8 @@ return {
 			"SpecialChar",
 		}, c.operator)
 
-		set_fg({
-			"Delimiter",
-			"@punctuation.bracket",
-		}, c.paleblue)
+		set_fg({ "Delimiter", "@punctuation.bracket" }, c.paleblue)
+		set_fg({ "@punctuation", "@punctuation.delimiter", "@punctuation.special" }, c.punctuation)
 
 		set_fg({ "String" }, c.string)
 		set_fg({ "Underlined" }, c.blue, { underline = true })
@@ -216,20 +221,27 @@ return {
 		-- TREESITTER: VARIABLES, PROPERTIES AND CONSTANTS
 		-- ============================================================
 
+		-- Keep ordinary identifiers and constants in Material's light foreground.
 		set_fg({
 			"@variable",
 			"@variable.builtin",
-			"@variable.parameter",
 			"@variable.parameter.builtin",
-			"@variable.member",
-			"@parameter",
 			"@parameter.reference",
-			"@property",
-			"@field",
+		}, c.identifier)
+
+		set_fg({
 			"@constant",
 			"@constant.builtin",
 			"@constant.macro",
-		}, c.text)
+		}, c.constant)
+
+		-- Properties/fields use the property color defined in the palette.
+		set_fg({ "@variable.member", "@property", "@field" }, c.property)
+
+		set_fg({
+			"@variable.parameter",
+			"@parameter",
+		}, c.yellow)
 
 		-- ============================================================
 		-- TREESITTER: FUNCTIONS
@@ -283,13 +295,13 @@ return {
 		set_fg({
 			"@string",
 			"@string.documentation",
-			"@string.escape",
 			"@string.regexp",
 			"@string.special",
 			"@string.special.symbol",
 			"@character",
-			"@character.special",
 		}, c.string)
+
+		set_fg({ "@string.escape", "@character.special" }, c.cyan)
 
 		set_fg({
 			"@operator",
@@ -300,16 +312,11 @@ return {
 			"@tag.attribute",
 		}, c.yellow_dim)
 
-		set_fg({
-			"@tag",
-			"@tag.builtin",
-			"@tag.delimiter",
-		}, c.purple_dim)
+		set_fg({ "@tag", "@tag.builtin" }, c.red)
+		set_fg({ "@tag.delimiter" }, c.paleblue)
 
-		set_fg({
-			"@label",
-			"@annotation",
-		}, c.blue_dim)
+		set_fg({ "@label" }, c.blue_dim)
+		set_fg({ "@annotation" }, c.purple_dim)
 
 		set_fg({
 			"@comment",
@@ -346,15 +353,11 @@ return {
 		-- These complement Treesitter. LSP semantic tokens can override
 		-- Treesitter colors depending on the server and your configuration.
 
-		set_fg({
-			"@lsp.type.variable",
-			"@lsp.type.parameter",
-			"@lsp.type.property",
-			"@lsp.type.enumMember",
-			"@lsp.type.namespace",
-			"@punctuation",
-			"@punctuation.delimiter",
-		}, c.text)
+		set_fg({ "@lsp.type.variable", "@lsp.type.parameter" }, c.identifier)
+		set_fg({ "@lsp.type.property" }, c.property)
+		set_fg({ "@lsp.type.enumMember" }, c.constant)
+		set_fg({ "@lsp.type.namespace" }, c.type)
+		set_fg({ "@punctuation", "@punctuation.delimiter" }, c.punctuation)
 
 		set_fg({
 			"@lsp.type.class",
@@ -639,7 +642,7 @@ return {
 			disable = {
 				colored_cursor = false,
 				borders = false,
-				background = false, -- Keep Material setting the opaque Deep Ocean background
+				background = transparent_background, -- Use Ghostty background when transparent
 				term_colors = false,
 				eob_lines = false,
 			},
@@ -648,7 +651,7 @@ return {
 			async_loading = false,
 
 			custom_colors = function(colors)
-				-- Keep Deep Ocean's characteristic dark background.
+				-- Keep the Deep Ocean palette available when opaque mode is enabled.
 				colors.editor.bg = c.bg
 				colors.editor.bg_alt = c.bg_alt
 				colors.editor.fg = c.fg
@@ -667,7 +670,7 @@ return {
 				colors.editor.title = c.text
 				colors.editor.cursor = c.text
 
-				-- Main syntax palette.
+				-- Main syntax palette; all original color values are retained.
 				colors.main.white = c.text
 				colors.main.gray = c.muted
 				colors.main.black = c.bg_alt
@@ -691,13 +694,13 @@ return {
 
 				-- The plugin derives some semantic colors from these fields.
 				colors.syntax.comments = c.comment
-				colors.syntax.variable = c.text
+				colors.syntax.variable = c.identifier
 				colors.syntax.field = c.property
 				colors.syntax.keyword = c.keyword
 				colors.syntax.value = c.number
 				colors.syntax.operator = c.operator
 				colors.syntax.fn = c.func
-				colors.syntax.parameter = c.text
+				colors.syntax.parameter = c.yellow
 				colors.syntax.string = c.string
 				colors.syntax.type = c.type
 
@@ -710,9 +713,11 @@ return {
 				colors.lsp.info = c.info
 				colors.lsp.hint = c.hint
 
-				colors.backgrounds.sidebars = c.bg
-				colors.backgrounds.floating_windows = c.bg
-				colors.backgrounds.non_current_windows = c.bg
+				-- These are UI background groups too; keep the main canvas transparent.
+				colors.backgrounds.sidebars = bg(c.bg)
+				colors.backgrounds.floating_windows = bg(c.bg)
+				colors.backgrounds.non_current_windows = bg(c.bg)
+				-- Keep a concrete color here because Material uses it as a blend fallback.
 				colors.backgrounds.bg_blend = c.bg
 				colors.backgrounds.cursor_line = c.cursorline
 			end,

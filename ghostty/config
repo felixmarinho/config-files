@@ -23,7 +23,7 @@ window-padding-balance = true
 # theme = Material Darker
 # theme = One Double Dark
 # theme = One Dark Two
-#  theme = Onenord
+# theme = Onenord
 
 # Overrides ------------------------
 
@@ -42,7 +42,7 @@ window-padding-balance = true
   background = #202226
 
 # Medium blue gray
-#  background = #252932
+# background = #252932
 
 # medium gray 
 # background = #282C34   
@@ -54,22 +54,22 @@ selection-foreground = #C0D0E0
 
 # Normal colors
 palette = 0=#191D24
-palette = 1=#DF7C84
-palette = 2=#97D394
-palette = 3=#E6C17C
-palette = 4=#8CABE8
-palette = 5=#BE9ADC
-palette = 6=#8CC5DB
+palette = 1=#F07178
+palette = 2=#A3E88D
+palette = 3=#FFCB6B
+palette = 4=#82AAFF
+palette = 5=#C792EA
+palette = 6=#89DDFF
 palette = 7=#C0D0E0
 
 # Bright colors
 palette = 8=#3B4252
-palette = 9=#C76870
-palette = 10=#9DB97C
-palette = 11=#D7B36F
-palette = 12=#7697D3
-palette = 13=#A783C6
-palette = 14=#73AEC3
+palette = 9=#FF5370
+palette = 10=#71B859
+palette = 11=#FFB62C
+palette = 12=#5F87E5
+palette = 13=#A37ACC
+palette = 14=#39ADB5
 palette = 15=#E0E6F0
 
 # Ghostty Icon ------------------------
@@ -94,7 +94,7 @@ quick-terminal-position = top
 # font-family-italic = JetBrains Mono Italic
 # font-family-bold-italic = JetBrains Mono Bold Italic
 
-font-size = 18
+font-size = 16
 window-inherit-font-size = true
 #font-thicken = true
 
