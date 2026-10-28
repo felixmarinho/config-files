@@ -49,8 +49,6 @@
   "editor.lineDecorationsWidth": 10,
   "editor.glyphMargin": false,
   "editor.folding": false,
-
-  "editor.formatOnSave": true,
   "editor.defaultFormatter": "esbenp.prettier-vscode",
 
   "files.autoSave": "off",
@@ -159,8 +157,9 @@
       "commands": ["flash-vscode.remoteTreesitterSelection"]
     },
     {
-      "before": ["<BS>"],
-      "commands": ["flash-vscode.backspace"]
+      "before": ["<bs>"],
+      "commands": ["workbench.files.action.focusFilesExplorer"],
+      "silent": true
     },
     {
       "before": ["<C-c>"],
@@ -243,7 +242,7 @@
       "commands": ["editor.action.smartSelect.expand"]
     },
     {
-      "before": ["<Backspace>"],
+      "before": ["-"],
       "commands": ["editor.action.smartSelect.shrink"]
     }
   ],
@@ -344,7 +343,7 @@
       "commands": ["editor.action.smartSelect.expand"]
     },
     {
-      "before": ["<Backspace>"],
+      "before": ["-"],
       "commands": ["editor.action.smartSelect.shrink"]
     }
   ],
@@ -386,7 +385,6 @@
 
   "liveServer.settings.donotVerifyTags": true,
   "liveServer.settings.donotShowInfoMsg": true,
-  "workbench.editor.showTabs": "none",
   "workbench.editor.editorActionsLocation": "titleBar",
   "breadcrumbs.enabled": false,
   "workbench.colorCustomizations": {
@@ -397,9 +395,9 @@
     "titleBar.inactiveBackground": "#202226",
     "activityBar.background": "#202226",
     "activityBarTop.background": "#202226",
-    "statusBar.background": "#5f0000",
-    "statusBar.noFolderBackground": "#5f0000",
-    "statusBar.debuggingBackground": "#5f0000",
+    "statusBar.background": "#005f5f",
+    "statusBar.noFolderBackground": "#005f5f",
+    "statusBar.debuggingBackground": "#005f5f",
     "foreground": "#C0D0E0",
     "descriptionForeground": "#8896AA",
     "titleBar.activeForeground": "#C0D0E0",
@@ -501,7 +499,7 @@
     "settings.textInputBorder": "#373A43",
     "settings.focusedRowBackground": "#25272C",
     "settings.headerForeground": "#C0D0E0",
-    "editorCursor.foreground": "#E6C17C",
+    "editorCursor.foreground": "#C0D0E0",
     "editorLineNumber.foreground": "#687387",
     "editorLineNumber.activeForeground": "#C0D0E0",
     "editor.lineHighlightBackground": "#25272C",
@@ -537,7 +535,7 @@
     "debugToolBar.background": "#24262B",
     "debugExceptionWidget.background": "#24262B",
     "editorMarkerNavigation.background": "#24262B",
-    "extensionButton.prominentBackground": "#30343B",
+    "extensionButton.prominentBackground": "#c0d0e0",
     "extensionButton.prominentHoverBackground": "#373A43",
     "scrollbarSlider.background": "#74798530",
     "scrollbarSlider.hoverBackground": "#9295A350",
@@ -585,5 +583,7 @@
     ]
   },
   "workbench.colorTheme": "Material Deep Ocean",
-  "workbench.statusBar.visible": false
+  "workbench.statusBar.visible": false,
+  "workbench.editor.showTabs": "none",
+  "editor.formatOnSave": true
 }

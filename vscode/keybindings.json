@@ -51,11 +51,11 @@
   // Toggle sidebar
 
   // Hide the sidebar when the File Explorer already has focus
-  {
-    "key": "[Minus]",
-    "command": "workbench.action.toggleSidebarVisibility",
-    "when": "filesExplorerFocus && !inputFocus"
-  },
+{
+  "key": "backspace",
+  "command": "workbench.action.toggleSidebarVisibility",
+  "when": "sideBarFocus && !inputFocus"
+},
 
   // Create
   {

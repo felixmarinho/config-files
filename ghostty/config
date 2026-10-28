@@ -12,9 +12,9 @@ window-padding-x = 0,10
 window-padding-y = 0,10
 window-padding-balance = true
 
- background-opacity = 0.98
- background-blur = false
-# background-opacity-cells = true
+ background-opacity = 0.95
+ background-blur = true
+ background-opacity-cells = false
 
 # Themes ------------------------
 
