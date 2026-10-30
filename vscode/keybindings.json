@@ -106,5 +106,18 @@
     "key": "alt+k",
     "command": "editor.action.moveLinesUpAction",
     "when": "editorTextFocus && !editorReadonly && (vim.mode == 'Normal' || vim.mode == 'Visual')"
-  }
+  },
+
+  // NAVIGATION NORMAL MODE
+{
+  "key": "j",
+  "command": "cursorDown",
+  "when": "editorTextFocus && vim.active && !inDebugRepl && vim.mode == 'Normal' && !suggestWidgetMultipleSuggestions && !suggestWidgetVisible"
+},
+{
+  "key": "k",
+  "command": "cursorUp",
+  "when": "editorTextFocus && vim.active && !inDebugRepl && vim.mode == 'Normal' && !suggestWidgetMultipleSuggestions && !suggestWidgetVisible"
+}
+
 ]
